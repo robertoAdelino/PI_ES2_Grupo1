@@ -12,15 +12,15 @@ namespace ServicoDeEsterelizacao.Controllers
         {
             return View();
         }
-        public IActionResult VHorarios()
+        public IActionResult VHorario()
         {
             return View();
         }
-        public IActionResult GHorarios()
+        public IActionResult GHorario()
         {
             return View();
         }
-        public IActionResult AHorarios()
+        public IActionResult AHorario()
         {
             return View();
         }

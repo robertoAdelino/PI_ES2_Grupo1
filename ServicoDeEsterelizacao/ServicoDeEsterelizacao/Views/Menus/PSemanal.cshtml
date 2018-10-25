@@ -1,7 +1,14 @@
-﻿
+﻿@model PlanoSemanal
 @{
-    ViewData["Title"] = "PSemanal";
+    ViewData["Title"] = "Plano Semanal";
 }
 
 <h2>Plano Semanal de trabalho</h2>
-<button><p>Efetuar novo Plano Semanal</p></button>
+<select>
+
+    <option value="enfermeiro">Enfermeiro</option>
+    <option value="assistenteOperacional">Assistente Operacional</option>
+    <option value="auxiliar">Auxiliar</option>
+
+</select>
+<button><p>Efetuar Plano Semanal</p></button>

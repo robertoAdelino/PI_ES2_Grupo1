@@ -10,18 +10,13 @@ namespace ServicoDeEsterelizacao.Models
     {
         public int IdPlano { get; set; }
 
-        [Required(ErrorMessage = "Por favor introduza o nome")]
-        [StringLength(50, MinimumLength = 3)]
-        public string Nome { get; set; }
+        public int ID { get; set; } 
+               
+        public string funcao { get; set; }
 
-        [Required(ErrorMessage = "Por favor introduza o telefone")]
-        public string Telefone { get; set; }
+        public DateTime data { get; set; }
 
-        [Required(ErrorMessage = "Por favor introduza o E-mail.")]
-        
-        public string Email { get; set; }
-
-        public string Funcao { get; set; }
+        public string tarefa { get; set; }
     }
 
 

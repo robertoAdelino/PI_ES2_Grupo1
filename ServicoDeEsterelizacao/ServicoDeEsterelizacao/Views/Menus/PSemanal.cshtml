@@ -4,11 +4,29 @@
 }
 
 <h2>Plano Semanal de trabalho</h2>
-<select>
-
-    <option value="enfermeiro">Enfermeiro</option>
-    <option value="assistenteOperacional">Assistente Operacional</option>
-    <option value="auxiliar">Auxiliar</option>
-
+Função
+<select asp-for="funcao" class="form-control">
+    <option value="1">Enfermeiro</option>
+    <option value="2">Assistente Operacional</option>
+    <option value="3">Auxiliar</option>
 </select>
-<button><p>Efetuar Plano Semanal</p></button>
+ID:
+<select asp-for="ID" class="form-control">
+   <option value="ID">ID</option>
+</select>
+Dia:
+<select asp-for="data" class="form-control">
+    <option value="1">Dia XX/XX</option>
+    <option value="2">Dia XX/XX</option>
+    <option value="3">Dia XX/XX</option>
+</select>
+Tarefa:
+<select asp-for="tarefa" class="form-control">
+    <option value="1"> Descontaminação </option>
+    <option value="2"> Inspeção </option>
+    <option value="3"> Embalagem e esterilização </option>
+    <option value="4"> Armazens de estéries e entregas </option>
+    <option value="5"> Têxteis</option>
+</select>
+
+<button type="submit" class="btn btn-primary">Submeter</button>

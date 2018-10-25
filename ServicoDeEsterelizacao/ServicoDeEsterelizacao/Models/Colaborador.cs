@@ -8,7 +8,7 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class Colaborador
     {
-        public int IdColaborador { get; set; }
+        public int ID { get; set; }
 
         [Required(ErrorMessage = "Por favor introduza o nome")]
         [StringLength(50, MinimumLength = 3)]
@@ -22,7 +22,7 @@ namespace ServicoDeEsterelizacao.Models
         [EmailAddress(ErrorMessage = "E-mail inválido.")]
         public string Email { get; set; }
 
-        public string Funcao { get; set; }
+        public string funcao { get; set; }
     }
 
 }

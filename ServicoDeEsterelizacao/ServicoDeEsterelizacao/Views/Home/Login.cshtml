@@ -5,10 +5,17 @@
 <h2>@ViewData["Title"]</h2>
 
 
-<div>
-<p><h3>IDUser:</h3></p>
-<p><h3>Password:</h3></p>
-<p></p>
-<p></p>
-<a>login (deseja-se que quando se 'cliqua' seja direcionado para a View dos Menus)</a>
-</div>
+<form asp-action="Login" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form_group">
+        <label asp-for="ID">IDUtilizador:</label>
+        <input asp-for="ID" class="form-control" placeholder="Introduza o seu ID" />
+    </div>
+    <div class="form_group">
+        <label asp-for="password">Password:</label>
+        <input asp-for="password" class="form-control" placeholder="Introduza a sua password" />
+    </div>
+    <p></p>
+    <p></p>
+    <button type="submit" class="btn btn-primary" asp-controller="Menus" asp-action="Home">login</button>
+</form>

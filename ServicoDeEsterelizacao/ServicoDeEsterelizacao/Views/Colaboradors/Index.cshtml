@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Colaborador>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Dest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.funcao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.funcao)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ColaboradorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ColaboradorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ColaboradorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

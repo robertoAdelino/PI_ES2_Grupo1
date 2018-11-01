@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using ServicoDeEsterelizacao.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao
 {
@@ -41,6 +42,9 @@ namespace ServicoDeEsterelizacao
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<ColaboradorDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ColaboradorDbContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

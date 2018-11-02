@@ -13,8 +13,18 @@ namespace ServicoDeEsterelizacao.Models
 
         public string funcao { get; set; }
 
-        public ICollection<Horario> Horario { get; set; }
+        public ICollection<Servico> Servico { get; set; }
 
-        public Horario horario;
+        public Enfermeiros Enfermeiro { get; set; }
+
+        public int EnfermeiroID { get; set; }
+
+        public AssistenteOperacional AssistenteOperacional { get; set; }
+
+        public int AssisOperID { get; set; }
+
+        public DiretorServico DirServico { get; set; }
+
+        public int DirID { get; set; }
     }
 }

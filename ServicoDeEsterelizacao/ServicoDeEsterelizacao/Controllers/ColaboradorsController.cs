@@ -11,9 +11,9 @@ namespace ServicoDeEsterelizacao.Controllers
 {
     public class ColaboradorsController : Controller
     {
-        private readonly ColaboradorDbContext _context;
+        private readonly ServicoDbContext _context;
 
-        public ColaboradorsController(ColaboradorDbContext context)
+        public ColaboradorsController(ServicoDbContext context)
         {
             _context = context;
         }
@@ -53,7 +53,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ColaboradorId,Dest,funcao")] Colaborador colaborador)
+        public async Task<IActionResult> Create([Bind("ColaboradorId,Dest,funcao,EnfermeiroID,AssisOperID,DirID")] Colaborador colaborador)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ColaboradorId,Dest,funcao")] Colaborador colaborador)
+        public async Task<IActionResult> Edit(int id, [Bind("ColaboradorId,Dest,funcao,EnfermeiroID,AssisOperID,DirID")] Colaborador colaborador)
         {
             if (id != colaborador.ColaboradorId)
             {

@@ -11,9 +11,9 @@ namespace ServicoDeEsterelizacao.Controllers
 {
     public class HorariosController : Controller
     {
-        private readonly ColaboradorDbContext _context;
+        private readonly ServicoDbContext _context;
 
-        public HorariosController(ColaboradorDbContext context)
+        public HorariosController(ServicoDbContext context)
         {
             _context = context;
         }
@@ -53,7 +53,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HorarioID,Data")] Horario horario)
+        public async Task<IActionResult> Create([Bind("HorarioID,data")] Horario horario)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HorarioID,Data")] Horario horario)
+        public async Task<IActionResult> Edit(int id, [Bind("HorarioID,data")] Horario horario)
         {
             if (id != horario.HorarioID)
             {

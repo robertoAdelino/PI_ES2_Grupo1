@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ServicoDeEsterelizacao.Models
 {
@@ -7,11 +8,9 @@ namespace ServicoDeEsterelizacao.Models
 
         public int HorarioID { get; set; }
 
-        public int Data { get; set; }
+        public System.DateTime data { get; set; }
 
-        public ICollection<Colaborador> colaborador { get; set; }
+        public ICollection<Servico> Servico { get; set; }
 
-        public Colaborador Colaborador { get; set; }
-       
     }
 }

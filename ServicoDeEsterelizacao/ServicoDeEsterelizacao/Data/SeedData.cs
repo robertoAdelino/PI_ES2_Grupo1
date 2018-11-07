@@ -14,13 +14,7 @@ namespace ServicoDeEsterelizacao.Models
             {
                 var db = serviceScope.ServiceProvider.GetService<ServicoDeEsterelizacaoContext>();
 
-                if (db.InfoModel.Any()) return;
-
-
-                db.InfoModel.AddRange(
-                //    new Product 
-                     );
-                db.SaveChanges();
+               
             }
         }
     }

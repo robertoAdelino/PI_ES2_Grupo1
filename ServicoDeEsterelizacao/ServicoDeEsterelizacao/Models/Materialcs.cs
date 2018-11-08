@@ -9,7 +9,7 @@ namespace ServicoDeEsterelizacao.Models
     public class Materialcs
     {
         [Required]
-        public int ID { get; set; }
+        public int IDMaterial { get; set; }
         [Required]
         public string Nome { get; set; }
         [Required]

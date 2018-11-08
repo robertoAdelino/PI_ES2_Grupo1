@@ -7,7 +7,7 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class AssistenteOperacional
     {
-        public int AssistenteOperacionalID { get; set; }
+        public int AOID { get; set; }
 
         public string Nome { get; set; }
 

@@ -46,6 +46,9 @@ namespace ServicoDeEsterelizacao
             services.AddDbContext<ServicoDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ServicoDbContext")));
 
+            services.AddDbContext<ColaboradorDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ColaboradorDbContext")));
+
             
 
             
@@ -77,6 +80,9 @@ namespace ServicoDeEsterelizacao
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            SeedData1.Populate(app.ApplicationServices);
+            SeedData2.Populate(app.ApplicationServices);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace ServicoDeEsterelizacao.Models
                 .WithMany(h => h.Servico).HasForeignKey(s => s.HorarioID)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            modelbuilder.Entity<Colaborador>()
+            /*modelbuilder.Entity<Colaborador>()
                 .HasKey(c => new { c.AssisOperID, c.DirID, c.EnfermeiroID });
 
             modelbuilder.Entity<Colaborador>().HasOne(c => c.Enfermeiro).WithMany(e => e.Colaborador)
@@ -42,7 +42,7 @@ namespace ServicoDeEsterelizacao.Models
                 .HasForeignKey(c => c.AssisOperID).OnDelete(DeleteBehavior.ClientSetNull);
 
             modelbuilder.Entity<Colaborador>().HasOne(c => c.DirServico).WithMany(d => d.Colaborador)
-                .HasForeignKey(c => c.DirID).OnDelete(DeleteBehavior.ClientSetNull);
+                .HasForeignKey(c => c.DirID).OnDelete(DeleteBehavior.ClientSetNull);*/
 
             base.OnModelCreating(modelbuilder);
         }

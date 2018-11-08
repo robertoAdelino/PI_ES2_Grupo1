@@ -36,5 +36,14 @@ namespace ServicoDeEsterelizacao.Controllers
         {
             return View();
         }
+
+        public IActionResult Gerar()
+        {
+            return View();
+        }
+        public IActionResult AceitarAlteracao()
+        {
+            return View();
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class Enfermeiros
     {
-        public int EnferID { get; set; }
+        public int EnfermeirosID { get; set; }
 
         public string Nome { get; set; }
 

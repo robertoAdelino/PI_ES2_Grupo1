@@ -12,7 +12,10 @@ using Microsoft.EntityFrameworkCore;
 using ServicoDeEsterelizacao.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+<<<<<<< HEAD
 using Microsoft.EntityFrameworkCore;
+=======
+>>>>>>> MenuPrincipal
 using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao
@@ -44,16 +47,54 @@ namespace ServicoDeEsterelizacao
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+<<<<<<< HEAD
             services.AddDbContext<ServicoDeEsterelizacaoContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ServicoDeEsterelizacaoContext")));
 
             services.AddDbContext<MaterialDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MaterialDbContext")));
+=======
+            services.AddDbContext<ServicoDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ServicoDbContext")));
+
+            services.AddDbContext<ColaboradorDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ColaboradorDbContext")));
+
+
+            services.Configure<IdentityOptions>(
+    options =>
+    {
+                    // Password settings
+                    options.Password.RequireDigit = true;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequiredLength = 8;
+        options.Password.RequiredUniqueChars = 5;
+
+                    // Lockout settings
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+        options.Lockout.MaxFailedAccessAttempts = 5;
+        options.Lockout.AllowedForNewUsers = true;
+
+                    // user setttings
+                    // options.User.RequireUniqueEmail = true;
+                }
+);
+
+
+
+
+
+>>>>>>> MenuPrincipal
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ColaboradorDbContext db, UserManager<IdentityUser> userManager)
         {
+           // SeedData2.CreateApplicationUsersAsync(userManager); // Must be the first thing to do
+            SeedData2.Populate(app.ApplicationServices);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -77,6 +118,8 @@ namespace ServicoDeEsterelizacao
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            //SeedData2.Populate(app.ApplicationServices);
+
         }
     }
 }

@@ -7,7 +7,7 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class DiretorServico
     {
-        public int DiretorID { get; set; }
+        public int DiretorServicoID { get; set; }
 
         public string Nome { get; set; }
 

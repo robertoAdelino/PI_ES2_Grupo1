@@ -49,16 +49,40 @@ namespace ServicoDeEsterelizacao
             services.AddDbContext<ColaboradorDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ColaboradorDbContext")));
 
-            
 
-            
+            services.Configure<IdentityOptions>(
+    options =>
+    {
+                    // Password settings
+                    options.Password.RequireDigit = true;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequiredLength = 8;
+        options.Password.RequiredUniqueChars = 5;
 
-            
+                    // Lockout settings
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+        options.Lockout.MaxFailedAccessAttempts = 5;
+        options.Lockout.AllowedForNewUsers = true;
+
+                    // user setttings
+                    // options.User.RequireUniqueEmail = true;
+                }
+);
+
+
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ColaboradorDbContext db, UserManager<IdentityUser> userManager)
         {
+           // SeedData2.CreateApplicationUsersAsync(userManager); // Must be the first thing to do
+            SeedData2.Populate(app.ApplicationServices);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -82,7 +106,7 @@ namespace ServicoDeEsterelizacao
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            SeedData2.Populate(app.ApplicationServices);
+            //SeedData2.Populate(app.ApplicationServices);
 
         }
     }

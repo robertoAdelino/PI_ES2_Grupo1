@@ -36,5 +36,9 @@ namespace ServicoDeEsterelizacao.Controllers
         {
             return View();
         }
+        public IActionResult Material()
+        {
+            return View();
+        }
     }
 }

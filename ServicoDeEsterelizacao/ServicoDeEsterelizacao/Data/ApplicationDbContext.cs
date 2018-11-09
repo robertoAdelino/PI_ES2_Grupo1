@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao.Data
 {
@@ -12,5 +13,6 @@ namespace ServicoDeEsterelizacao.Data
             : base(options)
         {
         }
+        public DbSet<ServicoDeEsterelizacao.Models.InfoModel> InfoModel { get; set; }
     }
 }

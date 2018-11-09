@@ -53,7 +53,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IDMaterial,Nome,password,funcao")] InfoModel infoModel)
+        public async Task<IActionResult> Create([Bind("MaterialcsId,Nome,password,funcao")] InfoModel infoModel)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IDMaterial,Nome,password,funcao")] InfoModel infoModel)
+        public async Task<IActionResult> Edit(int id, [Bind("MaterialcsId,Nome,password,funcao")] InfoModel infoModel)
         {
             if (id != infoModel.ID)
             {

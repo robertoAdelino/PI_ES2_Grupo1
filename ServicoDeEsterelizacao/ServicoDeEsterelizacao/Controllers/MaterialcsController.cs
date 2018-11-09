@@ -33,7 +33,7 @@ namespace ServicoDeEsterelizacao.Controllers
             }
 
             var materialcs = await _context.Materialcs
-                .FirstOrDefaultAsync(m => m.IDMaterial == id);
+                .FirstOrDefaultAsync(m => m.MaterialcsId == id);
             if (materialcs == null)
             {
                 return NotFound();
@@ -53,7 +53,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IDMaterial,Nome,Quantidade")] Materialcs materialcs)
+        public async Task<IActionResult> Create([Bind("MaterialcsId,Nome,Quantidade")] Materialcs materialcs)
         {
             if (ModelState.IsValid)
             {
@@ -85,9 +85,9 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IDMaterial,Nome,Quantidade")] Materialcs materialcs)
+        public async Task<IActionResult> Edit(int id, [Bind("MaterialcsId,Nome,Quantidade")] Materialcs materialcs)
         {
-            if (id != materialcs.IDMaterial)
+            if (id != materialcs.MaterialcsId)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MaterialcsExists(materialcs.IDMaterial))
+                    if (!MaterialcsExists(materialcs.MaterialcsId))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace ServicoDeEsterelizacao.Controllers
             }
 
             var materialcs = await _context.Materialcs
-                .FirstOrDefaultAsync(m => m.IDMaterial == id);
+                .FirstOrDefaultAsync(m => m.MaterialcsId == id);
             if (materialcs == null)
             {
                 return NotFound();
@@ -146,7 +146,7 @@ namespace ServicoDeEsterelizacao.Controllers
 
         private bool MaterialcsExists(int id)
         {
-            return _context.Materialcs.Any(e => e.IDMaterial == id);
+            return _context.Materialcs.Any(e => e.MaterialcsId == id);
         }
     }
 }

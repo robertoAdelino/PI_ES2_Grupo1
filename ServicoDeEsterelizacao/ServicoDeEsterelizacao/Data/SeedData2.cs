@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using ServicoDeEsterelizacao.Models;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,20 @@ namespace ServicoDeEsterelizacao.Data
                 SeedDirServico(db);
             }
         }
+
+        /*public static async void CreateApplicationUsersAsync(UserManager<IdentityUser> userManager)
+        {
+            const string ADMIN_USER = "admin";
+            const string ADMIN_PASSWORD = "sECRET$123";
+
+            IdentityUser admin = await userManager.FindByNameAsync(ADMIN_USER);
+            if (admin == null)
+            {
+                admin = new IdentityUser { UserName = ADMIN_USER };
+                await userManager.CreateAsync(admin, ADMIN_PASSWORD);
+            }
+        }*/
+
         private static void SeedDirServico(ColaboradorDbContext db)
         {
             if (db.DiretorServico.Any()) return;

@@ -22,7 +22,7 @@ namespace ServicoDeEsterelizacao.Migrations
 
             modelBuilder.Entity("ServicoDeEsterelizacao.Models.InfoModel", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("IDMaterial")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -35,7 +35,7 @@ namespace ServicoDeEsterelizacao.Migrations
                     b.Property<string>("password")
                         .IsRequired();
 
-                    b.HasKey("ID");
+                    b.HasKey("IDMaterial");
 
                     b.ToTable("InfoModel");
                 });

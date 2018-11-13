@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
 using System.ComponentModel.DataAnnotations;
-=======
->>>>>>> MenuPrincipal
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,8 +8,8 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class Colaborador
     {
-<<<<<<< HEAD
-        public int ID { get; set; }
+
+        public int ColaboradorId { get; set; }
 
         [Required(ErrorMessage = "Por favor introduza o nome")]
         [StringLength(50, MinimumLength = 3)]
@@ -26,18 +23,7 @@ namespace ServicoDeEsterelizacao.Models
         [EmailAddress(ErrorMessage = "E-mail inválido.")]
         public string Email { get; set; }
 
-        public string funcao { get; set; }
-    }
-
-}
-
-=======
-        public int ColaboradorId { get; set; }
-
-        public int Dest { get; set; }
-
-        public string funcao { get; set; }
-
+        public string Funcao { get; set; }
         public ICollection<Servico> Servico { get; set; }
 
         public Enfermeiros Enfermeiro { get; set; }
@@ -51,6 +37,10 @@ namespace ServicoDeEsterelizacao.Models
         public DiretorServico DirServico { get; set; }
 
         public int DirID { get; set; }
+        public int Dest { get; set; }
     }
+
 }
->>>>>>> MenuPrincipal
+
+
+       

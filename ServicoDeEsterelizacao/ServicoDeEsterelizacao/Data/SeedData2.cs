@@ -22,7 +22,7 @@ namespace ServicoDeEsterelizacao.Data
             }
         }
 
-        /*public static async void CreateApplicationUsersAsync(UserManager<IdentityUser> userManager)
+        public static async void CreateApplicationUsersAsync(UserManager<IdentityUser> userManager)
         {
             const string ADMIN_USER = "admin";
             const string ADMIN_PASSWORD = "sECRET$123";
@@ -33,7 +33,7 @@ namespace ServicoDeEsterelizacao.Data
                 admin = new IdentityUser { UserName = ADMIN_USER };
                 await userManager.CreateAsync(admin, ADMIN_PASSWORD);
             }
-        }*/
+        }
 
         private static void SeedDirServico(ColaboradorDbContext db)
         {

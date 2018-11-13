@@ -12,10 +12,6 @@ using Microsoft.EntityFrameworkCore;
 using ServicoDeEsterelizacao.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-<<<<<<< HEAD
-using Microsoft.EntityFrameworkCore;
-=======
->>>>>>> MenuPrincipal
 using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao
@@ -47,13 +43,13 @@ namespace ServicoDeEsterelizacao
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-<<<<<<< HEAD
+
             services.AddDbContext<ServicoDeEsterelizacaoContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ServicoDeEsterelizacaoContext")));
 
             services.AddDbContext<MaterialDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MaterialDbContext")));
-=======
+
             services.AddDbContext<ServicoDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ServicoDbContext")));
 
@@ -64,29 +60,23 @@ namespace ServicoDeEsterelizacao
             services.Configure<IdentityOptions>(
     options =>
     {
-                    // Password settings
-                    options.Password.RequireDigit = true;
+        // Password settings
+        options.Password.RequireDigit = true;
         options.Password.RequireNonAlphanumeric = true;
         options.Password.RequireUppercase = true;
         options.Password.RequireLowercase = true;
         options.Password.RequiredLength = 8;
         options.Password.RequiredUniqueChars = 5;
 
-                    // Lockout settings
-                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+        // Lockout settings
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
         options.Lockout.MaxFailedAccessAttempts = 5;
         options.Lockout.AllowedForNewUsers = true;
 
-                    // user setttings
-                    // options.User.RequireUniqueEmail = true;
-                }
+        // user setttings
+        // options.User.RequireUniqueEmail = true;
+    }
 );
-
-
-
-
-
->>>>>>> MenuPrincipal
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

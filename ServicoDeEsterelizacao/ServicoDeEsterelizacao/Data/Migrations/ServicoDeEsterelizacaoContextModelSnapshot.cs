@@ -27,7 +27,7 @@ namespace ServicoDeEsterelizacao.Migrations
                     b.Property<string>("Nome")
                         .IsRequired();
 
-                    b.Property<string>("funcao")
+                    b.Property<string>("Funcao")
                         .IsRequired();
 
                     b.Property<string>("password")

@@ -8,7 +8,7 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class DiretorServico
     {
-        [Required(ErrorMessage = "Introduza o um ID válido")]
+        [Required(ErrorMessage = "Introduza o um ColaboradorId válido")]
         [StringLength(5, MinimumLength = 1)]
         public int DiretorServicoID { get; set; }
 

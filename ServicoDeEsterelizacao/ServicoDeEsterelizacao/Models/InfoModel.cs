@@ -8,7 +8,7 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class InfoModel
     {
-        [Required(ErrorMessage ="Introduza o seu ID")]
+        [Required(ErrorMessage ="Introduza o seu ColaboradorId")]
         [StringLength(5,MinimumLength = 1)]
         public int ID { get; set; }
 

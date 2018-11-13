@@ -8,7 +8,7 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class AssistenteOperacional
     {
-        [Required(ErrorMessage = "Introduza um ID válido")]
+        [Required(ErrorMessage = "Introduza um ColaboradorId válido")]
         [StringLength(5, MinimumLength = 1)]
         public int AssistenteOperacionalID { get; set; }
 

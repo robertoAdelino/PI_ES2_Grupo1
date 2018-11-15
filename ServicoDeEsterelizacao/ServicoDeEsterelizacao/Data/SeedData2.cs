@@ -10,6 +10,9 @@ namespace ServicoDeEsterelizacao.Data
 {
     public class SeedData2
     {
+        private const string ROLE_ADMINISTRATOR = "Administrator";
+        private const string ROLE_COLAB = "Colaborador";
+
         internal static void Populate(IServiceProvider applicationServices)
         {
             using (var serviceScope = applicationServices.CreateScope())
@@ -22,16 +25,50 @@ namespace ServicoDeEsterelizacao.Data
             }
         }
 
-        public static async void CreateApplicationUsersAsync(UserManager<IdentityUser> userManager)
+        private static async void MakeSureRoleExistsAsync(RoleManager<IdentityRole> roleManager, string role)
         {
-            const string ADMIN_USER = "admin";
+            if (!await roleManager.RoleExistsAsync(role))
+            {
+                await roleManager.CreateAsync(new IdentityRole(role));
+            }
+        }
+
+        public static async Task CreateRolesAndUsersAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            const string ADMIN_USER = "admin@noemail.com";
             const string ADMIN_PASSWORD = "sECRET$123";
+
+            MakeSureRoleExistsAsync(roleManager, ROLE_ADMINISTRATOR);
+            MakeSureRoleExistsAsync(roleManager, ROLE_COLAB);
 
             IdentityUser admin = await userManager.FindByNameAsync(ADMIN_USER);
             if (admin == null)
             {
                 admin = new IdentityUser { UserName = ADMIN_USER };
                 await userManager.CreateAsync(admin, ADMIN_PASSWORD);
+            }
+
+            if (!await userManager.IsInRoleAsync(admin, ROLE_ADMINISTRATOR))
+            {
+                await userManager.AddToRoleAsync(admin, ROLE_ADMINISTRATOR);
+            }
+        }
+
+        public static async Task CreateTestUsersAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            const string CUSTOMER_USER = "john@noemail.com";
+            const string CUSTOMER_PASSWORD = "sECREDO$123";
+
+            IdentityUser customer = await userManager.FindByNameAsync(CUSTOMER_USER);
+            if (customer == null)
+            {
+                customer = new IdentityUser { UserName = CUSTOMER_USER };
+                await userManager.CreateAsync(customer, CUSTOMER_PASSWORD);
+            }
+
+            if (!await userManager.IsInRoleAsync(customer, ROLE_COLAB))
+            {
+                await userManager.AddToRoleAsync(customer, ROLE_COLAB);
             }
         }
 

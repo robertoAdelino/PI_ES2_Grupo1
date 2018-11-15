@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServicoDeEsterelizacao.Models;
 
+
+
 namespace ServicoDeEsterelizacao
 {
     public class Startup
@@ -43,6 +45,12 @@ namespace ServicoDeEsterelizacao
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+
+            /*services.AddIdentity<AppUser, IdentityRole>()
+            .AddRoleManager<RoleManager<IdentityRole>>()
+            .AddDefaultUI()
+            .AddDefaultTokenProviders()
+            .AddEntityFrameworkStores<ColaboradorDbContext>();*/
 
             services.AddDbContext<ServicoDeEsterelizacaoContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ServicoDeEsterelizacaoContext")));
@@ -80,13 +88,20 @@ namespace ServicoDeEsterelizacao
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ColaboradorDbContext db, UserManager<IdentityUser> userManager)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+            ColaboradorDbContext db, UserManager<IdentityUser> userManager
+            /*,RoleManager<IdentityRole> roleManager*/)
         {
-           // SeedData2.CreateApplicationUsersAsync(userManager); // Must be the first thing to do
+           //SeedData2.CreateApplicationUsersAsync(userManager); // Must be the first thing to do
             SeedData2.Populate(app.ApplicationServices);
+
+            /*SeedData2.CreateRolesAndUsersAsync(userManager, roleManager).Wait();
 
             if (env.IsDevelopment())
             {
+                SeedData2.CreateTestUsersAsync(userManager, roleManager).Wait(); // Must be the first thing to do
+                SeedData2.Populate(app.ApplicationServices);
+
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
@@ -94,7 +109,7 @@ namespace ServicoDeEsterelizacao
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
-            }
+            }*/
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

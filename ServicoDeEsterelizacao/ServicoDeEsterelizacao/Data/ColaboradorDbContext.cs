@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao.Models
 {
-    public class ColaboradorDbContext : DbContext
+    public class ColaboradorDbContext :DbContext //IdentityDbContext<AppUser, IdentityRole, string>
     {
         public ColaboradorDbContext (DbContextOptions<ColaboradorDbContext> options)
             : base(options)

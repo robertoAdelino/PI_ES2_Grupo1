@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using ServicoDeEsterelizacao.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace ServicoDeEsterelizacao
 {
@@ -35,7 +36,13 @@ namespace ServicoDeEsterelizacao
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+/*
+            services.AddIdentity<AppUser, IdentityRole>()
+            .AddRoleManager<RoleManager<IdentityRole>>()
+            .AddDefaultUI()
+            .AddDefaultTokenProviders()
+            .AddEntityFrameworkStores<MaterialDbContext>();
+            */
             services.AddDbContext<ServicoDeEsterelizacaoContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ServicoDeEsterelizacaoContext")));
 
@@ -44,17 +51,27 @@ namespace ServicoDeEsterelizacao
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+                    MaterialDbContext db, UserManager<IdentityUser> userManager
+                     /*,RoleManager<IdentityRole> roleManager*/)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-            }
+
+          //  SeedDataMaterial.Populate(app.ApplicationServices);
+            //SeedDataMaterial.CreateRolesAndUsersAsync(userManager, roleManager).Wait();
+            /*
+                        if (env.IsDevelopment())
+                        {
+                            SeedDataMaterial.CreateTestUsersAsync(userManager, roleManager).Wait(); // Must be the first thing to do
+                            SeedDataMaterial.Populate(app.ApplicationServices);
+
+                            app.UseDeveloperExceptionPage();
+                            app.UseDatabaseErrorPage();
+                        }
+                        else
+                        {
+                            app.UseExceptionHandler("/Home/Error");
+                            app.UseHsts();
+                        }*/
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

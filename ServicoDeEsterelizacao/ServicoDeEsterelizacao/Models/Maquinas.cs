@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace ServicoDeEsterelizacao.Models
 {
-    public class Materialcs
+    public class Maquinas
     {
-        public Maquinas Maquinas { get; set; }
         [Required]
-        public int MaterialcsId { get; set; }
+        public int MaquinasId { get; set; }
         [Required]
-        public string Nome { get; set; }
+        public int Capacidade { get; set; }
         [Required]
         public int Quantidade { get; set; }
 
-        
-}
+        public ICollection<Materialcs> Materialcs { get; set; }
+
+    }
 }

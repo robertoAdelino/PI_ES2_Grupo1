@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ServicoDeEsterelizacao.Models
 {
     public class MaterialDbContext : DbContext
+        //IdentityDbContext<AppUser, IdentityRole, string>
     {
         public MaterialDbContext (DbContextOptions<MaterialDbContext> options)
             : base(options)

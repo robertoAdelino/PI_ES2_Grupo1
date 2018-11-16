@@ -18,7 +18,7 @@ namespace ServicoDeEsterelizacao.Data
                 SeedColab(db);
                 SeedEnfermeiro(db);
                 SeedAssistenteOperacional(db);
-                SeedDirServico(db);
+                //SeedDirServico(db);
             }
         }
 
@@ -35,16 +35,16 @@ namespace ServicoDeEsterelizacao.Data
             }
         }
 
-        private static void SeedDirServico(ColaboradorDbContext db)
-        {
-            if (db.DiretorServico.Any()) return;
-            db.DiretorServico.AddRange(
-              new DiretorServico { Nome = "Antonio" },
-              new DiretorServico { Nome = "Maria" },
-              new DiretorServico { Nome = "Manuel" }
-          );
-            db.SaveChanges();
-        }
+        //private static void SeedDirServico(ColaboradorDbContext db)
+        //{
+        //    if (db.DiretorServico.Any()) return;
+        //    db.DiretorServico.AddRange(
+        //      new DiretorServico { Nome = "Antonio" },
+        //      new DiretorServico { Nome = "Maria" },
+        //      new DiretorServico { Nome = "Manuel" }
+        //  );
+        //    db.SaveChanges();
+        //}
         private static void SeedAssistenteOperacional(ColaboradorDbContext db)
         {
             if (db.AssistenteOperacional.Any()) return;
@@ -63,16 +63,16 @@ namespace ServicoDeEsterelizacao.Data
         {
             if (db.Enfermeiros.Any()) return;
             db.Enfermeiros.AddRange(
-               new Enfermeiros { EnfermeirosID = 1,Nome = "Paulo" },
-               new Enfermeiros { EnfermeirosID = 2, Nome = "Ilda" },
-               new Enfermeiros { EnfermeirosID = 3, Nome = "Carina" },
+               new Enfermeiros { Nome = "Paulo" },
+               new Enfermeiros {  Nome = "Ilda" }
+               /*new Enfermeiros { EnfermeirosID = 3, Nome = "Carina" },
                new Enfermeiros { EnfermeirosID = 4, Nome = "Beatriz" },
                new Enfermeiros { EnfermeirosID = 5, Nome = "Luis" },
                new Enfermeiros { EnfermeirosID = 6, Nome = "Yuri" },
                new Enfermeiros { EnfermeirosID = 7, Nome = "Mariana" },
                new Enfermeiros { EnfermeirosID = 8, Nome = "Céu" },
                new Enfermeiros { EnfermeirosID = 9, Nome = "Carolina" },
-               new Enfermeiros { EnfermeirosID = 10, Nome = "Carlos" }
+               new Enfermeiros { EnfermeirosID = 10, Nome = "Carlos" }*/
            );
             db.SaveChanges();
         }

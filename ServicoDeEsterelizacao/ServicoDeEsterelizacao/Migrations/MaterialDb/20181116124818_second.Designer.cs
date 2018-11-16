@@ -9,8 +9,8 @@ using ServicoDeEsterelizacao.Models;
 namespace ServicoDeEsterelizacao.Migrations.MaterialDb
 {
     [DbContext(typeof(MaterialDbContext))]
-    [Migration("20181116100545_inicial")]
-    partial class inicial
+    [Migration("20181116124818_second")]
+    partial class second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

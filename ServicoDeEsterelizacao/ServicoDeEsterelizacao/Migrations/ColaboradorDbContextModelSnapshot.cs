@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServicoDeEsterelizacao.Models;
 
-namespace ServicoDeEsterelizacao.Migrations.ColaboradorDb
+namespace ServicoDeEsterelizacao.Migrations
 {
     [DbContext(typeof(ColaboradorDbContext))]
-    [Migration("20181116101350_test1")]
-    partial class test1
+    partial class ColaboradorDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

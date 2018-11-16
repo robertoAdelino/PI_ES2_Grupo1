@@ -18,6 +18,7 @@ namespace ServicoDeEsterelizacao.Models
             {
                 var db = serviceScope.ServiceProvider.GetService<MaterialDbContext>();
                 Materialcs(db);
+                
                
             }
         }
@@ -75,6 +76,7 @@ namespace ServicoDeEsterelizacao.Models
               new Materialcs { Nome = "Bisturi",Quantidade = 50 },
               new Materialcs { Nome = "Tesoura", Quantidade = 100 },
               new Materialcs { Nome = "Compressas", Quantidade = 500 }
+              new Maquinas { Capacidade = "20",Quantidade="10"}
           );
             db.SaveChanges();
         }

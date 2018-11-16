@@ -11,9 +11,9 @@ namespace ServicoDeEsterelizacao.Models
         [Required]
         public int MaquinasId { get; set; }
         [Required]
-        public int Capacidade { get; set; }
+        public string Capacidade { get; set; }
         [Required]
-        public int Quantidade { get; set; }
+        public string Quantidade { get; set; }
 
         public ICollection<Materialcs> Materialcs { get; set; }
 

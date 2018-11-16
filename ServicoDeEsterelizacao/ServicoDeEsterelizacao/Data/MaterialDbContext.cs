@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao.Models
 {
@@ -17,5 +18,7 @@ namespace ServicoDeEsterelizacao.Models
         }
 
         public DbSet<ServicoDeEsterelizacao.Models.Materialcs> Materialcs { get; set; }
+
+        public DbSet<ServicoDeEsterelizacao.Models.Maquinas> Maquinas { get; set; }
     }
 }

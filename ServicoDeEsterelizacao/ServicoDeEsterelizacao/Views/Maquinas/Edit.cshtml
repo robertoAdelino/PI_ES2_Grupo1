@@ -1,0 +1,36 @@
+﻿@model ServicoDeEsterelizacao.Models.Maquinas
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Maquinas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MaquinasId" />
+            <div class="form-group">
+                <label asp-for="Capacidade" class="control-label"></label>
+                <input asp-for="Capacidade" class="form-control" />
+                <span asp-validation-for="Capacidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantidade" class="control-label"></label>
+                <input asp-for="Quantidade" class="form-control" />
+                <span asp-validation-for="Quantidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

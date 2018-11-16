@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServicoDeEsterelizacao.Models;
 
-namespace ServicoDeEsterelizacao.Migrations
+namespace ServicoDeEsterelizacao.Migrations.MaterialDb
 {
-    [DbContext(typeof(ServicoDeEsterelizacaoContext))]
-    partial class ServicoDeEsterelizacaoContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MaterialDbContext))]
+    partial class MaterialDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -18,24 +18,20 @@ namespace ServicoDeEsterelizacao.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ServicoDeEsterelizacao.Models.InfoModel", b =>
+            modelBuilder.Entity("ServicoDeEsterelizacao.Models.Materialcs", b =>
                 {
                     b.Property<int>("MaterialcsId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Funcao")
-                        .IsRequired();
-
                     b.Property<string>("Nome")
                         .IsRequired();
 
-                    b.Property<string>("password")
-                        .IsRequired();
+                    b.Property<int>("Quantidade");
 
                     b.HasKey("MaterialcsId");
 
-                    b.ToTable("InfoModel");
+                    b.ToTable("Materialcs");
                 });
 #pragma warning restore 612, 618
         }

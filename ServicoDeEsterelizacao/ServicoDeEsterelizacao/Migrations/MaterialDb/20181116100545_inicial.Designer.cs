@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServicoDeEsterelizacao.Models;
 
-namespace ServicoDeEsterelizacao.Migrations
+namespace ServicoDeEsterelizacao.Migrations.MaterialDb
 {
-    [DbContext(typeof(ServicoDeEsterelizacaoContext))]
-    partial class ServicoDeEsterelizacaoContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MaterialDbContext))]
+    [Migration("20181116100545_inicial")]
+    partial class inicial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,24 +20,20 @@ namespace ServicoDeEsterelizacao.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ServicoDeEsterelizacao.Models.InfoModel", b =>
+            modelBuilder.Entity("ServicoDeEsterelizacao.Models.Materialcs", b =>
                 {
                     b.Property<int>("MaterialcsId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Funcao")
-                        .IsRequired();
-
                     b.Property<string>("Nome")
                         .IsRequired();
 
-                    b.Property<string>("password")
-                        .IsRequired();
+                    b.Property<int>("Quantidade");
 
                     b.HasKey("MaterialcsId");
 
-                    b.ToTable("InfoModel");
+                    b.ToTable("Materialcs");
                 });
 #pragma warning restore 612, 618
         }

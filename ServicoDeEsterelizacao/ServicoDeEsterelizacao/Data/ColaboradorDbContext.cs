@@ -36,5 +36,7 @@ namespace ServicoDeEsterelizacao.Models
         }
 
         public DbSet<ServicoDeEsterelizacao.Models.Colaborador> Colaborador { get; set; }
+
+        //public DbSet<ServicoDeEsterelizacao.Models.Filhos> Fillhos { get; set; }
     }
 }

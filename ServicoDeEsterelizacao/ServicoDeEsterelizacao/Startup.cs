@@ -52,6 +52,16 @@ namespace ServicoDeEsterelizacao
             .AddDefaultTokenProviders()
             .AddEntityFrameworkStores<ColaboradorDbContext>();*/
 
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
+
+            services.AddAuthorization(options => {
+                options.AddPolicy("OnlyAdminAccess",
+                 policy => policy.RequireRole("Admimistrador"));
+            });
+
             services.AddDbContext<ServicoDeEsterelizacaoContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ServicoDeEsterelizacaoContext")));
 

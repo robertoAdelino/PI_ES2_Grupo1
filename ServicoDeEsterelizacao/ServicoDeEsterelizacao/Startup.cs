@@ -44,15 +44,12 @@ namespace ServicoDeEsterelizacao
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 
-            services.AddDbContext<ServicoDeEsterelizacaoContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ServicoDeEsterelizacaoContext")));
+            
 
             services.AddDbContext<MaterialDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MaterialDbContext")));
 
-            services.AddDbContext<ServicoDbContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ServicoDbContext")));
-
+           
             services.AddDbContext<ColaboradorDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ColaboradorDbContext")));
 

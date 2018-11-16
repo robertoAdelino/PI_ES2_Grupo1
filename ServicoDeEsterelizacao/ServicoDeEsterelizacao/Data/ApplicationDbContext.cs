@@ -13,6 +13,5 @@ namespace ServicoDeEsterelizacao.Data
             : base(options)
         {
         }
-        public DbSet<ServicoDeEsterelizacao.Models.InfoModel> InfoModel { get; set; }
     }
 }

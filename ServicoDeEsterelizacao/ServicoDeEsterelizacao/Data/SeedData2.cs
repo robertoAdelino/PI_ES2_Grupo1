@@ -63,16 +63,16 @@ namespace ServicoDeEsterelizacao.Data
         {
             if (db.Enfermeiros.Any()) return;
             db.Enfermeiros.AddRange(
-               new Enfermeiros { Nome = "Paulo" },
-               new Enfermeiros { Nome = "Ilda" },
-               new Enfermeiros { Nome = "Carina" },
-               new Enfermeiros { Nome = "Beatriz" },
-               new Enfermeiros { Nome = "Luis" },
-               new Enfermeiros { Nome = "Yuri" },
-               new Enfermeiros { Nome = "Mariana" },
-               new Enfermeiros { Nome = "Céu" },
-               new Enfermeiros { Nome = "Carolina" },
-               new Enfermeiros { Nome = "Carlos" }
+               new Enfermeiros { EnfermeirosID = 1,Nome = "Paulo" },
+               new Enfermeiros { EnfermeirosID = 2, Nome = "Ilda" },
+               new Enfermeiros { EnfermeirosID = 3, Nome = "Carina" },
+               new Enfermeiros { EnfermeirosID = 4, Nome = "Beatriz" },
+               new Enfermeiros { EnfermeirosID = 5, Nome = "Luis" },
+               new Enfermeiros { EnfermeirosID = 6, Nome = "Yuri" },
+               new Enfermeiros { EnfermeirosID = 7, Nome = "Mariana" },
+               new Enfermeiros { EnfermeirosID = 8, Nome = "Céu" },
+               new Enfermeiros { EnfermeirosID = 9, Nome = "Carolina" },
+               new Enfermeiros { EnfermeirosID = 10, Nome = "Carlos" }
            );
             db.SaveChanges();
         }

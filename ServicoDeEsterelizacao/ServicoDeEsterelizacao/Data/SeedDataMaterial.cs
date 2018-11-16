@@ -18,10 +18,40 @@ namespace ServicoDeEsterelizacao.Models
             {
                 var db = serviceScope.ServiceProvider.GetService<MaterialDbContext>();
                 Materialcs(db);
+                Maquinas(db);
                 
                
             }
         }
+
+        private static void Maquinas(MaterialDbContext db)
+        {
+            if (db.Maquinas.Any()) return;
+
+            Materialcs material = GetMaterialCreatingIfNeed(db, "Bisturi");
+            Maquinas maquina = db.Maquinas.SingleOrDefault(b => b.Quantidade == "20");
+            db.Maquinas.AddRange (new Maquinas { MaquinasId = material.MaterialcsId, Quantidade = maquina.Quantidade });
+
+           
+
+
+            throw new NotImplementedException();
+        }
+
+        private static Materialcs GetMaterialCreatingIfNeed(MaterialDbContext db, string name)
+        {
+            Materialcs material = db.Materialcs.SingleOrDefault(m => m.Nome == name);
+
+            if (material == null)
+            {
+                material = new Materialcs { Nome = name };
+                db.Add(material);
+                db.SaveChanges();
+            }
+
+            return material;
+        }
+
         private static async void MakeSureRoleExistsAsync(RoleManager<IdentityRole> roleManager, string role)
         {
             if (!await roleManager.RoleExistsAsync(role))
@@ -73,10 +103,10 @@ namespace ServicoDeEsterelizacao.Models
         {
             if (db.Materialcs.Any()) return;
             db.Materialcs.AddRange(
-              new Materialcs { Nome = "Bisturi",Quantidade = 50 },
-              new Materialcs { Nome = "Tesoura", Quantidade = 100 },
-              new Materialcs { Nome = "Compressas", Quantidade = 500 }
-              new Maquinas { Capacidade = "20",Quantidade="10"}
+              new Materialcs { Nome = "Bisturi",Quantidade = "50" },
+              new Materialcs { Nome = "Tesoura", Quantidade = "100" },
+              new Materialcs { Nome = "Compressas", Quantidade = "500" }
+             // new Maquinas { Capacidade = "20",Quantidade="10"}
           );
             db.SaveChanges();
         }

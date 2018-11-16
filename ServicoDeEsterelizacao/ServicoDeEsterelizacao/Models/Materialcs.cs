@@ -14,7 +14,7 @@ namespace ServicoDeEsterelizacao.Models
         [Required]
         public string Nome { get; set; }
         [Required]
-        public int Quantidade { get; set; }
+        public string Quantidade { get; set; }
 
         
 }

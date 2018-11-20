@@ -18,7 +18,7 @@ namespace ServicoDeEsterelizacao.Data
                 SeedColab(db);
                 SeedEnfermeiro(db);
                 SeedAssistenteOperacional(db);
-                //SeedDirServico(db);
+                
             }
         }
 
@@ -35,16 +35,6 @@ namespace ServicoDeEsterelizacao.Data
             }
         }
 
-        //private static void SeedDirServico(ColaboradorDbContext db)
-        //{
-        //    if (db.DiretorServico.Any()) return;
-        //    db.DiretorServico.AddRange(
-        //      new DiretorServico { Nome = "Antonio" },
-        //      new DiretorServico { Nome = "Maria" },
-        //      new DiretorServico { Nome = "Manuel" }
-        //  );
-        //    db.SaveChanges();
-        //}
         private static void SeedAssistenteOperacional(ColaboradorDbContext db)
         {
             if (db.AssistenteOperacional.Any()) return;

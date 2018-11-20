@@ -8,11 +8,11 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class Materialcs
     {
-        [Required]
+        [Required(ErrorMessage = "ID necessário")]
         public int MaterialcsId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Por favor, introduza o nome.")]
         public string Nome { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Por favor, introduza a quantidade.")]
         public int Quantidade { get; set; }
     }
 }

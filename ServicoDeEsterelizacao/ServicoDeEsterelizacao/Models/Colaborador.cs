@@ -23,21 +23,17 @@ namespace ServicoDeEsterelizacao.Models
         [EmailAddress(ErrorMessage = "E-mail inválido.")]
         public string Email { get; set; }
 
-        public string Funcao { get; set; }
-        public ICollection<Servico> Servico { get; set; }
+        public string Funcao{ get; set; }
 
-        public Enfermeiros Enfermeiro { get; set; }
+         public string Moarada { get; set; }
 
-        public int EnfermeiroID { get; set; }
+        public DateTime DataNasc { get; set; }
 
-        public AssistenteOperacional AssistenteOperacional { get; set; }
 
-        public int AssisOperID { get; set; }
 
-        public DiretorServico DirServico { get; set; }
 
-        public int DirID { get; set; }
-        public int Dest { get; set; }
+
+
     }
 
 }

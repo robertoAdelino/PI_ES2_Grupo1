@@ -1,7 +1,7 @@
 ﻿@model ServicoDeEsterelizacao.Models.Materialcs
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Apagar";
 }
 
 <h2>Apagar material existente</h2>
@@ -24,10 +24,16 @@
             @Html.DisplayFor(model => model.Quantidade)
         </dd>
     </dl>
-    
+
+    @*
+        @Html.ActionLink("Apagar", "Delete", new { id = Model.MaterialcsId },
+
+                   new { onclick = "return confirm('Tem a certeza que deseja apagar?');" })
+    *@
     <form asp-action="Delete">
         <input type="hidden" asp-for="MaterialcsId" />
         <input type="submit" value="Apagar" class="btn btn-default" /> |
         <a asp-action="Index">Voltar atrás</a>
     </form>
+
 </div>

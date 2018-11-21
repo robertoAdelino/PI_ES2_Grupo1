@@ -14,22 +14,45 @@ namespace ServicoDeEsterelizacao.Models
             {
                 var db = serviceScope.ServiceProvider.GetService<MaterialDbContext>();
                 Materialcs(db);
+                Equipamentos(db);
                
             }
         }
-        private static void SeedDirServico(MaterialDbContext db)
+
+        private static void Equipamentos(MaterialDbContext db)
+        {
+            if (db.Equipamento.Any()) return;
+
+            db.Equipamento.AddRange(
+
+            );
+
+            db.SaveChanges();
+        }
+
+        private static void Materialcs(MaterialDbContext db)
         {
             if (db.Materialcs.Any()) return;
             db.Materialcs.AddRange(
-              new Materialcs { Nome = "Bisturi" },
-              new Materialcs { Nome = "Tesoura" },
-              new Materialcs { Nome = "Compressas" }
+              new Materialcs { Nome = "Bisturi", Quantidade = 750 },
+              new Materialcs { Nome = "Tesoura", Quantidade = 250 },
+              new Materialcs { Nome = "Compressas" , Quantidade = 500}
           );
             db.SaveChanges();
         }
-        private static void Materialcs(MaterialDbContext db)
+
+        private static Materialcs GetMaterialIfNeed(MaterialDbContext db, string name)
         {
-            throw new NotImplementedException();
+            Materialcs material = db.Materialcs.SingleOrDefault(m => m.Nome == name);
+
+            if (material == null)
+            {
+                material = new Materialcs { Nome = name };
+                db.Add(material);
+                db.SaveChanges();
+            }
+
+            return material;
         }
     }
 }

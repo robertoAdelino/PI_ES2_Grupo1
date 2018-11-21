@@ -9,22 +9,22 @@ using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao.Controllers
 {
-    public class MaterialcsController : Controller
+    public class EquipamentosController : Controller
     {
         private readonly MaterialDbContext _context;
 
-        public MaterialcsController(MaterialDbContext context)
+        public EquipamentosController(MaterialDbContext context)
         {
             _context = context;
         }
 
-        // GET: Materialcs
+        // GET: Equipamentos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Materialcs.ToListAsync());
+            return View(await _context.Equipamento.ToListAsync());
         }
 
-        // GET: Materialcs/Details/5
+        // GET: Equipamentos/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace ServicoDeEsterelizacao.Controllers
                 return NotFound();
             }
 
-            var materialcs = await _context.Materialcs
-                .FirstOrDefaultAsync(m => m.MaterialcsId == id);
-            if (materialcs == null)
+            var equipamento = await _context.Equipamento
+                .FirstOrDefaultAsync(m => m.EquipamentoID == id);
+            if (equipamento == null)
             {
                 return NotFound();
             }
 
-            return View(materialcs);
+            return View(equipamento);
         }
 
-        // GET: Materialcs/Create
+        // GET: Equipamentos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Materialcs/Create
+        // POST: Equipamentos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaterialcsId,Nome,Quantidade")] Materialcs materialcs)
+        public async Task<IActionResult> Create([Bind("EquipamentoID,Nome,CapacidadeMax,CapacidadeMin,Quantidade,MaterialcsId")] Equipamento equipamento)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(materialcs);
+                _context.Add(equipamento);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(materialcs);
+            return View(equipamento);
         }
 
-        // GET: Materialcs/Edit/5
+        // GET: Equipamentos/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace ServicoDeEsterelizacao.Controllers
                 return NotFound();
             }
 
-            var materialcs = await _context.Materialcs.FindAsync(id);
-            if (materialcs == null)
+            var equipamento = await _context.Equipamento.FindAsync(id);
+            if (equipamento == null)
             {
                 return NotFound();
             }
-            return View(materialcs);
+            return View(equipamento);
         }
 
-        // POST: Materialcs/Edit/5
+        // POST: Equipamentos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MaterialcsId,Nome,Quantidade")] Materialcs materialcs)
+        public async Task<IActionResult> Edit(string id, [Bind("EquipamentoID,Nome,CapacidadeMax,CapacidadeMin,Quantidade,MaterialcsId")] Equipamento equipamento)
         {
-            if (id != materialcs.MaterialcsId)
+            if (id != equipamento.EquipamentoID)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 try
                 {
-                    _context.Update(materialcs);
+                    _context.Update(equipamento);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MaterialcsExists(materialcs.MaterialcsId))
+                    if (!EquipamentoExists(equipamento.EquipamentoID))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace ServicoDeEsterelizacao.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(materialcs);
+            return View(equipamento);
         }
 
-        // GET: Materialcs/Delete/5
+        // GET: Equipamentos/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace ServicoDeEsterelizacao.Controllers
                 return NotFound();
             }
 
-            var materialcs = await _context.Materialcs
-                .FirstOrDefaultAsync(m => m.MaterialcsId == id);
-            if (materialcs == null)
+            var equipamento = await _context.Equipamento
+                .FirstOrDefaultAsync(m => m.EquipamentoID == id);
+            if (equipamento == null)
             {
                 return NotFound();
             }
 
-            return View(materialcs);
+            return View(equipamento);
         }
 
-        // POST: Materialcs/Delete/5
+        // POST: Equipamentos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var materialcs = await _context.Materialcs.FindAsync(id);
-            _context.Materialcs.Remove(materialcs);
+            var equipamento = await _context.Equipamento.FindAsync(id);
+            _context.Equipamento.Remove(equipamento);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MaterialcsExists(string id)
+        private bool EquipamentoExists(string id)
         {
-            return _context.Materialcs.Any(e => e.MaterialcsId == id);
+            return _context.Equipamento.Any(e => e.EquipamentoID == id);
         }
     }
 }

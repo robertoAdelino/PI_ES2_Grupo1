@@ -9,10 +9,15 @@ namespace ServicoDeEsterelizacao.Models
     public class Materialcs
     {
         [Required]
-        public int MaterialcsId { get; set; }
+        public string MaterialcsId { get; set; }
+
         [Required]
         public string Nome { get; set; }
+
         [Required]
         public int Quantidade { get; set; }
+
+        [Required]
+        public ICollection<Equipamento> Equipamentos { get; set; }
     }
 }

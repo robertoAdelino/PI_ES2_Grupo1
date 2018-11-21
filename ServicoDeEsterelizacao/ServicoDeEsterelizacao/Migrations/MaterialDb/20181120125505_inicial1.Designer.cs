@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao.Migrations.MaterialDb
 {
     [DbContext(typeof(MaterialDbContext))]
-    partial class MaterialDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181120125505_inicial1")]
+    partial class inicial1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

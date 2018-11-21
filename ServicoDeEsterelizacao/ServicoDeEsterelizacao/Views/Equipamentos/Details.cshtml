@@ -1,0 +1,48 @@
+﻿@model ServicoDeEsterelizacao.Models.Equipamento
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Equipamento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CapacidadeMax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CapacidadeMax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CapacidadeMin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CapacidadeMin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterialcsId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaterialcsId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EquipamentoID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

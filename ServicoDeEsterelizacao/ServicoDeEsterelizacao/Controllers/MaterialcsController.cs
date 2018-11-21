@@ -11,9 +11,9 @@ namespace ServicoDeEsterelizacao.Controllers
 {
     public class MaterialcsController : Controller
     {
-        private readonly MaterialDbContext _context;
+        private readonly EquipamentoDbContext _context;
 
-        public MaterialcsController(MaterialDbContext context)
+        public MaterialcsController(EquipamentoDbContext context)
         {
             _context = context;
         }

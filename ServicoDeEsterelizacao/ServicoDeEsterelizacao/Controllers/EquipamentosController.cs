@@ -11,9 +11,9 @@ namespace ServicoDeEsterelizacao.Controllers
 {
     public class EquipamentosController : Controller
     {
-        private readonly MaterialDbContext _context;
+        private readonly EquipamentoDbContext _context;
 
-        public EquipamentosController(MaterialDbContext context)
+        public EquipamentosController(EquipamentoDbContext context)
         {
             _context = context;
         }
@@ -21,7 +21,8 @@ namespace ServicoDeEsterelizacao.Controllers
         // GET: Equipamentos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Equipamento.ToListAsync());
+            var equipamentoDbContext = _context.Equipamento.Include(e => e.Material);
+            return View(await equipamentoDbContext.ToListAsync());
         }
 
         // GET: Equipamentos/Details/5
@@ -33,6 +34,7 @@ namespace ServicoDeEsterelizacao.Controllers
             }
 
             var equipamento = await _context.Equipamento
+                .Include(e => e.Material)
                 .FirstOrDefaultAsync(m => m.EquipamentoID == id);
             if (equipamento == null)
             {
@@ -45,6 +47,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // GET: Equipamentos/Create
         public IActionResult Create()
         {
+            ViewData["MaterialcsId"] = new SelectList(_context.Set<Materialcs>(), "MaterialcsId", "MaterialcsId");
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EquipamentoID,Nome,CapacidadeMax,CapacidadeMin,Quantidade,MaterialcsId")] Equipamento equipamento)
+        public async Task<IActionResult> Create([Bind("EquipamentoID,Nome,Quantidade,MaterialcsId")] Equipamento equipamento)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MaterialcsId"] = new SelectList(_context.Set<Materialcs>(), "MaterialcsId", "MaterialcsId", equipamento.MaterialcsId);
             return View(equipamento);
         }
 
@@ -77,6 +81,7 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 return NotFound();
             }
+            ViewData["MaterialcsId"] = new SelectList(_context.Set<Materialcs>(), "MaterialcsId", "MaterialcsId", equipamento.MaterialcsId);
             return View(equipamento);
         }
 
@@ -85,7 +90,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("EquipamentoID,Nome,CapacidadeMax,CapacidadeMin,Quantidade,MaterialcsId")] Equipamento equipamento)
+        public async Task<IActionResult> Edit(string id, [Bind("EquipamentoID,Nome,Quantidade,MaterialcsId")] Equipamento equipamento)
         {
             if (id != equipamento.EquipamentoID)
             {
@@ -112,6 +117,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MaterialcsId"] = new SelectList(_context.Set<Materialcs>(), "MaterialcsId", "MaterialcsId", equipamento.MaterialcsId);
             return View(equipamento);
         }
 
@@ -124,6 +130,7 @@ namespace ServicoDeEsterelizacao.Controllers
             }
 
             var equipamento = await _context.Equipamento
+                .Include(e => e.Material)
                 .FirstOrDefaultAsync(m => m.EquipamentoID == id);
             if (equipamento == null)
             {

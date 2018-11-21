@@ -2,17 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServicoDeEsterelizacao.Models;
 
-namespace ServicoDeEsterelizacao.Migrations.MaterialDb
+namespace ServicoDeEsterelizacao.Migrations.EquipamentoDb
 {
-    [DbContext(typeof(MaterialDbContext))]
-    [Migration("20181120123926_inicial")]
-    partial class inicial
+    [DbContext(typeof(EquipamentoDbContext))]
+    partial class EquipamentoDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,20 +20,22 @@ namespace ServicoDeEsterelizacao.Migrations.MaterialDb
 
             modelBuilder.Entity("ServicoDeEsterelizacao.Models.Equipamento", b =>
                 {
+                    b.Property<string>("EquipamentoID")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(2);
+
                     b.Property<string>("MaterialcsId");
 
-                    b.Property<int>("CapacidadeMax");
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
-                    b.Property<int>("CapacidadeMin");
+                    b.Property<int>("Quantidade")
+                        .HasMaxLength(1000);
 
-                    b.Property<string>("EquipamentoID")
-                        .IsRequired();
+                    b.HasKey("EquipamentoID");
 
-                    b.Property<string>("Nome");
-
-                    b.Property<int>("Quantidade");
-
-                    b.HasKey("MaterialcsId");
+                    b.HasIndex("MaterialcsId");
 
                     b.ToTable("Equipamento");
                 });

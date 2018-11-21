@@ -16,16 +16,10 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CapacidadeMax)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CapacidadeMin)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Quantidade)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MaterialcsId)
+                @Html.DisplayNameFor(model => model.Material)
             </th>
             <th></th>
         </tr>
@@ -37,16 +31,10 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CapacidadeMax)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CapacidadeMin)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Quantidade)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaterialcsId)
+                @Html.DisplayFor(modelItem => item.Material.MaterialcsId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EquipamentoID">Edit</a> |

@@ -12,25 +12,27 @@ namespace ServicoDeEsterelizacao.Models
         {
             using (var serviceScope = applicationServices.CreateScope())
             {
-                var db = serviceScope.ServiceProvider.GetService<MaterialDbContext>();
+                var db = serviceScope.ServiceProvider.GetService<EquipamentoDbContext>();
                 Materialcs(db);
                 Equipamentos(db);
                
             }
         }
 
-        private static void Equipamentos(MaterialDbContext db)
+        private static void Equipamentos(EquipamentoDbContext db)
         {
             if (db.Equipamento.Any()) return;
 
             db.Equipamento.AddRange(
-
+                /*new Equipamento { EquipamentoID="1",MaterialcsId="1"},
+                new Equipamento { EquipamentoID="1",MaterialcsId="2"},
+                new Equipamento { EquipamentoID = "2",MaterialcsId="3"}*/
             );
 
             db.SaveChanges();
         }
 
-        private static void Materialcs(MaterialDbContext db)
+        private static void Materialcs(EquipamentoDbContext db)
         {
             if (db.Materialcs.Any()) return;
             db.Materialcs.AddRange(
@@ -41,7 +43,7 @@ namespace ServicoDeEsterelizacao.Models
             db.SaveChanges();
         }
 
-        private static Materialcs GetMaterialIfNeed(MaterialDbContext db, string name)
+        private static Materialcs GetMaterialIfNeed(EquipamentoDbContext db, string name)
         {
             Materialcs material = db.Materialcs.SingleOrDefault(m => m.Nome == name);
 

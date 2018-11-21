@@ -49,8 +49,7 @@ namespace ServicoDeEsterelizacao
         
 
            
-            services.AddDbContext<ColaboradorDbContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ColaboradorDbContext")));
+          
 
 
             services.Configure<IdentityOptions>(
@@ -74,16 +73,13 @@ namespace ServicoDeEsterelizacao
     }
 );
 
-            services.AddDbContext<EquipamentoDbContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("EquipamentoDbContext")));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ColaboradorDbContext db, UserManager<IdentityUser> userManager)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, /*ColaboradorDbContext db*/ UserManager<IdentityUser> userManager)
         {
             // SeedData2.CreateApplicationUsersAsync(userManager); // Must be the first thing to do
-            SeedDataMaterial.Populate(app.ApplicationServices);
-            SeedData2.Populate(app.ApplicationServices);
 
             if (env.IsDevelopment())
             {

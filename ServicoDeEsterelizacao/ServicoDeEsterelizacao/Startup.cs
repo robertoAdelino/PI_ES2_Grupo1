@@ -80,7 +80,7 @@ namespace ServicoDeEsterelizacao
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, MaterialDbContext db, UserManager<IdentityUser> userManager)
         {
            // SeedData2.CreateApplicationUsersAsync(userManager); // Must be the first thing to do
-            //SeedData2.Populate(app.ApplicationServices);
+            SeedData2.Populate(app.ApplicationServices);
 
             if (env.IsDevelopment())
             {

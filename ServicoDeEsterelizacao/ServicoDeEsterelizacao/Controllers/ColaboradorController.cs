@@ -56,7 +56,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ColaboradorId,FuncaoID,Nome,Telefone,Email,Morada,DataNasc,Cc")] Colaborador colaborador)
+        public async Task<IActionResult> Create([Bind("ColaboradorId,FuncaoID,Nome,Telefone,Email,Morada,DataNasc,Filhos,DataNascFilho,Cc")] Colaborador colaborador)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ColaboradorId,FuncaoID,Nome,Telefone,Email,Morada,DataNasc,Cc")] Colaborador colaborador)
+        public async Task<IActionResult> Edit(int id, [Bind("ColaboradorId,FuncaoID,Nome,Telefone,Email,Morada,DataNasc,Filhos,DataNascFilho,Cc")] Colaborador colaborador)
         {
             if (id != colaborador.ColaboradorId)
             {

@@ -19,5 +19,7 @@ namespace ServicoDeEsterelizacao.Models
         public DbSet<ServicoDeEsterelizacao.Models.Funcao> Funcao { get; set; }
 
         public DbSet<ServicoDeEsterelizacao.Models.Colaborador> Colaborador { get; set; }
+
+        
     }
 }

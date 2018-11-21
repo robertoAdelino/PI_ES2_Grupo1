@@ -9,7 +9,7 @@ using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao.Migrations
 {
-    [DbContext(typeof(ColaboradorDbContext))]
+   // [DbContext(typeof(ColaboradorDbContext))]
     [Migration("20181116124103_initial")]
     partial class initial
     {

@@ -11,6 +11,10 @@ namespace ServicoDeEsterelizacao.Models
 
         public int ColaboradorId { get; set; }
 
+        public int FuncaoID { get; set; }
+
+        public Funcao Funcao { get; set; }
+
         [Required(ErrorMessage = "Por favor introduza o nome")]
         [StringLength(50, MinimumLength = 3)]
         public string Nome { get; set; }
@@ -20,14 +24,17 @@ namespace ServicoDeEsterelizacao.Models
 
         [Required(ErrorMessage = "Por favor introduza o E-mail.")]
         [RegularExpression(@"(\w+(\.\w+)*@[a-zA-Z_]+?\.[a-zA-Z]{2,6})",ErrorMessage = "E-mail Inválido.")]
-        [EmailAddress(ErrorMessage = "E-mail inválido.")]
+
         public string Email { get; set; }
 
-        public string Funcao{ get; set; }
+        [Required(ErrorMessage = "Por favor introduza a morada.")]
+        public string Morada { get; set; }
 
-         public string Moarada { get; set; }
-
+        [Required(ErrorMessage = "Por favor introduza a Data de nascimento do filho mais novo.")]
         public DateTime DataNasc { get; set; }
+
+        [Required(ErrorMessage = "Por favor introduza nº cartão de cidadao")]
+        public string Cc { get; set; }
 
 
 

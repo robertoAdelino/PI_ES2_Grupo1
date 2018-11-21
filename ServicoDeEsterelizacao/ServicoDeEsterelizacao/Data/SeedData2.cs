@@ -14,10 +14,10 @@ namespace ServicoDeEsterelizacao.Data
         {
             using (var serviceScope = applicationServices.CreateScope())
             {
-                var db = serviceScope.ServiceProvider.GetService<ColaboradorDbContext>();
-                SeedColab(db);
-                SeedEnfermeiro(db);
-                SeedAssistenteOperacional(db);
+               // var db = serviceScope.ServiceProvider.GetService<ColaboradorDbContext>();
+               // SeedColab(db);
+              //  SeedEnfermeiro(db);
+               // SeedAssistenteOperacional(db);
                 
             }
         }
@@ -35,7 +35,7 @@ namespace ServicoDeEsterelizacao.Data
             }
         }
 
-        private static void SeedAssistenteOperacional(ColaboradorDbContext db)
+      /*  private static void SeedAssistenteOperacional(ColaboradorDbContext db)
         {
             if (db.AssistenteOperacional.Any()) return;
             db.AssistenteOperacional.AddRange(
@@ -62,7 +62,7 @@ namespace ServicoDeEsterelizacao.Data
                new Enfermeiros { EnfermeirosID = 7, Nome = "Mariana" },
                new Enfermeiros { EnfermeirosID = 8, Nome = "Céu" },
                new Enfermeiros { EnfermeirosID = 9, Nome = "Carolina" },
-               new Enfermeiros { EnfermeirosID = 10, Nome = "Carlos" }*/
+               new Enfermeiros { EnfermeirosID = 10, Nome = "Carlos" }
            );
             db.SaveChanges();
         }
@@ -75,6 +75,7 @@ namespace ServicoDeEsterelizacao.Data
                );
             db.SaveChanges();
         }
+    */
     }
 }
 

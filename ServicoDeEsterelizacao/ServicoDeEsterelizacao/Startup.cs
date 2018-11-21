@@ -77,7 +77,7 @@ namespace ServicoDeEsterelizacao
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-       /* public void Configure(IApplicationBuilder app, IHostingEnvironment env, ColaboradorDbContext db, UserManager<IdentityUser> userManager)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, MaterialDbContext db, UserManager<IdentityUser> userManager)
         {
            // SeedData2.CreateApplicationUsersAsync(userManager); // Must be the first thing to do
             SeedData2.Populate(app.ApplicationServices);
@@ -108,6 +108,6 @@ namespace ServicoDeEsterelizacao
             //SeedData2.Populate(app.ApplicationServices);
             
         }
-        */
+       
     }
 }

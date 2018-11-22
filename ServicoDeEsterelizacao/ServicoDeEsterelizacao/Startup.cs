@@ -80,6 +80,8 @@ namespace ServicoDeEsterelizacao
 
             if (env.IsDevelopment())
             {
+
+                SeedDataMaterial.Populate(db);
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }

@@ -8,20 +8,37 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class SeedDataMaterial
     {
-        public static void Populate(IServiceProvider applicationServices)
+        public static void Populate(MaterialDbContext db)
         {
-            using (var serviceScope = applicationServices.CreateScope())
-            {
-                var db = serviceScope.ServiceProvider.GetService<MaterialDbContext>();
+           
                 Materialcs(db);
                 Colaborador(db);
-               
-            }
+                Funcao(db);
+  
+        }
+
+        private static void Funcao(MaterialDbContext db)
+        {
+
+            if (db.Funcao.Any()) return;
+
+            db.Funcao.AddRange(
+                new Funcao { Nome = "Enfermeiro" },
+                new Funcao { Nome = "Assistente Operacional" },
+                new Funcao { Nome = "Diretor de Serviço" }
+            );
+
+            db.SaveChanges();
+
+
         }
 
         private static void Colaborador(MaterialDbContext db)
         {
-            throw new NotImplementedException();
+            
+
+
+
         }
 
         private static void Materialcs(MaterialDbContext db)
@@ -35,5 +52,6 @@ namespace ServicoDeEsterelizacao.Models
             db.SaveChanges();
         }
 
+    
     }
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ServicoDeEsterilizacao</title>
+    <title>@ViewData["Title"] - Servico De Esterilizacao</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -31,13 +31,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Menus" asp-action="Home">Página Principal</a></li>
+                    @*   <li><a asp-area="" asp-controller="Menus" asp-action="Home">Página Principal</a></li>*@
                     <li><a asp-area="" asp-controller="Menus" asp-action="GHorario">Gerar Horário</a></li>
                     <li><a asp-area="" asp-controller="Menus" asp-action="VHorario">Visualizar Horários</a></li>
-                    <li><a asp-area="" asp-controller="Menus" asp-action="PSemanal">Efetuar Plano Semanal</a></li>
-                    <li><a asp-area="" asp-controller="Menus" asp-action="AColaborador">Adicionar novo Colaborador</a></li>
-                    <li><a asp-area="" asp-controller="Menus" asp-action="Material">Material</a></li>
-                    <li></li>
+                    <li><a asp-area="" asp-controller="Materialcs" asp-action="Index">Material</a></li>
+                    <li><a asp-area="" asp-controller="Colaborador" asp-action="Index">Colaboradores</a></li>
+                    <li><a asp-area="" asp-controller="Funcao" asp-action="Index">Funções</a></li>
                     @*<li>@Model.ID</li>*@
                 </ul>
             </div>
@@ -50,7 +49,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - ServicoDeEsterilizacao</p>
+            <p>&copy; 2018 - Servico De Esterilizacao</p>
         </footer>
     </div>
 

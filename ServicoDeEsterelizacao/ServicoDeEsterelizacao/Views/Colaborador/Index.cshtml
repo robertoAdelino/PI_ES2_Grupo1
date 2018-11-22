@@ -1,83 +1,90 @@
 ﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Colaborador>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Colaboradores";
 }
 
-<h2>Index</h2>
+<h2>Colaboradores do serviço de esterilização</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Adicionar Colaborador</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Funcao)
+                Função
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                Nome
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Telefone)
+                Contacto
             </th>
+            @* <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Morada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNasc)
+        </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Filhos
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Morada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataNasc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Filhos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataNascFilho)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cc)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Funcao.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Morada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataNasc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Filhos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataNascFilho)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cc)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ColaboradorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ColaboradorId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ColaboradorId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            @*   <th>
+                        @Html.DisplayNameFor(model => model.DataNascFilho)
+                    </th>*@
+                <th>
+                        Cc/BI
+                </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Funcao.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefone)
+                    </td>
+                    @*<td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Morada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataNasc)
+        </td>*@
+                    <td>
+                        @if (item.Filhos == true)
+                        {
+                            <dd>Sim</dd>
+                        }
+                        else
+                        {
+                            <dd>Não</dd>
+                        }
+                    </td>
+                    @*  <td>
+                        @Html.DisplayFor(modelItem => item.DataNascFilho)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cc)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ColaboradorId">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.ColaboradorId">Mais Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ColaboradorId">Apagar</a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>

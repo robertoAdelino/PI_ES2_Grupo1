@@ -1,14 +1,14 @@
 ﻿@model ServicoDeEsterelizacao.Models.Colaborador
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Apagar";
 }
 
-<h2>Delete</h2>
+<h2>Apagar Colaborador </h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Deseja apagar o colaborador @Html.DisplayFor(model => model.Nome) ?</h3>
 <div>
-    <h4>Colaborador</h4>
+    <h4> @Html.DisplayFor(model => model.Nome)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -48,11 +48,25 @@
             @Html.DisplayFor(model => model.DataNasc)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Filhos)
+            Filhos
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Filhos)
-        </dd>
+        @if (Model.Filhos == true)
+        {
+            <dd>Sim</dd>
+        }
+        else
+        {
+            <dd>Não</dd>
+        }
+        @if (Model.Filhos == true)
+        {
+            <dt>
+                Data de Nascimento do filho mais novo:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataNascFilho)
+            </dd>
+        }
         <dt>
             @Html.DisplayNameFor(model => model.DataNascFilho)
         </dt>
@@ -66,10 +80,30 @@
             @Html.DisplayFor(model => model.Cc)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="ColaboradorId" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <a href="#Confirmacao" class="trigger-btn" data-toggle="modal">
+            <input type="submit" value="Eliminar" class="btn btn-warning" />
+        </a> |
+        <a asp-action="Index"><input type="button" value="Voltar atrás" class="btn btn-default" /></a>
     </form>
+    
+    <div id="Confirmacao" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <p>Tem a certeza que deseja apagar? </p>
+                </div>
+                <div class="modal-footer">
+                    <form asp-action="Delete">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <input type="hidden" asp-for="ColaboradorId" />
+                        <input type="submit" class="btn btn-warning" value="Eliminar" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

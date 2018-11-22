@@ -21,7 +21,6 @@ namespace ServicoDeEsterelizacao.Models
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Por favor introduza o telefone")]
-        [RegularExpression(@"(2\d{8})|(9[1236]\d{7})", ErrorMessage = "Contacto inválido")]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Por favor introduza o E-mail.")]
@@ -46,7 +45,7 @@ namespace ServicoDeEsterelizacao.Models
         public DateTime? DataNascFilho { get; set; }
 
         [Required(ErrorMessage = "Por favor, introduza o nº de CC/BI")]
-        [RegularExpression(@"(\d{8}\s\d{1}[A-Z0-9]{2}\d{1})", ErrorMessage = "Nº de CC/BI inválido")]
+       
         public string Cc { get; set; }
 
 

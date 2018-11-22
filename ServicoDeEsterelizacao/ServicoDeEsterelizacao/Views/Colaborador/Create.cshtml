@@ -1,58 +1,77 @@
 ﻿@model ServicoDeEsterelizacao.Models.Colaborador
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar";
 }
 
-<h2>Create</h2>
+<h2>Criar Colaborador</h2>
 
-<h4>Colaborador</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FuncaoID" class="control-label"></label>
-                <select asp-for="FuncaoID" class ="form-control" asp-items="ViewBag.FuncaoID"></select>
+                <label asp-for="FuncaoID" class="control-label">Função:</label>
+                <select asp-for="FuncaoID" class="form-control" asp-items="ViewBag.FuncaoID"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
+                <label asp-for="Nome" class="control-label">Nome:</label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Telefone" class="control-label"></label>
+                <label asp-for="Telefone" class="control-label">Contacto telefónico:</label>
                 <input asp-for="Telefone" class="form-control" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+                <label asp-for="Email" class="control-label">E-mail:</label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Morada" class="control-label"></label>
+                <label asp-for="Morada" class="control-label">Morada:</label>
                 <input asp-for="Morada" class="form-control" />
                 <span asp-validation-for="Morada" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DataNasc" class="control-label"></label>
+                <label asp-for="DataNasc" class="control-label">Data de nascimento:</label>
                 <input asp-for="DataNasc" class="form-control" />
                 <span asp-validation-for="DataNasc" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Filhos" class="control-label"></label>
-                <input asp-for="Filhos" class="form-control" />
-                <span asp-validation-for="Filhos" class="text-danger"></span>
+                <label asp-for="Filhos" class="control-label">Tem filhos?</label>
+                <select asp-for="Filhos" class="form-control" id="Validation" onchange="showForm()">
+                    <option value="false">Não</option>
+                    <option value="true">Sim</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label asp-for="DataNascFilho" class="control-label"></label>
+            <script type="text/javascript">
+
+                function showForm() {
+                    var selectBox = document.getElementById("Validation");
+                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                    if (selectedValue == "true") {
+
+                        var form = document.getElementById("Date");
+
+                        if (form.style.display == 'none') {
+                            form.style.display = 'block';
+                        }
+                    } else if (selectedValue == "false") {
+                        var form = document.getElementById("Date");
+                        form.style.display = 'none';
+                    }
+                }
+            </script>
+            <div class="form-group" id="Date" style="display: none;">
+                <label asp-for="DataNascFilho" class="control-label">Data de nascimento do filho mais novo:</label>
                 <input asp-for="DataNascFilho" class="form-control" />
                 <span asp-validation-for="DataNascFilho" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Cc" class="control-label"></label>
+                <label asp-for="Cc" class="control-label">Cc/Bi:</label>
                 <input asp-for="Cc" class="form-control" />
                 <span asp-validation-for="Cc" class="text-danger"></span>
             </div>
@@ -64,6 +83,8 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar atrás</a>
 </div>
-
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

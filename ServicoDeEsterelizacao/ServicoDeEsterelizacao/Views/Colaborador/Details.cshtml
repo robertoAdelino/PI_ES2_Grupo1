@@ -1,72 +1,84 @@
 ﻿@model ServicoDeEsterelizacao.Models.Colaborador
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 
-<h2>Details</h2>
+<h2>Detalhes do colaborador</h2>
 
 <div>
     <h4>Colaborador</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Funcao)
+            Função:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Funcao.Nome)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Nome)
+            Nome:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Telefone)
+            Contacto:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Telefone)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            E-mail:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Morada)
+            Morada:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Morada)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DataNasc)
+            Data de Nascimento:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.DataNasc)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Filhos)
+            Filhos:
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Filhos)
-        </dd>
+           
+            @if (Model.Filhos == true)
+            {
+            <dd>Sim</dd>
+        }
+        else
+        {
+            <dd>Não</dd>
+        }
+            
+        @if (Model.Filhos == true)
+            {
+                <dt>
+                    Nascimento do filho mais novo:
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DataNascFilho)
+                </dd>
+            }
+        
+                      
         <dt>
-            @Html.DisplayNameFor(model => model.DataNascFilho)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DataNascFilho)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Cc)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Cc)
-        </dd>
-    </dl>
+                Cc/Bi:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Cc)
+            </dd>
+        </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ColaboradorId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ColaboradorId">Editar</a> |
+    <a asp-action="Index">Voltar</a>
 </div>

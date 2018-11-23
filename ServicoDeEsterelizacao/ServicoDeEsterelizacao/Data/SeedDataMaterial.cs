@@ -35,16 +35,16 @@ namespace ServicoDeEsterelizacao.Models
         {
             if (db.Colaborador.Any()) return;
             db.Colaborador.AddRange(
-               new Colaborador { Nome = "Paulo",Funcao = "Enfermeiro", Telefone="123456789", Morada="Rua 1" , Filhos= true, Email= "Email@email.com"  },
-               new Colaborador { Nome = "Ilda", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1", Filhos = true, Email = "Email@email.com" },
-               new Colaborador { Nome = "Carina", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1", Filhos = true, Email = "Email@email.com" },
-               new Colaborador { Nome = "Beatriz", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1", Filhos = false, Email = "Email@email.com" },
-               new Colaborador { Nome = "Luis", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1", Filhos = true, Email = "Email@email.com" },
-               new Colaborador { Nome = "Yuri", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1", Filhos = false, Email = "Email@email.com" },
-               new Colaborador { Nome = "Mariana", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1", Filhos = true, Email = "Email@email.com" },
-               new Colaborador { Nome = "Céu", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1", Filhos = true, Email = "Email@email.com" },
-               new Colaborador { Nome = "Carolina", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1", Filhos = false, Email = "Email@email.com" },
-               new Colaborador { Nome = "Carlos", Funcao = "Diretor de Serviço", Telefone = "123456789", Morada = "Rua 1", Filhos = true, Email = "Email@email.com" }
+               new Colaborador { Nome = "Paulo",Funcao = "Enfermeiro", Telefone="123456789", Morada="Rua 1" ,  Email= "Email@email.com"  },
+               new Colaborador { Nome = "Ilda", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1", Email = "Email@email.com" },
+               new Colaborador { Nome = "Carina", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+               new Colaborador { Nome = "Beatriz", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+               new Colaborador { Nome = "Luis", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1", Email = "Email@email.com" },
+               new Colaborador { Nome = "Yuri", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+               new Colaborador { Nome = "Mariana", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+               new Colaborador { Nome = "Céu", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+               new Colaborador { Nome = "Carolina", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+               new Colaborador { Nome = "Carlos", Funcao = "Diretor de Serviço", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" }
            );
             db.SaveChanges();
         }

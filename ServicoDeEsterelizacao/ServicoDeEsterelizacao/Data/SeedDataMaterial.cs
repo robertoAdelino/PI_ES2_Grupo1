@@ -11,13 +11,13 @@ namespace ServicoDeEsterelizacao.Models
         public static void Populate(MaterialDbContext db)
         {
            
-                Materialcs(db);
-                Colaborador(db);
-                Funcao(db);
+                SeedMaterialcs(db);
+                SeedColaborador(db);
+                SeedFuncao(db);
   
         }
 
-        private static void Funcao(MaterialDbContext db)
+        private static void SeedFuncao(MaterialDbContext db)
         {
 
             if (db.Funcao.Any()) return;
@@ -29,11 +29,9 @@ namespace ServicoDeEsterelizacao.Models
             );
 
             db.SaveChanges();
+       }
 
-
-        }
-
-        private static void Colaborador(MaterialDbContext db)
+        private static void SeedColaborador(MaterialDbContext db)
         {
             if (db.Colaborador.Any()) return;
             db.Colaborador.AddRange(
@@ -49,12 +47,9 @@ namespace ServicoDeEsterelizacao.Models
                new Colaborador { Nome = "Carlos", Funcao = "Diretor de Serviço", Telefone = "123456789", Morada = "Rua 1", Filhos = true, Email = "Email@email.com" }
            );
             db.SaveChanges();
-
-
-
         }
 
-        private static void Materialcs(MaterialDbContext db)
+        private static void SeedMaterialcs(MaterialDbContext db)
         {
             if (db.Materialcs.Any()) return;
             db.Materialcs.AddRange(
@@ -64,7 +59,6 @@ namespace ServicoDeEsterelizacao.Models
           );
             db.SaveChanges();
         }
-
-    
+   
     }
 }

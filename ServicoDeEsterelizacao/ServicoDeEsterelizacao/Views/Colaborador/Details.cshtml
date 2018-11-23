@@ -46,29 +46,7 @@
         <dd>
             @Html.DisplayFor(model => model.DataNasc)
         </dd>
-        <dt>
-            Filhos:
-        </dt>
-           
-            @if (Model.Filhos == true)
-            {
-            <dd>Sim</dd>
-        }
-        else
-        {
-            <dd>Não</dd>
-        }
-            
-        @if (Model.Filhos == true)
-            {
-                <dt>
-                    Nascimento do filho mais novo:
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.DataNascFilho)
-                </dd>
-            }
-        
+       
                       
         <dt>
                 Cc/Bi:

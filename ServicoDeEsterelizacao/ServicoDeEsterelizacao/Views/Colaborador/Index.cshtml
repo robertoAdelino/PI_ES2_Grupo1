@@ -30,12 +30,7 @@
         <th>
             @Html.DisplayNameFor(model => model.DataNasc)
         </th>*@
-            <th>
-                Filhos
-            </th>
-            @*   <th>
-                        @Html.DisplayNameFor(model => model.DataNascFilho)
-                    </th>*@
+ 
                 <th>
                         Cc/BI
                 </th>
@@ -62,7 +57,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DataNasc)
-        </td>*@
+        </td>
                     <td>
                         @if (item.Filhos == true)
                         {
@@ -73,7 +68,7 @@
                             <dd>Não</dd>
                         }
                     </td>
-                    @*  <td>
+                      <td>
                         @Html.DisplayFor(modelItem => item.DataNascFilho)
                     </td>*@
                     <td>

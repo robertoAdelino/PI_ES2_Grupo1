@@ -36,14 +36,13 @@ namespace ServicoDeEsterelizacao.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime DataNasc { get; set; }
 
-
-        [Required]
+        /*[Required]
         public bool? Filhos { get; set; }
 
         [DataType(DataType.Date, ErrorMessage = "Data de nascimento inválida")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime? DataNascFilho { get; set; }
-
+        */
         [Required(ErrorMessage = "Por favor, introduza o nº de CC/BI")]
        
         public string Cc { get; set; }

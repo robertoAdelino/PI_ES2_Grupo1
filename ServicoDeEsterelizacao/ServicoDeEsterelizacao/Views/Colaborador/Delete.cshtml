@@ -47,32 +47,7 @@
         <dd>
             @Html.DisplayFor(model => model.DataNasc)
         </dd>
-        <dt>
-            Filhos
-        </dt>
-        @if (Model.Filhos == true)
-        {
-            <dd>Sim</dd>
-        }
-        else
-        {
-            <dd>Não</dd>
-        }
-        @if (Model.Filhos == true)
-        {
-            <dt>
-                Data de Nascimento do filho mais novo:
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.DataNascFilho)
-            </dd>
-        }
-        <dt>
-            @Html.DisplayNameFor(model => model.DataNascFilho)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DataNascFilho)
-        </dd>
+       
         <dt>
             @Html.DisplayNameFor(model => model.Cc)
         </dt>

@@ -10,7 +10,7 @@ namespace ServicoDeEsterelizacao.Models
     {
         ~/*[Required(ErrorMessage ="ID não expecificado")]
         [StringLength(2,MinimumLength =1)]*/
-        public string EquipamentoID { get; set; }
+        public int EquipamentoID { get; set; }
 
 
         [Required(ErrorMessage = "Nome não expecificado")]
@@ -27,5 +27,9 @@ namespace ServicoDeEsterelizacao.Models
         public string Quantidade { get; set; }
 
         public ICollection<Esterelizar> Esterelizar { get; set; }
+
+        public NomeEquipamento NomeEquipamento { get; set; }
+
+        public int NomeEquipamentoID { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace ServicoDeEsterelizacao.Models
         public string Nome { get; set; }
 
         [Required]
-        public int Quantidade { get; set; }
+        public string Quantidade { get; set; }
 
         [Required]
         public ICollection<Esterelizar> Esterelizar { get; set; }

@@ -8,8 +8,8 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class Materialcs
     {
-        [Required(ErrorMessage ="Id não especificado")]
-        [StringLength(2,MinimumLength =1,ErrorMessage ="ID inválido!!{1,99}")]
+        /*[Required(ErrorMessage ="Id não especificado")]
+        [StringLength(2,MinimumLength =1,ErrorMessage ="ID inválido!!{1,99}")]*/
         public string MaterialcsId { get; set; }
 
         [Required(ErrorMessage ="Nome não especificado")]
@@ -20,6 +20,6 @@ namespace ServicoDeEsterelizacao.Models
         public int Quantidade { get; set; }
 
         [Required]
-        public ICollection<Equipamento> Equipamentos { get; set; }
+        public ICollection<Esterelizar> Esterelizar { get; set; }
     }
 }

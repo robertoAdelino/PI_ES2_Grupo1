@@ -77,7 +77,7 @@ namespace ServicoDeEsterelizacao
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, MaterialDbContext db, UserManager<IdentityUser> userManager)
         {
 
-
+            SeedDataMaterial.Populate(db);
             if (env.IsDevelopment())
             {
 

@@ -14,5 +14,7 @@ namespace ServicoDeEsterelizacao.Models
         public string Nome { get; set; }
         [Required(ErrorMessage = "Por favor, introduza a quantidade.")]
         public int Quantidade { get; set; }
+
+        public ICollection<Esterilizar> Esterilizar { get; set; }
     }
 }

@@ -1,12 +1,12 @@
 ﻿@model ServicoDeEsterelizacao.Models.Materialcs
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crias";
 }
 
-<h2>Create</h2>
+<h2>Adicionar Materiais</h2>
 
-<h4>Materialcs</h4>
+<h4>Materiais</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -30,6 +30,9 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar atrás</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

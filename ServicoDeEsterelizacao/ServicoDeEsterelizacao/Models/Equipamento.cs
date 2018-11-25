@@ -10,7 +10,9 @@ namespace ServicoDeEsterelizacao.Models
     {
         public int EquipamentoID { get; set; }
 
-        [Required] 
+        [Required(ErrorMessage ="Insira a capacidade do equipamento")]
+        public int Capacidade { get; set; }
+
         public int TipoID { get; set; }
 
         public Tipo Tipo { get; set; }

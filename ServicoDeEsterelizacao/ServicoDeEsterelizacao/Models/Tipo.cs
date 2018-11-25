@@ -8,7 +8,7 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class Tipo
     {
-        public int TipodID { get; set; }
+        public int TipoID { get; set; }
 
         [Required(ErrorMessage ="Porfavor insira o nome")]
         public string Nome { get; set; }

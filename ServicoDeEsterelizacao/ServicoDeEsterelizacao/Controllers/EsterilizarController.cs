@@ -36,7 +36,7 @@ namespace ServicoDeEsterelizacao.Controllers
             var esterilizar = await _context.Esterilizar
                 .Include(e => e.Equipamento)
                 .Include(e => e.Materialcs)
-                .FirstOrDefaultAsync(m => m.EsterilizarID == id);
+                .FirstOrDefaultAsync(m => m.MaterialcsID == id);
             if (esterilizar == null)
             {
                 return NotFound();
@@ -48,7 +48,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // GET: Esterilizar/Create
         public IActionResult Create()
         {
-            ViewData["EquipamentoID"] = new SelectList(_context.Equipamento, "EquipamentoID", "EquipamentoID");
+            ViewData["EquipamentoID"] = new SelectList(_context.Equipamento, "TipoID", "TipoID");
             ViewData["MaterialcsID"] = new SelectList(_context.Materialcs, "MaterialcsId", "Nome");
             return View();
         }
@@ -66,7 +66,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EquipamentoID"] = new SelectList(_context.Equipamento, "EquipamentoID", "EquipamentoID", esterilizar.EquipamentoID);
+            ViewData["EquipamentoID"] = new SelectList(_context.Equipamento, "TipoID", "TipoID", esterilizar.EquipamentoID);
             ViewData["MaterialcsID"] = new SelectList(_context.Materialcs, "MaterialcsId", "Nome", esterilizar.MaterialcsID);
             return View(esterilizar);
         }
@@ -84,7 +84,7 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 return NotFound();
             }
-            ViewData["EquipamentoID"] = new SelectList(_context.Equipamento, "EquipamentoID", "EquipamentoID", esterilizar.EquipamentoID);
+            ViewData["EquipamentoID"] = new SelectList(_context.Equipamento, "TipoID", "TipoID", esterilizar.EquipamentoID);
             ViewData["MaterialcsID"] = new SelectList(_context.Materialcs, "MaterialcsId", "Nome", esterilizar.MaterialcsID);
             return View(esterilizar);
         }
@@ -96,7 +96,7 @@ namespace ServicoDeEsterelizacao.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EsterilizarID,EquipamentoID,MaterialcsID")] Esterilizar esterilizar)
         {
-            if (id != esterilizar.EsterilizarID)
+            if (id != esterilizar.MaterialcsID)
             {
                 return NotFound();
             }
@@ -110,7 +110,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EsterilizarExists(esterilizar.EsterilizarID))
+                    if (!EsterilizarExists(esterilizar.MaterialcsID))
                     {
                         return NotFound();
                     }
@@ -121,7 +121,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EquipamentoID"] = new SelectList(_context.Equipamento, "EquipamentoID", "EquipamentoID", esterilizar.EquipamentoID);
+            ViewData["EquipamentoID"] = new SelectList(_context.Equipamento, "TipoID", "TipoID", esterilizar.EquipamentoID);
             ViewData["MaterialcsID"] = new SelectList(_context.Materialcs, "MaterialcsId", "Nome", esterilizar.MaterialcsID);
             return View(esterilizar);
         }
@@ -137,7 +137,7 @@ namespace ServicoDeEsterelizacao.Controllers
             var esterilizar = await _context.Esterilizar
                 .Include(e => e.Equipamento)
                 .Include(e => e.Materialcs)
-                .FirstOrDefaultAsync(m => m.EsterilizarID == id);
+                .FirstOrDefaultAsync(m => m.MaterialcsID == id);
             if (esterilizar == null)
             {
                 return NotFound();
@@ -159,7 +159,7 @@ namespace ServicoDeEsterelizacao.Controllers
 
         private bool EsterilizarExists(int id)
         {
-            return _context.Esterilizar.Any(e => e.EsterilizarID == id);
+            return _context.Esterilizar.Any(e => e.MaterialcsID == id);
         }
     }
 }

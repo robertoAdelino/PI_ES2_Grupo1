@@ -1,14 +1,14 @@
 ﻿@model ServicoDeEsterelizacao.Models.Materialcs
 
 @{
-    ViewData["Title"] = "Apagar";
+    ViewData["Title"] = "Delete";
 }
 
-<h2>Apagar material existente</h2>
+<h2>Delete</h2>
 
-<h3>Tem a certeza que deseja apagar?</h3>
+<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Material</h4>
+    <h4>Materialcs</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -24,31 +24,10 @@
             @Html.DisplayFor(model => model.Quantidade)
         </dd>
     </dl>
-
+    
     <form asp-action="Delete">
         <input type="hidden" asp-for="MaterialcsId" />
-        <a href="#Confirmacao" class="trigger-btn" data-toggle="modal">
-            <input type="submit" value="Eliminar" class="btn btn-warning" />
-        </a> |
-        <a asp-action="Index"><input type="button" value="Voltar atrás" class="btn btn-default" /></a>
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
-
-    <div id="Confirmacao" class="modal fade">
-        <div class="modal-dialog modal-confirm">
-            <div class="modal-content">
-
-                <div class="modal-body">
-                    <p>Tem a certeza que deseja apagar? </p>
-                </div>
-                <div class="modal-footer">
-                    <form asp-action="Delete">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <input type="hidden" asp-for="MaterialcsId" />
-                        <input type="submit" class="btn btn-warning" value="Eliminar" />
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>

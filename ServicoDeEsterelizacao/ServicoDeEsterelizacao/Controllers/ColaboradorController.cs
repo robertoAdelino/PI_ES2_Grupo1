@@ -10,7 +10,7 @@ using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ColaboradorController : Controller
     {
         private readonly MaterialDbContext _context;
@@ -47,7 +47,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Colaborador/Create
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         public IActionResult Create()
         {
             ViewData["FuncaoID"] = new SelectList(_context.Funcao, "FuncaoID", "Nome");
@@ -59,7 +59,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Create([Bind("ColaboradorId,FuncaoID,Nome,Telefone,Email,Morada,DataNasc,Filhos,DataNascFilho,Cc")] Colaborador colaborador)
         {
             if (ModelState.IsValid)
@@ -73,7 +73,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Colaborador/Edit/5
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -95,7 +95,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Edit(int id, [Bind("ColaboradorId,FuncaoID,Nome,Telefone,Email,Morada,DataNasc,Filhos,DataNascFilho,Cc")] Colaborador colaborador)
         {
             if (id != colaborador.ColaboradorId)
@@ -128,7 +128,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Colaborador/Delete/5
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -150,7 +150,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // POST: Colaborador/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var colaborador = await _context.Colaborador.FindAsync(id);

@@ -45,7 +45,7 @@ namespace ServicoDeEsterelizacao.Models
                 );
         }
 
-        private static async void MakeSureRoleExistsAsync(RoleManager<IdentityRole> roleManager, string role)
+        /*private static async void MakeSureRoleExistsAsync(RoleManager<IdentityRole> roleManager, string role)
         {
             if (!await roleManager.RoleExistsAsync(role))
             {
@@ -55,7 +55,7 @@ namespace ServicoDeEsterelizacao.Models
 
         public static async Task CreateRolesAndUsersAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            const string ADMIN_USER = "admin@noemail.com";
+            const string ADMIN_USER = "admin@gmail.com";
             const string ADMIN_PASSWORD = "sECRET$123";
 
             MakeSureRoleExistsAsync(roleManager, ROLE_ADMINISTRATOR);
@@ -76,7 +76,7 @@ namespace ServicoDeEsterelizacao.Models
 
         public static async Task CreateTestUsersAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            const string CUSTOMER_USER = "john@noemail.com";
+            const string CUSTOMER_USER = "john@gmail.com";
             const string CUSTOMER_PASSWORD = "sECREDO$123";
 
             IdentityUser customer = await userManager.FindByNameAsync(CUSTOMER_USER);
@@ -90,7 +90,7 @@ namespace ServicoDeEsterelizacao.Models
             {
                 await userManager.AddToRoleAsync(customer, ROLE_COLAB);
             }
-        }
+        }*/
 
         private static void SeedFuncao(MaterialDbContext db)
         {

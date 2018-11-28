@@ -10,7 +10,7 @@ using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class MaterialcsController : Controller
     {
         private readonly MaterialDbContext _context;
@@ -118,7 +118,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Materialcs/Delete/5
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -139,7 +139,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // POST: Materialcs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var materialcs = await _context.Materialcs.FindAsync(id);

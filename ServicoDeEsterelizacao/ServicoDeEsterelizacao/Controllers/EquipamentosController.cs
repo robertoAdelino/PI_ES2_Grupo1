@@ -125,7 +125,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Equipamentos/Delete/5
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -147,7 +147,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // POST: Equipamentos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var equipamento = await _context.Equipamento.FindAsync(id);

@@ -45,7 +45,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Funcao/Create
-        [Authorize(Policy = "OnlyAdminAccess")]
+       // [Authorize(Policy = "OnlyAdminAccess")]
         public IActionResult Create()
         {
             return View();
@@ -56,7 +56,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "OnlyAdminAccess")]
+      //  [Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Create([Bind("FuncaoID,Nome")] Funcao funcao)
         {
             if (ModelState.IsValid)
@@ -69,7 +69,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Funcao/Edit/5
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,7 +89,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Policy = "OnlyAdminAccess")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("FuncaoID,Nome")] Funcao funcao)
         {
@@ -141,9 +141,8 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // POST: Funcao/Delete/5
-        [Authorize(Policy = "OnlyAdminAccess")]
-        [HttpPost]
-        //[ActionName("Delete")]
+        //[Authorize(Policy = "OnlyAdminAccess")]
+        [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

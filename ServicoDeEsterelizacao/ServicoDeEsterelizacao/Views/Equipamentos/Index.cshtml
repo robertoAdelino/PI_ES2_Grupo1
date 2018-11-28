@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Equipamento>
+﻿@model EquipamentoListView
 
 @{
     ViewData["Title"] = "Index";
@@ -6,36 +6,58 @@
 
 <h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Pesquisa</div>
+        <div class="panel-body">
+            <form asp-action="Index">
+                <div class="form-group">
+                    <label asp-for="CurrentEquipamento" class="control-label"></label>
+                    <input asp-for="CurrentEquipamento" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Pesquisar" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Capacidade)
+                Tipo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tipo)
+                Capacidade
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Equipamento) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Capacidade)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tipo.Nome)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EquipamentoID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EquipamentoID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EquipamentoID">Delete</a>
+                @Html.DisplayFor(modelItem => item.Capacidade)
+            </td>
+            <td>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EquipamentoID">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.EquipamentoID">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.EquipamentoID">Apagar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<div page-model="@Model.Pagination"></div>
+
+<p>
+    <a asp-action="Create" class="btn btn-default">Adicionar novo equipamento</a>
+</p>

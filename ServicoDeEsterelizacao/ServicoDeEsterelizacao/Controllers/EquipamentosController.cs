@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao.Controllers
 {
+    [Authorize]
     public class EquipamentosController : Controller
     {
         private readonly MaterialDbContext _context;
@@ -69,6 +71,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Equipamentos/Edit/5
+        [Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -122,6 +125,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Equipamentos/Delete/5
+        [Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -143,6 +147,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // POST: Equipamentos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var equipamento = await _context.Equipamento.FindAsync(id);

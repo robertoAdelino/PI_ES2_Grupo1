@@ -49,10 +49,18 @@ namespace ServicoDeEsterelizacao
             services.AddDbContext<MaterialDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MaterialDbContext")));
 
+            services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultUI()
+            .AddDefaultTokenProviders();
 
+            services.AddAuthorization(options => {
+                options.AddPolicy("OnlyAdminAccess",
+                    policy => policy.RequireRole("Administrator"));
+            });
 
             services.Configure<IdentityOptions>(
-    options =>
+            options =>
     {
         // Password settings
         options.Password.RequireDigit = true;
@@ -74,14 +82,19 @@ namespace ServicoDeEsterelizacao
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, MaterialDbContext db, UserManager<IdentityUser> userManager)
+        public void Configure(IApplicationBuilder app,
+            IHostingEnvironment env,
+            MaterialDbContext db,
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
+            SeedDataMaterial.CreateRolesAndUsersAsync(userManager, roleManager).Wait();
 
-            SeedDataMaterial.Populate(db);
             if (env.IsDevelopment())
             {
-
+                SeedDataMaterial.CreateTestUsersAsync(userManager, roleManager).Wait();
                 SeedDataMaterial.Populate(db);
+
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }

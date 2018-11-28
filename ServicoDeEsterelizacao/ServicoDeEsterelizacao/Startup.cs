@@ -49,7 +49,7 @@ namespace ServicoDeEsterelizacao
             services.AddDbContext<MaterialDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MaterialDbContext")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            /*services.AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();
@@ -57,7 +57,7 @@ namespace ServicoDeEsterelizacao
             services.AddAuthorization(options => {
                 options.AddPolicy("OnlyAdminAccess",
                     policy => policy.RequireRole("Administrator"));
-            });
+            });*/
 
             services.Configure<IdentityOptions>(
             options =>
@@ -85,14 +85,14 @@ namespace ServicoDeEsterelizacao
         public void Configure(IApplicationBuilder app,
             IHostingEnvironment env,
             MaterialDbContext db,
-            UserManager<IdentityUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+            /*UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager*/)
         {
-            SeedDataMaterial.CreateRolesAndUsersAsync(userManager, roleManager).Wait();
-
+            //SeedDataMaterial.CreateRolesAndUsersAsync(userManager, roleManager).Wait();
+            SeedDataMaterial.Populate(db);
             if (env.IsDevelopment())
             {
-                SeedDataMaterial.CreateTestUsersAsync(userManager, roleManager).Wait();
+                //SeedDataMaterial.CreateTestUsersAsync(userManager, roleManager).Wait();
                 SeedDataMaterial.Populate(db);
 
                 app.UseDeveloperExceptionPage();

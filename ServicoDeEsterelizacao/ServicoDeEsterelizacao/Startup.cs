@@ -89,11 +89,11 @@ namespace ServicoDeEsterelizacao
             RoleManager<IdentityRole> roleManager*/)
         {
             //SeedDataMaterial.CreateRolesAndUsersAsync(userManager, roleManager).Wait();
-            //SeedDataMaterial.Populate(db);
+            SeedDataMaterial.Populate(db);
             if (env.IsDevelopment())
             {
                 //SeedDataMaterial.CreateTestUsersAsync(userManager, roleManager).Wait();
-                //SeedDataMaterial.Populate(db);
+                SeedDataMaterial.Populate(db);
 
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();

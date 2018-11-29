@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+//using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,6 @@ using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao.Controllers
 {
-    //[Authorize]
     public class MaterialcsController : Controller
     {
         private readonly MaterialDbContext _context;
@@ -118,7 +117,6 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Materialcs/Delete/5
-        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -139,7 +137,6 @@ namespace ServicoDeEsterelizacao.Controllers
         // POST: Materialcs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var materialcs = await _context.Materialcs.FindAsync(id);

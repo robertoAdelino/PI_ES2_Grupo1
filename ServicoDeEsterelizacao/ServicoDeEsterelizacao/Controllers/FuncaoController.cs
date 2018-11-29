@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+//using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,6 @@ using ServicoDeEsterelizacao.Models;
 
 namespace ServicoDeEsterelizacao.Controllers
 {
-    //[Authorize]
     public class FuncaoController : Controller
     {
         private readonly MaterialDbContext _context;
@@ -45,7 +44,6 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Funcao/Create
-       // [Authorize(Policy = "OnlyAdminAccess")]
         public IActionResult Create()
         {
             return View();
@@ -56,7 +54,6 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-      //  [Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Create([Bind("FuncaoID,Nome")] Funcao funcao)
         {
             if (ModelState.IsValid)
@@ -69,7 +66,6 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Funcao/Edit/5
-        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,7 +85,6 @@ namespace ServicoDeEsterelizacao.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[Authorize(Policy = "OnlyAdminAccess")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("FuncaoID,Nome")] Funcao funcao)
         {
@@ -122,7 +117,6 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Funcao/Delete/5
-        //[Authorize(Policy = "OnlyAdminAccess")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,7 +135,6 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // POST: Funcao/Delete/5
-        //[Authorize(Policy = "OnlyAdminAccess")]
         [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

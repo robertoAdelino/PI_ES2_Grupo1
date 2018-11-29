@@ -1,11 +1,11 @@
-﻿@model ColaboradorListView
+﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Colaborador>
 @{
     ViewData["Title"] = "Colaboradores";
 }
 
 <h2>Colaboradores do serviço de esterilização</h2>
 
-<div class="container">
+@*<div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">Pesquisa</div>
         <div class="panel-body">
@@ -20,7 +20,7 @@
             </form>
         </div>
     </div>
-</div>
+</div>*@
 
 <table class="table">
     <thead>
@@ -42,7 +42,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Colaborador)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -67,7 +67,7 @@
     </tbody>
 </table>
 
-<div page-model="@Model.Pagination"></div>
+@*<div page-model="@Model.Pagination"></div>*@
 
 <p>
     <a asp-action="Create" class="btn btn-default">Adicionar Colaborador</a>

@@ -33,6 +33,8 @@ namespace ServicoDeEsterelizacao.Models
                 new Tipo { Nome = "Descontaminador" }, // Máquina para efetuar descontaminação
                 new Tipo { Nome = "Incenerador"} //'Queima' residuos organicos dos materias
             );
+
+            db.SaveChanges();
         }
 
         private static void SeedEquipamento(MaterialDbContext db)
@@ -42,7 +44,9 @@ namespace ServicoDeEsterelizacao.Models
             db.Equipamento.AddRange(
                 new Equipamento { EquipamentoID= 1,TipoID = 1,Capacidade = 1000},
                 new Equipamento { EquipamentoID = 2 , TipoID = 1, Capacidade = 1500}
-                );
+            );
+
+            db.SaveChanges();
         }
 
         /*private static async void MakeSureRoleExistsAsync(RoleManager<IdentityRole> roleManager, string role)

@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Funcao>
 
 @{
+    Layout = "Layout";
     ViewData["Title"] = "Funções";
 }
 
 <h2>Funções</h2>
 
-<p>
-    <a asp-action="Create">Adcionar Função:</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -33,3 +31,6 @@
 }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create" class="btn btn-default">Adcionar Função:</a>
+</p>

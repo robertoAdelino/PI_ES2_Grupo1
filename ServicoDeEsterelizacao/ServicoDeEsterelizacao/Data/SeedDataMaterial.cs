@@ -15,11 +15,11 @@ namespace ServicoDeEsterelizacao.Models
 
         public static void Populate(MaterialDbContext db)
         {
-                SeedEquipamento(db);
-                SeedTipo(db);
+               // SeedEquipamento(db);
+                //SeedTipo(db);
                 //SeedEsterilizar(db);
                 SeedMaterialcs(db);
-                SeedColaborador(db);
+                //SeedColaborador(db);
                 SeedFuncao(db);
   
         }
@@ -37,7 +37,7 @@ namespace ServicoDeEsterelizacao.Models
             db.SaveChanges();
         }
 
-        private static void SeedEquipamento(MaterialDbContext db)
+       /* private static void SeedEquipamento(MaterialDbContext db)
         {
             if (db.Equipamento.Any()) return;
 
@@ -47,7 +47,7 @@ namespace ServicoDeEsterelizacao.Models
             );
 
             db.SaveChanges();
-        }
+        }*/
 
         /*private static async void MakeSureRoleExistsAsync(RoleManager<IdentityRole> roleManager, string role)
         {
@@ -113,18 +113,24 @@ namespace ServicoDeEsterelizacao.Models
         private static void SeedColaborador(MaterialDbContext db)
         {
             if (db.Colaborador.Any()) return;
-            db.Colaborador.AddRange(
-               new Colaborador { Nome = "Paulo",Funcao = "Enfermeiro", Telefone="123456789", Morada="Rua 1" ,  Email= "Email@email.com"  },
-               new Colaborador { Nome = "Ilda", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1", Email = "Email@email.com" },
-               new Colaborador { Nome = "Carina", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-               new Colaborador { Nome = "Beatriz", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-               new Colaborador { Nome = "Luis", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1", Email = "Email@email.com" },
-               new Colaborador { Nome = "Yuri", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-               new Colaborador { Nome = "Mariana", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-               new Colaborador { Nome = "Céu", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-               new Colaborador { Nome = "Carolina", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-               new Colaborador { Nome = "Carlos", Funcao = "Diretor de Serviço", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" }
-           );
+           // db.Colaborador.AddRange(
+            Funcao enfermeiro = db.Funcao.SingleOrDefault(e => e.Nome == "Enfermeiro");
+            db.Colaborador.Add(new Colaborador { Nome = "Teste", Funcao = enfermeiro, Cc = "12345678", Email = "email@email.com",
+                Morada = "morada teste nº1", Telefone = "961234567", DataNasc = new DateTime(2018, 11, 16) });
+
+
+
+            //new Colaborador { Nome = "Paulo", Telefone="123456789", Morada="Rua 1" ,  Email= "Email@email.com"  },
+             //  new Colaborador { Nome = "Ilda",  Telefone = "123456789", Morada = "Rua 1", Email = "Email@email.com" },
+              // new Colaborador { Nome = "Carina", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+              // new Colaborador { Nome = "Beatriz", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+              // new Colaborador { Nome = "Luis", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1", Email = "Email@email.com" },
+              // new Colaborador { Nome = "Yuri", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+              // new Colaborador { Nome = "Mariana", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+             //  new Colaborador { Nome = "Céu", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+             //  new Colaborador { Nome = "Carolina", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
+             //  new Colaborador { Nome = "Carlos", Funcao = "Diretor de Serviço", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" }
+           
             db.SaveChanges();
         }
 
@@ -134,7 +140,12 @@ namespace ServicoDeEsterelizacao.Models
             db.Materialcs.AddRange(
               new Materialcs { Nome = "Bisturi", Quantidade = 50 },
               new Materialcs { Nome = "Tesoura" , Quantidade = 40 },
-              new Materialcs { Nome = "Compressas" , Quantidade = 200}
+              new Materialcs { Nome = "Compressas" , Quantidade = 500},
+               new Materialcs { Nome = "Agulhas", Quantidade = 100 },
+                new Materialcs { Nome = "Luvas", Quantidade = 30 },
+                 new Materialcs { Nome = "Gaze", Quantidade = 40 },
+                 new Materialcs { Nome = "Pinça", Quantidade = 10 },
+                  new Materialcs { Nome = "Seringas", Quantidade = 15 }
           );
             db.SaveChanges();
         }

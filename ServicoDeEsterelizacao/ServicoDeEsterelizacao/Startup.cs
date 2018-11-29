@@ -93,7 +93,7 @@ namespace ServicoDeEsterelizacao
             if (env.IsDevelopment())
             {
                 //SeedDataMaterial.CreateTestUsersAsync(userManager, roleManager).Wait();
-                //SeedDataMaterial.Populate(db);
+                SeedDataMaterial.Populate(db);
 
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();

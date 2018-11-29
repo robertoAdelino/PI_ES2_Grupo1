@@ -16,9 +16,6 @@ namespace ServicoDeEsterelizacao.Models
 
          public ICollection<Colaborador> Colaborador { get; set; }
 
-        public static implicit operator Funcao(string v)
-        {
-            throw new NotImplementedException();
-        }
+  
     }
 }

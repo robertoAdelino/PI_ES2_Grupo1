@@ -89,7 +89,7 @@ namespace ServicoDeEsterelizacao
             RoleManager<IdentityRole> roleManager*/)
         {
             //SeedDataMaterial.CreateRolesAndUsersAsync(userManager, roleManager).Wait();
-            SeedDataMaterial.Populate(db);
+            //SeedDataMaterial.Populate(db);
             if (env.IsDevelopment())
             {
                 //SeedDataMaterial.CreateTestUsersAsync(userManager, roleManager).Wait();
@@ -116,8 +116,8 @@ namespace ServicoDeEsterelizacao
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            
-            
+            SeedDataMaterial.Populate(db);
+
         }
        
     }

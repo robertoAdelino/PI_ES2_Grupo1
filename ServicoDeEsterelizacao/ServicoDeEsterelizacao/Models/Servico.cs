@@ -13,5 +13,9 @@
         public Horario Horario { get; set; }
 
         public int HorarioID { get; set; }
+
+        public Esterilizar Esterilizar { get; set; }
+
+        public int EsteriloizarID { get; set; }
     }
 }

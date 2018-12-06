@@ -1,12 +1,11 @@
 ﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Equipamento>
-
 @{
     Layout = "Layout";
     ViewData["Title"] = "Index";
 }
 <p></p>
 <p></p>
-<h2>Index</h2>
+<h2>Equipamento</h2>
 
 @*<div class="container">
     <div class="panel panel-default">
@@ -49,9 +48,9 @@
             <td>
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EquipamentoID">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.EquipamentoID">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.EquipamentoID">Apagar</a>
+                <a asp-action="Edit" asp-route-id="@item.EquipamentoID" class="btn btn-default">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.EquipamentoID" class="btn btn-info">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.EquipamentoID" class="btn btn-danger">Apagar</a>
             </td>
         </tr>
 }
@@ -61,5 +60,5 @@
 @*<div page-model="@Model.Pagination"></div>*@
 
 <p>
-    <a asp-action="Create" class="btn btn-default">Adicionar novo equipamento</a>
+    <a asp-action="Create" class="btn btn-primary">Adicionar novo equipamento</a>
 </p>

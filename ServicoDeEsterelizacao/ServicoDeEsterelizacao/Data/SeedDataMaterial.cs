@@ -15,11 +15,11 @@ namespace ServicoDeEsterelizacao.Models
 
         public static void Populate(MaterialDbContext db)
         {
-               // SeedEquipamento(db);
-                //SeedTipo(db);
+                //SeedEquipamento(db);
+                SeedTipo(db);
                 //SeedEsterilizar(db);
                 SeedMaterialcs(db);
-                //SeedColaborador(db);
+                SeedColaborador(db);
                 SeedFuncao(db);
   
         }
@@ -31,7 +31,8 @@ namespace ServicoDeEsterelizacao.Models
             db.Tipo.AddRange(
                 new Tipo { Nome = "Autoclave"  },//Máquina de 'lavagem' com produtos quimicos
                 new Tipo { Nome = "Descontaminador" }, // Máquina para efetuar descontaminação
-                new Tipo { Nome = "Incenerador"} //'Queima' residuos organicos dos materias
+                new Tipo { Nome = "Incenerador"}, //'Queima' residuos organicos dos materias
+                new Tipo { Nome = "Embalador"} // Embala material já esterilizado
             );
 
             db.SaveChanges();
@@ -115,8 +116,8 @@ namespace ServicoDeEsterelizacao.Models
             if (db.Colaborador.Any()) return;
            // db.Colaborador.AddRange(
             Funcao enfermeiro = db.Funcao.SingleOrDefault(e => e.Nome == "Enfermeiro");
-            db.Colaborador.Add(new Colaborador { Nome = "Teste", Funcao = enfermeiro, Cc = "12345678", Email = "email@email.com",
-                Morada = "morada teste nº1", Telefone = "961234567", DataNasc = new DateTime(2018, 11, 16) });
+            db.Colaborador.Add(new Colaborador { Nome = "Teste1", Funcao = enfermeiro, Cc = "123456078", Email = "email2@email.com",
+                Morada = "morada teste nº31", Telefone = "9612344567", DataNasc = new DateTime(1990, 11, 1) });
 
 
 

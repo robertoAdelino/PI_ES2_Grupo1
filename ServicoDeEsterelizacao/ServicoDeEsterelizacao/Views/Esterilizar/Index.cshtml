@@ -6,7 +6,7 @@
 }
 <p></p>
 <p></p>
-<h2>Index</h2>
+<h2>Esterilizar</h2>
 
 
 <table class="table">
@@ -37,14 +37,14 @@
                 @Html.DisplayFor(modelItem => item.Materialcs.Nome)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <a asp-action="Edit" asp-route-id="@item.EsterilizarID" class="btn btn-default">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.EsterilizarID" class="btn btn-info">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.EsterilizarID" class="btn btn-danger">Apagar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
 <p>
-    <a asp-action="Create" class="btn btn-default">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Adicionar nova tarefa</a>
 </p>

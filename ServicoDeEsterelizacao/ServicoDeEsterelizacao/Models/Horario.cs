@@ -12,5 +12,7 @@ namespace ServicoDeEsterelizacao.Models
 
         public ICollection<Servico> Servico { get; set; }
 
+        //public ICollection<Escalonamento> Escalonamento { get; set; }
+
     }
 }

@@ -4,12 +4,7 @@
     Layout = "Layout";
     ViewData["Title"] = "Index";
 }
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
+
 <h2>Tipos de Equipamento</h2>
 
 <table class="table">
@@ -29,14 +24,14 @@
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.TipoID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.TipoID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.TipoID">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.TipoID" class="btn btn-default">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.TipoID" class="btn btn-info">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TipoID" class="btn btn-danger">Apagar</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 <p>
-    <a asp-action="Create" class="btn btn-default">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Adicionar novo tipo de equipamento.</a>
 </p>

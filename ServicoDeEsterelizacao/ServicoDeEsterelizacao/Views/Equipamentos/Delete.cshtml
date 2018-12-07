@@ -8,7 +8,7 @@
 <p></p>
 <h2>Apagar</h2>
 
-<h3>Tem a certeza que deseja apagar?</h3>
+<h3>Tem a certeza que deseja apagar @Html.DisplayFor(model => model.Tipo.Nome)?</h3>
 <div>
     <h4>Equipamento</h4>
     <hr />
@@ -26,10 +26,28 @@
             @Html.DisplayFor(model => model.Tipo.Nome)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="EquipamentoID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index" class="btn btn-default">Back to List</a>
+        <a asp-action="Index" class="btn btn-default">Voltar atrás</a>
     </form>
+
+    <div id="Confirmacao" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <p>Tem a certeza que deseja apagar? </p>
+                </div>
+                <div class="modal-footer">
+                    <form asp-action="Delete">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <input type="hidden" asp-for="EquipamentoID" />
+                        <input type="submit" class="btn btn-danger" value="Eliminar" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

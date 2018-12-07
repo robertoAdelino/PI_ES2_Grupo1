@@ -16,5 +16,7 @@ namespace ServicoDeEsterelizacao.Models
         public Materialcs Materialcs { get; set; }
 
         public int MaterialcsID { get; set; }
+
+        public ICollection<Servico> Servico { get; set; }
     }
 }

@@ -12,16 +12,85 @@ namespace ServicoDeEsterelizacao.Controllers
     public class TiposController : Controller
     {
         private readonly MaterialDbContext _context;
-
+        private const int PAGE_SIZE = 5;
         public TiposController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Tipos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(TipoViewList model = null, int page = 1, string order = null)
         {
-            return View(await _context.Tipo.ToListAsync());
+            string tipo = null;
+
+            if (model != null)
+            {
+                tipo = model.CurrentNome;
+            }
+
+            var tipos = _context.Tipo
+                .Where(p => tipo == null || p.Nome.Contains(tipo));
+
+            int numProducts = await tipos.CountAsync();
+
+            if (page > (numProducts / PAGE_SIZE) + 1)
+            {
+                page = 1;
+            }
+
+            //IEnumerable<Tipo> TipoList;
+
+            /*if (order == "nome")
+            {
+                TipoList = await tipos
+                    .OrderBy(p => p.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "price")
+            {
+                TipoList = await tipos
+                    .OrderBy(p => p.Price)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "category")
+            {
+                TipoList = await tipo
+                    .OrderBy(p => p.Category)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else
+            {
+                TipoList = await tipos
+                    .OrderBy(p => p.Name)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }*/ 
+               var TipoList = await tipos
+                    .OrderBy(p => p.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+
+            return View(
+                new TipoViewList
+                {
+                    Tipo = TipoList,
+                    Pagination = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numProducts
+                    },
+                    CurrentNome = tipo
+                }
+            );
         }
 
         // GET: Tipos/Details/5

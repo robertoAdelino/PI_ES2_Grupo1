@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Tipo>
+﻿@model TipoViewList
 
 @{
     Layout = "Layout";
@@ -7,17 +7,34 @@
 
 <h2>Tipos de Equipamento</h2>
 
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Pesquisa</div>
+        <div class="panel-body">
+            <form asp-action="Index">
+                <div class="form-group">
+                    <label asp-for="CurrentNome" class="control-label"></label>
+                    <input asp-for="CurrentNome" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Pesquisar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                Nome
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Tipo)
         {
             <tr>
                 <td>
@@ -32,6 +49,9 @@
         }
     </tbody>
 </table>
+
+<div page-model="@Model.Pagination"></div>
+
 <p>
     <a asp-action="Create" class="btn btn-primary">Adicionar novo tipo de equipamento.</a>
 </p>

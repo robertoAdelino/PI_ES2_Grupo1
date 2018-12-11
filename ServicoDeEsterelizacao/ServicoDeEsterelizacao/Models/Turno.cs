@@ -10,7 +10,7 @@ namespace ServicoDeEsterelizacao.Models
     {
         public int TurnoId { get; set; }
 
-        [Required(ErrorMessage ="Por favor, insira um nome")]
+        [Required(ErrorMessage = "Por favor, insira um nome")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Por favor, introduza a data de inicio")]

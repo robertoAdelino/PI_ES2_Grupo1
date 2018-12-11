@@ -29,7 +29,7 @@ namespace ServicoDeEsterelizacao.Models
             if (db.Tipo.Any()) return;
 
             db.Tipo.AddRange(
-                new Tipo { Nome = "Autoclave"  },//Máquina de 'lavagem' com produtos quimicos
+                new Tipo { Nome = "Autoclave"  }, //Máquina de 'lavagem' com produtos quimicos
                 new Tipo { Nome = "Descontaminador" }, // Máquina para efetuar descontaminação
                 new Tipo { Nome = "Incenerador"}, //'Queima' residuos organicos dos materias
                 new Tipo { Nome = "Embalador"} // Embala material já esterilizado

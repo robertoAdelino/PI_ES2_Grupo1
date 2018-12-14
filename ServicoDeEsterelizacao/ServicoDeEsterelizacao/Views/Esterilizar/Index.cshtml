@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Esterilizar>
+
+@{
+    Layout = "Layout";
+    ViewData["Title"] = "Index";
+}
+<p></p>
+<p></p>
+<h2>Esterilizar</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EsterilizarID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Materialcs)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EsterilizarID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipamento.TipoID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Materialcs.Nome)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EsterilizarID" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.EsterilizarID" class="btn btn-info">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.EsterilizarID" class="btn btn-danger">Apagar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adicionar nova tarefa</a>
+</p>

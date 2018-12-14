@@ -58,7 +58,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EsterilizarID,EquipamentoID,MaterialcsID")] Esterilizar esterilizar)
+        public async Task<IActionResult> Create([Bind("EsterilizarID,EquipamentoID,MaterialcsID")] Trabalho_Posto esterilizar)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EsterilizarID,EquipamentoID,MaterialcsID")] Esterilizar esterilizar)
+        public async Task<IActionResult> Edit(int id, [Bind("EsterilizarID,EquipamentoID,MaterialcsID")] Trabalho_Posto esterilizar)
         {
             if (id != esterilizar.MaterialcsID)
             {

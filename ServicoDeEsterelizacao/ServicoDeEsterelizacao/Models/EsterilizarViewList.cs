@@ -8,7 +8,7 @@ namespace ServicoDeEsterelizacao.Models
 {
     public class EsterilizarViewList
     {
-        public IEnumerable<Esterilizar> Esterilizar { get; set; }
+        public IEnumerable<Trabalho_Posto> Esterilizar { get; set; }
         public PagingViewModel Pagination { get; set; }
 
         [DisplayName("Equipamento")]

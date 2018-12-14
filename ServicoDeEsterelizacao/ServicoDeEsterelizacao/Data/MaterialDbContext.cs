@@ -22,12 +22,12 @@ namespace ServicoDeEsterelizacao.Models
 
         public DbSet<ServicoDeEsterelizacao.Models.Equipamento> Equipamento { get; set; }
 
-        public DbSet<ServicoDeEsterelizacao.Models.Esterilizar> Esterilizar { get; set; }
+        public DbSet<ServicoDeEsterelizacao.Models.Trabalho_Posto> Esterilizar { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Composed primary key
-            modelBuilder.Entity<Esterilizar>()
+            modelBuilder.Entity<Trabalho_Posto>()
                 .HasKey(e => new { e.MaterialcsID, e.EquipamentoID });
             modelBuilder.Entity<Equipamento>()
                 .HasKey(e => new { e.TipoID });
@@ -35,13 +35,13 @@ namespace ServicoDeEsterelizacao.Models
                 .HasKey(c => new { c.FuncaoID });
 
             // one to many relationship
-            modelBuilder.Entity<Esterilizar>()
+            modelBuilder.Entity<Trabalho_Posto>()
                 .HasOne(e => e.Equipamento)
                 .WithMany(e => e.Esterilizar)
                 .HasForeignKey(e => e.EquipamentoID)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            modelBuilder.Entity<Esterilizar>()
+            modelBuilder.Entity<Trabalho_Posto>()
                 .HasOne(e => e.Materialcs)
                 .WithMany(m => m.Esterilizar)
                 .HasForeignKey(e => e.MaterialcsID)
@@ -63,6 +63,8 @@ namespace ServicoDeEsterelizacao.Models
         }
 
         public DbSet<ServicoDeEsterelizacao.Models.Materialcs> Materialcs { get; set; }
+
+        public DbSet<ServicoDeEsterelizacao.Models.Horario> Horario { get; set; }
 
 
     }

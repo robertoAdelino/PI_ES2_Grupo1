@@ -12,17 +12,85 @@ namespace ServicoDeEsterelizacao.Controllers
     public class ColaboradoresController : Controller
     {
         private readonly MaterialDbContext _context;
-
+        private const int PAGE_SIZE = 5;
         public ColaboradoresController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Colaboradores
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(ColaboradorListView model = null, int page = 1)
         {
-            var materialDbContext = _context.Colaborador.Include(c => c.Funcao);
-            return View(await materialDbContext.ToListAsync());
+            string Colaborador = null;
+
+            if (model != null)
+            {
+                Colaborador = model.CurrentColaborador;
+            }
+
+            var colaborador = _context.Colaborador
+                .Where(p => Colaborador == null || p.Nome.Contains(Colaborador));
+
+            int numProducts = await colaborador.CountAsync();
+
+            if (page > (numProducts / PAGE_SIZE) + 1)
+            {
+                page = 1;
+            }
+
+            //IEnumerable<Tipo> TipoList;
+
+            /*if (order == "nome")
+            {
+                TipoList = await colaborador
+                    .OrderBy(p => p.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "price")
+            {
+                TipoList = await colaborador
+                    .OrderBy(p => p.Price)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "category")
+            {
+                TipoList = await Colaborador
+                    .OrderBy(p => p.Category)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else
+            {
+                TipoList = await colaborador
+                    .OrderBy(p => p.Name)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }*/
+            var TipoList = await colaborador
+                 .OrderBy(p => p.Nome)
+                 .Skip(PAGE_SIZE * (page - 1))
+                 .Take(PAGE_SIZE)
+                 .ToListAsync();
+
+            return View(
+                new ColaboradorListView
+                {
+                    Colaborador = TipoList,
+                    Pagination = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numProducts
+                    },
+                    CurrentColaborador = Colaborador
+                }
+            );
         }
 
         // GET: Colaboradores/Details/5

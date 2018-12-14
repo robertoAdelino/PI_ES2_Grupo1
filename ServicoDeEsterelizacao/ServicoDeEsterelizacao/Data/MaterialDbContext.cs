@@ -29,8 +29,10 @@ namespace ServicoDeEsterelizacao.Models
             // Composed primary key
             modelBuilder.Entity<Esterilizar>()
                 .HasKey(e => new { e.MaterialcsID, e.EquipamentoID });
+
             modelBuilder.Entity<Equipamento>()
                 .HasKey(e => new { e.TipoID });
+
             modelBuilder.Entity<Colaborador>()
                 .HasKey(c => new { c.FuncaoID });
 

@@ -56,8 +56,10 @@
                     @Html.DisplayFor(modelItem => item.Telefone)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cc)
+                    @Html.DisplayFor(modelItem => item.Cc)/
+                    @Html.DisplayFor(modelItem => item.ColaboradorId)
                 </td>
+
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ColaboradorId" class="btn btn-warning">Editar</a> |
                     <a asp-action="Details" asp-route-id="@item.ColaboradorId" class="btn btn-info">Mais Detalhes</a> |

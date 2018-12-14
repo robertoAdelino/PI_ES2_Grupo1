@@ -15,8 +15,8 @@ namespace ServicoDeEsterelizacao.Models
         public string Nome { get; set; }
 
         [Required (ErrorMessage ="Descreva a regra.")]
-        public string descricao { get; set; }
+        public string Descricao { get; set; }
 
-        public ICollection<Escalonamento> Escalonamento { get; set; }
+       
     }
 }

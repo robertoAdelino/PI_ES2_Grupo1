@@ -21,7 +21,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // GET: Esterilizar
         public async Task<IActionResult> Index()
         {
-            var materialDbContext = _context.Esterilizar.Include(e => e.Equipamento).Include(e => e.Materialcs);
+            var materialDbContext = _context.Trabalho_Posto.Include(e => e.Equipamento).Include(e => e.Materialcs);
             return View(await materialDbContext.ToListAsync());
         }
 
@@ -33,7 +33,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 return NotFound();
             }
 
-            var esterilizar = await _context.Esterilizar
+            var esterilizar = await _context.Trabalho_Posto
                 .Include(e => e.Equipamento)
                 .Include(e => e.Materialcs)
                 .FirstOrDefaultAsync(m => m.MaterialcsID == id);
@@ -79,7 +79,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 return NotFound();
             }
 
-            var esterilizar = await _context.Esterilizar.FindAsync(id);
+            var esterilizar = await _context.Trabalho_Posto.FindAsync(id);
             if (esterilizar == null)
             {
                 return NotFound();
@@ -134,7 +134,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 return NotFound();
             }
 
-            var esterilizar = await _context.Esterilizar
+            var esterilizar = await _context.Trabalho_Posto
                 .Include(e => e.Equipamento)
                 .Include(e => e.Materialcs)
                 .FirstOrDefaultAsync(m => m.MaterialcsID == id);
@@ -151,15 +151,15 @@ namespace ServicoDeEsterelizacao.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var esterilizar = await _context.Esterilizar.FindAsync(id);
-            _context.Esterilizar.Remove(esterilizar);
+            var esterilizar = await _context.Trabalho_Posto.FindAsync(id);
+            _context.Trabalho_Posto.Remove(esterilizar);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EsterilizarExists(int id)
         {
-            return _context.Esterilizar.Any(e => e.MaterialcsID == id);
+            return _context.Trabalho_Posto.Any(e => e.MaterialcsID == id);
         }
     }
 }

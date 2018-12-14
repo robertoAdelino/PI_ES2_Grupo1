@@ -7,11 +7,7 @@ namespace ServicoDeEsterelizacao.Models
     {
         public int HorarioID { get; set; }
 
-        public System.DateTime data { get; set; }
-
-        public ICollection<Escalonamento> Escalonamento { get; set; }
-
-        //public ICollection<Servico> Servico {get; set;}
+        public DateTime Data { get; set; }
 
         public Turno Turno { get; set; }
 

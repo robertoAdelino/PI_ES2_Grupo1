@@ -60,7 +60,7 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="ColaboradorId" />
         <a href="#Confirmacao" class="trigger-btn" data-toggle="modal">
-            <input type="submit" value="Eliminar" class="btn btn-warning" />
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
         </a> |
         <a asp-action="Index"><input type="button" value="Voltar atrás" class="btn btn-default" /></a>
     </form>
@@ -76,7 +76,7 @@
                     <form asp-action="Delete">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         <input type="hidden" asp-for="ColaboradorId" />
-                        <input type="submit" class="btn btn-warning" value="Eliminar" />
+                        <input type="submit" class="btn btn-danger" value="Eliminar" />
                     </form>
                 </div>
             </div>

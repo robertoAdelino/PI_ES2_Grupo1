@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace ServicoDeEsterelizacao.Models
 {
-    public class Esterilizar
+    public class Trabalho_Posto
     {
-        public int EsterilizarID { get; set; }
+        public int Trabalho_PostoID { get; set; }
 
         public Equipamento Equipamento { get; set; }
 
@@ -17,6 +17,12 @@ namespace ServicoDeEsterelizacao.Models
 
         public int MaterialcsID { get; set; }
 
-        public ICollection<Servico> Servico { get; set; }
+        public bool? Estado{ get; set; }
+
+        public Horario Horario { get; set; }
+
+        public int HorarioID { get; set; }
+
+        public DateTime DataServico { get; set; }
     }
 }

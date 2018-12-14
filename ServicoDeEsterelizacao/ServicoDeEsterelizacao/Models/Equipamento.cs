@@ -18,7 +18,7 @@ namespace ServicoDeEsterelizacao.Models
 
         public Tipo Tipo { get; set; }
 
-        public ICollection<Esterilizar> Esterilizar { get; set; }
+        public ICollection<Trabalho_Posto> Esterilizar { get; set; }
 
     }
 }

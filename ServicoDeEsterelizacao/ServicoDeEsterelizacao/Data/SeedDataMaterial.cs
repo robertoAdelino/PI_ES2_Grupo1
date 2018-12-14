@@ -19,7 +19,7 @@ namespace ServicoDeEsterelizacao.Models
                 SeedTipo(db);
                 //SeedEsterilizar(db);
                 SeedMaterialcs(db);
-                SeedColaborador(db);
+                //SeedColaborador(db);
                 SeedFuncao(db);
   
         }
@@ -111,7 +111,7 @@ namespace ServicoDeEsterelizacao.Models
             db.SaveChanges();
        }
 
-        private static void SeedColaborador(MaterialDbContext db)
+        /*private static void SeedColaborador(MaterialDbContext db)
         {
             if (db.Colaborador.Any()) return;
            // db.Colaborador.AddRange(
@@ -133,7 +133,7 @@ namespace ServicoDeEsterelizacao.Models
              //  new Colaborador { Nome = "Carlos", Funcao = "Diretor de Serviço", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" }
            
             db.SaveChanges();
-        }
+        }*/
 
         private static void SeedMaterialcs(MaterialDbContext db)
         {

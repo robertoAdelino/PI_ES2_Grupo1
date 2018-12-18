@@ -49,9 +49,9 @@ namespace ServicoDeEsterelizacao.Data
         // GET: Horarios/Create
         public IActionResult Create()
         {
-            ViewData["ColaboradorId"] = new SelectList(_context.Colaborador, "FuncaoID", "Cc");
-            ViewData["PostoId"] = new SelectList(_context.Set<Posto>(), "PostoId", "Nome");
-            ViewData["TurnoId"] = new SelectList(_context.Set<Turno>(), "TurnoId", "Nome");
+            ViewData["ColaboradorId"] = new SelectList(_context.Colaborador, "ColaboradorId", "Cc");
+            ViewData["PostoId"] = new SelectList(_context.Posto, "PostoId", "Nome");
+            ViewData["TurnoId"] = new SelectList(_context.Turno, "TurnoId", "Nome");
             return View();
         }
 
@@ -68,9 +68,9 @@ namespace ServicoDeEsterelizacao.Data
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ColaboradorId"] = new SelectList(_context.Colaborador, "FuncaoID", "Cc", horario.ColaboradorId);
-            ViewData["PostoId"] = new SelectList(_context.Set<Posto>(), "PostoId", "Nome", horario.PostoId);
-            ViewData["TurnoId"] = new SelectList(_context.Set<Turno>(), "TurnoId", "Nome", horario.TurnoId);
+            ViewData["ColaboradorId"] = new SelectList(_context.Colaborador, "ColaboradorId", "Cc", horario.ColaboradorId);
+            ViewData["PostoId"] = new SelectList(_context.Posto, "PostoId", "Nome", horario.PostoId);
+            ViewData["TurnoId"] = new SelectList(_context.Turno, "TurnoId", "Nome", horario.TurnoId);
             return View(horario);
         }
 
@@ -87,9 +87,9 @@ namespace ServicoDeEsterelizacao.Data
             {
                 return NotFound();
             }
-            ViewData["ColaboradorId"] = new SelectList(_context.Colaborador, "FuncaoID", "Cc", horario.ColaboradorId);
-            ViewData["PostoId"] = new SelectList(_context.Set<Posto>(), "PostoId", "Nome", horario.PostoId);
-            ViewData["TurnoId"] = new SelectList(_context.Set<Turno>(), "TurnoId", "Nome", horario.TurnoId);
+            ViewData["ColaboradorId"] = new SelectList(_context.Colaborador, "ColaboradorId", "Cc", horario.ColaboradorId);
+            ViewData["PostoId"] = new SelectList(_context.Posto, "PostoId", "Nome", horario.PostoId);
+            ViewData["TurnoId"] = new SelectList(_context.Turno, "TurnoId", "Nome", horario.TurnoId);
             return View(horario);
         }
 
@@ -125,9 +125,9 @@ namespace ServicoDeEsterelizacao.Data
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ColaboradorId"] = new SelectList(_context.Colaborador, "FuncaoID", "Cc", horario.ColaboradorId);
-            ViewData["PostoId"] = new SelectList(_context.Set<Posto>(), "PostoId", "Nome", horario.PostoId);
-            ViewData["TurnoId"] = new SelectList(_context.Set<Turno>(), "TurnoId", "Nome", horario.TurnoId);
+            ViewData["ColaboradorId"] = new SelectList(_context.Colaborador, "ColaboradorId", "Cc", horario.ColaboradorId);
+            ViewData["PostoId"] = new SelectList(_context.Posto, "PostoId", "Nome", horario.PostoId);
+            ViewData["TurnoId"] = new SelectList(_context.Turno, "TurnoId", "Nome", horario.TurnoId);
             return View(horario);
         }
 

@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Horario>
 
-@{
+@{ 
+    Layout = "Layout";
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Horários</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -43,11 +41,14 @@
                 @Html.DisplayFor(modelItem => item.Colaborador.Cc)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.HorarioID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.HorarioID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.HorarioID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.HorarioID" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.HorarioID"class="btn btn-info">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.HorarioID" class="btn btn-danger">Apagar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adicionar novo horario</a>
+</p>

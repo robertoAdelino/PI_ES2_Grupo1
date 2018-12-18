@@ -1,12 +1,13 @@
 ﻿@model ServicoDeEsterelizacao.Models.Trabalho_Posto
 
 @{
+    Layout = "Layout";
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Apagar</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Tem a certeza que deseja apagar?</h3>
 <div>
     <h4>Trabalho_Posto</h4>
     <hr />
@@ -52,7 +53,7 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="EquipamentoID" />
         <input type="hidden" asp-for="MaterialcsID" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Apagar" class="btn btn-danger" /> |
+        <a asp-action="Index"class="btn btn-default">Voltar atrás</a>
     </form>
 </div>

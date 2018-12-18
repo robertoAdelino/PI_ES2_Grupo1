@@ -12,9 +12,13 @@ namespace ServicoDeEsterelizacao.Models
         public int RegrasID { get; set; }
 
         [Required(ErrorMessage ="Dê um nome à regra.")]
+        [RegularExpression(@"([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]+)", ErrorMessage = "Introduza uma regra válida")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "Regra inválida!!")]
         public string Nome { get; set; }
 
         [Required (ErrorMessage ="Descreva a regra.")]
+        [RegularExpression(@"([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]+)", ErrorMessage = "Introduza uma descrição válida")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "Descrição inválida!!")]
         public string Descricao { get; set; }
 
        

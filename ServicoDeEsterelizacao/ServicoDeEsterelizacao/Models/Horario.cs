@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ServicoDeEsterelizacao.Models
 {
@@ -7,6 +8,9 @@ namespace ServicoDeEsterelizacao.Models
     {
         public int HorarioID { get; set; }
 
+        [Required(ErrorMessage ="Data não indicada")]
+        [DataType(DataType.Date, ErrorMessage = "Data inválida")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime Data { get; set; }
 
         public Turno Turno { get; set; }
@@ -20,5 +24,7 @@ namespace ServicoDeEsterelizacao.Models
         public Colaborador Colaborador { get; set; }
 
         public int ColaboradorId { get; set; }
+
+        public ICollection<Trabalho_Posto> TrabalhoPosto { get; set; }
     }
 }

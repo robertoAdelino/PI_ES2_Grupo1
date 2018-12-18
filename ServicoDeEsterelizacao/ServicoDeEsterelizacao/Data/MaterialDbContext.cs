@@ -34,35 +34,41 @@ namespace ServicoDeEsterelizacao.Models
             modelBuilder.Entity<Colaborador>()
                 .HasKey(c => new { c.ColaboradorId });
             modelBuilder.Entity<Horario>()
-        .HasKey(c => new { c.HorarioID });
+                .HasKey(c => new { c.HorarioID });
             modelBuilder.Entity<Funcao>()
-        .HasKey(c => new { c.FuncaoID });
+                .HasKey(c => new { c.FuncaoID });
             modelBuilder.Entity<Turno>()
-        .HasKey(c => new { c.TurnoId });
+                .HasKey(c => new { c.TurnoId });
             modelBuilder.Entity<Materialcs>()
-        .HasKey(c => new { c.MaterialcsId });
+                .HasKey(c => new { c.MaterialcsId });
             modelBuilder.Entity<Posto>()
-    .HasKey(c => new { c.PostoId });
+                .HasKey(c => new { c.PostoId });
             modelBuilder.Entity<Regras>()
-    .HasKey(c => new { c.RegrasID });
+                .HasKey(c => new { c.RegrasID });
             modelBuilder.Entity<Tipo>()
-    .HasKey(c => new { c.TipoID });
+               .HasKey(c => new { c.TipoID });
 
 
-            /*
+
                       // one to many relationship
-                      modelBuilder.Entity<Trabalho_Posto>()
-                          .HasOne(e => e.Equipamento)
-                          .WithMany(e => e.Esterilizar)
-                          .HasForeignKey(e => e.EquipamentoID)
-                          .OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<Trabalho_Posto>()
+                 .HasOne(t => t.Equipamento)
+                 .WithMany(e => e.Esterilizar)
+                 .HasForeignKey(e => e.EquipamentoID)
+                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-                      modelBuilder.Entity<Trabalho_Posto>()
-                          .HasOne(e => e.Materialcs)
-                          .WithMany(m => m.Tra)
-                          .HasForeignKey(e => e.MaterialcsID)
-                          .OnDelete(DeleteBehavior.ClientSetNull); // prevent cascade delete
-                          */
+            modelBuilder.Entity<Trabalho_Posto>()
+                 .HasOne(t => t.Materialcs)
+                 .WithMany(m => m.Esterilizar)
+                 .HasForeignKey(e => e.MaterialcsID)
+                 .OnDelete(DeleteBehavior.ClientSetNull); // prevent cascade delete
+
+            modelBuilder.Entity<Trabalho_Posto>()
+                .HasOne(t => t.Horario)
+                .WithMany(h => h.TrabalhoPosto)
+                .HasForeignKey(t => t.HorarioID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
 
             modelBuilder.Entity<Colaborador>()
                 .HasOne(c => c.Funcao)
@@ -76,12 +82,35 @@ namespace ServicoDeEsterelizacao.Models
                 .HasForeignKey(e => e.TipoID)
                 .OnDelete(DeleteBehavior.ClientSetNull); // prevent cascade delete
 
+            modelBuilder.Entity<Horario>()
+                .HasOne(h => h.Colaborador)
+                .WithMany(c => c.Horario)
+                .HasForeignKey(h => h.ColaboradorId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Horario>()
+                .HasOne(h => h.Posto)
+                .WithMany(p => p.Horario)
+                .HasForeignKey(h => h.PostoId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Horario>()
+                .HasOne(h => h.Turno)
+                .WithMany(t => t.Horario)
+                .HasForeignKey(h => h.TurnoId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<ServicoDeEsterelizacao.Models.Materialcs> Materialcs { get; set; }
 
         public DbSet<ServicoDeEsterelizacao.Models.Horario> Horario { get; set; }
+
+        public DbSet<ServicoDeEsterelizacao.Models.Turno> Turno { get; set; }
+
+        public DbSet<ServicoDeEsterelizacao.Models.Posto> Posto { get; set; }
+
 
 
     }

@@ -11,6 +11,8 @@ namespace ServicoDeEsterelizacao.Models
         public int TurnoId { get; set; }
 
         [Required(ErrorMessage = "Por favor, insira um nome")]
+        [RegularExpression(@"([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]+)", ErrorMessage = "Introduza um nome válido")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "Nome invalido!!")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Por favor, introduza a data de inicio")]

@@ -12,6 +12,7 @@ namespace ServicoDeEsterelizacao.Models
         public int EquipamentoID { get; set; }
 
         [Required(ErrorMessage ="Insira a capacidade do equipamento")]
+        [RegularExpression(@"([1-9999]+)", ErrorMessage = "Introduza uma quantidade válida")]
         public int Capacidade { get; set; }
 
         public int TipoID { get; set; }

@@ -40,7 +40,7 @@ namespace ServicoDeEsterelizacao.Models
        
         public string Cc { get; set; }
 
-
+        public ICollection<Horario> Horario { get; set; }
 
 
 

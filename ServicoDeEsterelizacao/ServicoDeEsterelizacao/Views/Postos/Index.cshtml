@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Posto>
 
 @{
+    Layout = "Layout";
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Postos</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -25,11 +23,14 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PostoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PostoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PostoId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.PostoId" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.PostoId" class="btn btn-info">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostoId" class="btn btn-danger">Apagar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adicionar novo posto</a>
+</p>

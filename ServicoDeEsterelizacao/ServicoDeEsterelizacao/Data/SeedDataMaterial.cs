@@ -23,7 +23,13 @@ namespace ServicoDeEsterelizacao.Models
                 SeedFuncao(db);
                 SeedPosto(db);
                 SeedTurno(db);
+                SeedRegra(db);
   
+        }
+
+        private static void SeedRegra(MaterialDbContext db)
+        {
+            throw new NotImplementedException();
         }
 
         private static void SeedPosto(MaterialDbContext db)
@@ -46,7 +52,9 @@ namespace ServicoDeEsterelizacao.Models
             if (db.Turno.Any()) return;
 
             db.Turno.AddRange(
-                new Turno { Nome= "Manhã"}    
+                new Turno { Nome= "Manhã"},
+                new Turno { Nome="Tarde"},
+                new Turno { Nome = "Noite"}
                 
             );
 

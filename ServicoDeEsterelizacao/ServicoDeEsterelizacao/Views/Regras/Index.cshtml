@@ -4,11 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Regras</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -31,11 +28,14 @@
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.RegrasID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RegrasID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RegrasID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.RegrasID" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.RegrasID"class="btn btn-info">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.RegrasID"class="btn btn-danger">Apagar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adicionar nova</a>
+</p>

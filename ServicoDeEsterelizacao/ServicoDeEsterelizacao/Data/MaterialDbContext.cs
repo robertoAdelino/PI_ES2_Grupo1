@@ -111,6 +111,8 @@ namespace ServicoDeEsterelizacao.Models
 
         public DbSet<ServicoDeEsterelizacao.Models.Posto> Posto { get; set; }
 
+        public DbSet<ServicoDeEsterelizacao.Models.Regras> Regras { get; set; }
+
 
 
     }

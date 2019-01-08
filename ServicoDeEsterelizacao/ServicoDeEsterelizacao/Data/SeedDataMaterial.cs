@@ -29,7 +29,14 @@ namespace ServicoDeEsterelizacao.Models
 
         private static void SeedRegra(MaterialDbContext db)
         {
-            throw new NotImplementedException();
+            if (db.Regras.Any()) return;
+
+            db.Regras.AddRange(
+                new Regras { Nome="Noites",Descricao="Um colaborador nao pode fazer mais de duas noites seguidas."}
+                
+            );
+            
+            db.SaveChanges();
         }
 
         private static void SeedPosto(MaterialDbContext db)

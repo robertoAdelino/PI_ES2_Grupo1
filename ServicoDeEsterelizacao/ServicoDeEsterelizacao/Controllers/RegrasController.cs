@@ -12,16 +12,50 @@ namespace ServicoDeEsterelizacao.Controllers
     public class RegrasController : Controller
     {
         private readonly MaterialDbContext _context;
-
+        private const int PAGE_SIZE = 5;
         public RegrasController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Regras
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(RegrasViewList model = null, int page = 1)
         {
-            return View(await _context.Regras.ToListAsync());
+            string Regras = null;
+
+            if (model != null)
+            {
+                Regras = model.CurrentNome;
+            }
+
+            var regras = _context.Regras
+                .Where(p => Regras == null || p.Nome.Contains(Regras));
+
+            int numProducts = await regras.CountAsync();
+
+            if (page > (numProducts / PAGE_SIZE) + 1)
+            {
+                page = 1;
+            }
+            var TipoList = await regras
+                    .OrderBy(p => p.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+
+            return View(
+                new RegrasViewList
+                {
+                    Regras = TipoList,
+                    Pagination = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numProducts
+                    },
+                    CurrentNome = Regras
+                }
+            );
         }
 
         // GET: Regras/Details/5

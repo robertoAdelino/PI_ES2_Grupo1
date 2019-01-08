@@ -17,12 +17,12 @@ namespace ServicoDeEsterelizacao.Models
 
         [Required(ErrorMessage = "Por favor, introduza a data de inicio")]
         [DataType(DataType.Date, ErrorMessage = "Data de inicio inválida")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:hh:mm}", ApplyFormatInEditMode = false)]
         public DateTime Horainicio { get; set; }
 
         [Required(ErrorMessage = "Por favor, introduza a data de fim")]
         [DataType(DataType.Date, ErrorMessage = "Data de fim inválida")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:hh:mm}", ApplyFormatInEditMode = false)]
         public DateTime Horafim { get; set; }
 
         public ICollection<Horario> Horario { get; set; }

@@ -12,16 +12,50 @@ namespace ServicoDeEsterelizacao.Controllers
     public class TurnosController : Controller
     {
         private readonly MaterialDbContext _context;
-
+        private const int PAGE_SIZE = 5;
         public TurnosController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Turnos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(TurnoViewList model = null, int page = 1)
         {
-            return View(await _context.Turno.ToListAsync());
+            string Turno = null;
+
+            if (model != null)
+            {
+                Turno = model.CurrentNome;
+            }
+
+            var turno = _context.Turno
+                .Where(p => Turno == null || p.Nome.Contains(Turno));
+
+            int numProducts = await turno.CountAsync();
+
+            if (page > (numProducts / PAGE_SIZE) + 1)
+            {
+                page = 1;
+            }
+            var TipoList = await turno
+                    .OrderBy(p => p.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+
+            return View(
+                new TurnoViewList
+                {
+                    Turno = TipoList,
+                    Pagination = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numProducts
+                    },
+                    CurrentNome = Turno
+                }
+            );
         }
 
         // GET: Turnos/Details/5

@@ -13,16 +13,50 @@ namespace ServicoDeEsterelizacao.Controllers
     public class FuncaoController : Controller
     {
         private readonly MaterialDbContext _context;
-
+        private const int PAGE_SIZE = 5;
         public FuncaoController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Funcao
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(FuncaoViewList model = null, int page = 1)
         {
-            return View(await _context.Funcao.ToListAsync());
+            string Funcao = null;
+
+            if (model != null)
+            {
+                Funcao = model.CurrentNome;
+            }
+
+            var funcao = _context.Funcao
+                .Where(p => Funcao == null || p.Nome.Contains(Funcao));
+
+            int numProducts = await funcao.CountAsync();
+
+            if (page > (numProducts / PAGE_SIZE) + 1)
+            {
+                page = 1;
+            }
+            var TipoList = await funcao
+                    .OrderBy(p => p.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+
+            return View(
+                new FuncaoViewList
+                {
+                    Funcao = TipoList,
+                    Pagination = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numProducts
+                    },
+                    CurrentNome = Funcao
+                }
+            );
         }
 
         // GET: Funcao/Details/5

@@ -13,16 +13,50 @@ namespace ServicoDeEsterelizacao.Controllers
     public class MaterialcsController : Controller
     {
         private readonly MaterialDbContext _context;
-
+        private const int PAGE_SIZE = 5;
         public MaterialcsController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Materialcs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(MaterialListView model = null, int page = 1)
         {
-            return View(await _context.Materialcs.ToListAsync());
+            string Material = null;
+
+            if (model != null)
+            {
+                Material = model.CurrentMaterial;
+            }
+
+            var material = _context.Materialcs
+                .Where(p => Material == null || p.Nome.Contains(Material));
+
+            int numProducts = await material.CountAsync();
+
+            if (page > (numProducts / PAGE_SIZE) + 1)
+            {
+                page = 1;
+            }
+            var TipoList = await material
+                    .OrderBy(p => p.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+
+            return View(
+                new MaterialListView
+                {
+                    Materialcs = TipoList,
+                    Pagination = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numProducts
+                    },
+                    CurrentMaterial = Material
+                }
+            );
         }
 
         // GET: Materialcs/Details/5

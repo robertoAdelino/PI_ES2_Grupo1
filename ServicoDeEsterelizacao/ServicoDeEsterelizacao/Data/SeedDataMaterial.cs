@@ -21,7 +21,36 @@ namespace ServicoDeEsterelizacao.Models
                 SeedMaterialcs(db);
                 //SeedColaborador(db);
                 SeedFuncao(db);
+                SeedPosto(db);
+                SeedTurno(db);
   
+        }
+
+        private static void SeedPosto(MaterialDbContext db)
+        {
+            if (db.Posto.Any()) return;
+
+            db.Posto.AddRange(
+                new Posto { Nome = "Descontaminação"},
+                new Posto { Nome = "Texteis"},
+                new Posto { Nome = "Armazem de estereis e entrega"},
+                new Posto { Nome = "Inspeção"},
+                new Posto { Nome = "Emabalagem e esterilização"}
+            );
+
+            db.SaveChanges();
+        }
+
+        private static void SeedTurno(MaterialDbContext db)
+        {
+            if (db.Turno.Any()) return;
+
+            db.Turno.AddRange(
+                new Turno { Nome= "Manhã"}    
+                
+            );
+
+            db.SaveChanges();
         }
 
         private static void SeedTipo(MaterialDbContext db)
@@ -139,14 +168,14 @@ namespace ServicoDeEsterelizacao.Models
         {
             if (db.Materialcs.Any()) return;
             db.Materialcs.AddRange(
-              new Materialcs { Nome = "Bisturi", Quantidade = 50 },
-              new Materialcs { Nome = "Tesoura" , Quantidade = 40 },
-              new Materialcs { Nome = "Compressas" , Quantidade = 500},
-               new Materialcs { Nome = "Agulhas", Quantidade = 100 },
+                new Materialcs { Nome = "Bisturi", Quantidade = 50 },
+                new Materialcs { Nome = "Tesoura" , Quantidade = 40 },
+                new Materialcs { Nome = "Compressas" , Quantidade = 500},
+                new Materialcs { Nome = "Agulhas", Quantidade = 100 },
                 new Materialcs { Nome = "Luvas", Quantidade = 30 },
-                 new Materialcs { Nome = "Gaze", Quantidade = 40 },
-                 new Materialcs { Nome = "Pinça", Quantidade = 10 },
-                  new Materialcs { Nome = "Seringas", Quantidade = 15 }
+                new Materialcs { Nome = "Gaze", Quantidade = 40 },
+                new Materialcs { Nome = "Pinça", Quantidade = 10 },
+                new Materialcs { Nome = "Seringas", Quantidade = 15 }
           );
             db.SaveChanges();
         }

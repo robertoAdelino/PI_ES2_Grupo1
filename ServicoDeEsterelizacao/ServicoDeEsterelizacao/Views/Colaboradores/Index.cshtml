@@ -27,10 +27,10 @@
     <thead>
         <tr>
             <th>
-                Função
+                <a asp-action="Index" asp-route-order="nome">Nome</a>
             </th>
             <th>
-                Nome
+                Funcao
             </th>
             <th>
                 Contacto
@@ -47,10 +47,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Funcao.Nome)
+                    @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
+                    @Html.DisplayFor(modelItem => item.FuncaoID)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Telefone)

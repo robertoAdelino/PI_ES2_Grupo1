@@ -12,16 +12,50 @@ namespace ServicoDeEsterelizacao.Controllers
     public class PostosController : Controller
     {
         private readonly MaterialDbContext _context;
-
+        private const int PAGE_SIZE = 5;
         public PostosController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Postos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(PostoViewList model = null, int page = 1)
         {
-            return View(await _context.Posto.ToListAsync());
+            string Posto = null;
+
+            if (model != null)
+            {
+                Posto = model.CurrentNome;
+            }
+
+            var posto = _context.Posto
+                .Where(p => Posto == null || p.Nome.Contains(Posto));
+
+            int numProducts = await posto.CountAsync();
+
+            if (page > (numProducts / PAGE_SIZE) + 1)
+            {
+                page = 1;
+            }
+            var TipoList = await posto
+                    .OrderBy(p => p.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+
+            return View(
+                new PostoViewList
+                {
+                    Posto = TipoList,
+                    Pagination = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numProducts
+                    },
+                    CurrentNome = Posto
+                }
+            );
         }
 
         // GET: Postos/Details/5

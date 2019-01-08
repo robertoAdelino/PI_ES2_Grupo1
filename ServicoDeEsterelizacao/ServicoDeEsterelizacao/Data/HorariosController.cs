@@ -12,17 +12,50 @@ namespace ServicoDeEsterelizacao.Data
     public class HorariosController : Controller
     {
         private readonly MaterialDbContext _context;
-
+        private const int PAGE_SIZE = 5;
         public HorariosController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Horarios
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(HorarioViewList model = null, int page = 1)
         {
-            var materialDbContext = _context.Horario.Include(h => h.Colaborador).Include(h => h.Posto).Include(h => h.Turno);
-            return View(await materialDbContext.ToListAsync());
+            string Horario = null;
+
+            if (model != null)
+            {
+                Horario = model.CurrentColaborador;
+            }
+
+            var horario = _context.Horario
+                .Where(p => Horario == null || p.Colaborador.Nome.Contains(Horario));
+
+            int numProducts = await horario.CountAsync();
+
+            if (page > (numProducts / PAGE_SIZE) + 1)
+            {
+                page = 1;
+            }
+            var TipoList = await horario
+                    .OrderBy(p => p.ColaboradorId)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+
+            return View(
+                new HorarioViewList
+                {
+                    Horario = TipoList,
+                    Pagination = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numProducts
+                    },
+                    CurrentColaborador = Horario
+                }
+            );
         }
 
         // GET: Horarios/Details/5

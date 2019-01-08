@@ -14,17 +14,50 @@ namespace ServicoDeEsterelizacao.Controllers
     public class EquipamentosController : Controller
     {
         private readonly MaterialDbContext _context;
-
+        private const int PAGE_SIZE = 5;
         public EquipamentosController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Equipamentos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(EquipamentoListView model = null, int page = 1)
         {
-            var materialDbContext = _context.Equipamento.Include(e => e.Tipo);
-            return View(await materialDbContext.ToListAsync());
+            string Equipamento = null;
+
+            if (model != null)
+            {
+                Equipamento = model.CurrentEquipamento;
+            }
+
+            var equipamento = _context.Equipamento
+                .Where(p => Equipamento == null || p.Tipo.Nome.Contains(Equipamento));
+
+            int numProducts = await equipamento.CountAsync();
+
+            if (page > (numProducts / PAGE_SIZE) + 1)
+            {
+                page = 1;
+            }
+            var TipoList = await equipamento
+                    .OrderBy(p => p.Tipo.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+
+            return View(
+                new EquipamentoListView
+                {
+                    Equipamento = TipoList,
+                    Pagination = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numProducts
+                    },
+                    CurrentEquipamento = Equipamento
+                }
+            );
         }
 
         // GET: Equipamentos/Details/5

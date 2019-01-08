@@ -14,5 +14,7 @@ namespace ServicoDeEsterelizacao.Models
         public int CurrentPage { get; set; }
 
         public int NumberPages => (int)Math.Ceiling((double)Totaltems / PageSize);
+
+        public string Order { get; set; }
     }
 }

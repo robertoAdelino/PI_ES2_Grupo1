@@ -12,17 +12,50 @@ namespace ServicoDeEsterelizacao.Data
     public class Trabalho_PostoController : Controller
     {
         private readonly MaterialDbContext _context;
-
+        private const int PAGE_SIZE = 5;
         public Trabalho_PostoController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Trabalho_Posto
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Trabalho_PostoViewList model = null, int page = 1)
         {
-            var materialDbContext = _context.Trabalho_Posto.Include(t => t.Equipamento).Include(t => t.Horario).Include(t => t.Materialcs);
-            return View(await materialDbContext.ToListAsync());
+            string Tarefa = null;
+
+            if (model != null)
+            {
+                Tarefa = model.CurrentNome;
+            }
+
+            var tarefa = _context.Trabalho_Posto
+                .Where(p => Tarefa == null || p.Materialcs.Nome.Contains(Tarefa));
+
+            int numProducts = await tarefa.CountAsync();
+
+            if (page > (numProducts / PAGE_SIZE) + 1)
+            {
+                page = 1;
+            }
+            var TipoList = await tarefa
+                    .OrderBy(p => p.MaterialcsID)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+
+            return View(
+                new Trabalho_PostoViewList
+                {
+                    Tarefa = TipoList,
+                    Pagination = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numProducts
+                    },
+                    CurrentNome = Tarefa
+                }
+            );
         }
 
         // GET: Trabalho_Posto/Details/5

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Posto>
+﻿@model PostoViewList
 
 @{
     Layout = "Layout";
@@ -7,17 +7,34 @@
 
 <h2>Postos</h2>
 
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Pesquisa</div>
+        <div class="panel-body">
+            <form asp-action="Index">
+                <div class="form-group">
+                    <label asp-for="CurrentNome" class="control-label"></label>
+                    <input asp-for="CurrentNome" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Pesquisar" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                Nome
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Posto) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)

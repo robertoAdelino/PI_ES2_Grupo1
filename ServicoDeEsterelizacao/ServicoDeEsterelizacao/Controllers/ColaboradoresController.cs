@@ -19,7 +19,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Colaboradores
-        public async Task<IActionResult> Index(ColaboradorListView model = null, int page = 1)
+        public async Task<IActionResult> Index(ColaboradorListView model = null, int page = 1, string order =null)
         {
             string Colaborador = null;
 
@@ -38,9 +38,9 @@ namespace ServicoDeEsterelizacao.Controllers
                 page = 1;
             }
 
-            //IEnumerable<Tipo> TipoList;
+            IEnumerable<Colaborador> TipoList;
 
-            /*if (order == "nome")
+            if (order == "nome")
             {
                 TipoList = await colaborador
                     .OrderBy(p => p.Nome)
@@ -48,18 +48,18 @@ namespace ServicoDeEsterelizacao.Controllers
                     .Take(PAGE_SIZE)
                     .ToListAsync();
             }
-            else if (order == "price")
+            else if (order == "funcao")
             {
                 TipoList = await colaborador
-                    .OrderBy(p => p.Price)
+                    .OrderBy(p => p.Funcao.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
             }
-            else if (order == "category")
+            else if (order == "contato")
             {
-                TipoList = await Colaborador
-                    .OrderBy(p => p.Category)
+                TipoList = await colaborador
+                    .OrderBy(p => p.Telefone)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
@@ -67,16 +67,16 @@ namespace ServicoDeEsterelizacao.Controllers
             else
             {
                 TipoList = await colaborador
-                    .OrderBy(p => p.Name)
+                    .OrderBy(p => p.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
-            }*/
-            var TipoList = await colaborador
+            }
+            /*TipoList = await colaborador
                  .OrderBy(p => p.Nome)
                  .Skip(PAGE_SIZE * (page - 1))
                  .Take(PAGE_SIZE)
-                 .ToListAsync();
+                 .ToListAsync();*/
 
             return View(
                 new ColaboradorListView
@@ -86,7 +86,8 @@ namespace ServicoDeEsterelizacao.Controllers
                     {
                         CurrentPage = page,
                         PageSize = PAGE_SIZE,
-                        Totaltems = numProducts
+                        Totaltems = numProducts,
+                        Order = order
                     },
                     CurrentColaborador = Colaborador
                 }

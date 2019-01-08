@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Trabalho_Posto>
+﻿@model Trabalho_PostoViewList
 
 @{
     Layout = "Layout";
@@ -7,33 +7,46 @@
 
 <h2>Tarefas</h2>
 
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Pesquisa</div>
+        <div class="panel-body">
+            <form asp-action="Index">
+                <div class="form-group">
+                    <label asp-for="CurrentNome" class="control-label"></label>
+                    <input asp-for="CurrentNome" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Pesquisar" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Trabalho_PostoID)
+                Equipamento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Equipamento)
+                Materialcs
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Materialcs)
+                Estado
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Estado)
+                Horario
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Horario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataServico)
+                DataServico
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Tarefa) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Trabalho_PostoID)

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Horario>
+﻿@model HorarioViewList
 
 @{ 
     Layout = "Layout";
@@ -7,26 +7,43 @@
 
 <h2>Horários</h2>
 
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Pesquisa</div>
+        <div class="panel-body">
+            <form asp-action="Index">
+                <div class="form-group">
+                    <label asp-for="CurrentColaborador" class="control-label"></label>
+                    <input asp-for="CurrentColaborador" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Pesquisar" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Data)
+                Data
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Turno)
+                Turno
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Posto)
+                Posto
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Colaborador)
+                Colaborador
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Horario) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Data)

@@ -15,7 +15,7 @@ namespace ServicoDeEsterelizacao.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -116,7 +116,8 @@ namespace ServicoDeEsterelizacao.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nome")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<int>("Quantidade");
 
@@ -132,7 +133,8 @@ namespace ServicoDeEsterelizacao.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nome")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.HasKey("PostoId");
 
@@ -146,10 +148,12 @@ namespace ServicoDeEsterelizacao.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Descricao")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<string>("Nome")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.HasKey("RegrasID");
 
@@ -163,7 +167,8 @@ namespace ServicoDeEsterelizacao.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nome")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.HasKey("TipoID");
 
@@ -180,7 +185,8 @@ namespace ServicoDeEsterelizacao.Migrations
 
                     b.Property<int>("EquipamentoID");
 
-                    b.Property<bool?>("Estado");
+                    b.Property<bool?>("Estado")
+                        .IsRequired();
 
                     b.Property<int>("HorarioID");
 
@@ -208,7 +214,8 @@ namespace ServicoDeEsterelizacao.Migrations
                     b.Property<DateTime>("Horainicio");
 
                     b.Property<string>("Nome")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.HasKey("TurnoId");
 
@@ -232,37 +239,31 @@ namespace ServicoDeEsterelizacao.Migrations
             modelBuilder.Entity("ServicoDeEsterelizacao.Models.Horario", b =>
                 {
                     b.HasOne("ServicoDeEsterelizacao.Models.Colaborador", "Colaborador")
-                        .WithMany()
-                        .HasForeignKey("ColaboradorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("Horario")
+                        .HasForeignKey("ColaboradorId");
 
                     b.HasOne("ServicoDeEsterelizacao.Models.Posto", "Posto")
                         .WithMany("Horario")
-                        .HasForeignKey("PostoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PostoId");
 
                     b.HasOne("ServicoDeEsterelizacao.Models.Turno", "Turno")
                         .WithMany("Horario")
-                        .HasForeignKey("TurnoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("TurnoId");
                 });
 
             modelBuilder.Entity("ServicoDeEsterelizacao.Models.Trabalho_Posto", b =>
                 {
                     b.HasOne("ServicoDeEsterelizacao.Models.Equipamento", "Equipamento")
                         .WithMany("Esterilizar")
-                        .HasForeignKey("EquipamentoID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("EquipamentoID");
 
                     b.HasOne("ServicoDeEsterelizacao.Models.Horario", "Horario")
-                        .WithMany()
-                        .HasForeignKey("HorarioID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("TrabalhoPosto")
+                        .HasForeignKey("HorarioID");
 
                     b.HasOne("ServicoDeEsterelizacao.Models.Materialcs", "Materialcs")
                         .WithMany("Esterilizar")
-                        .HasForeignKey("MaterialcsID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("MaterialcsID");
                 });
 #pragma warning restore 612, 618
         }

@@ -32,7 +32,9 @@ namespace ServicoDeEsterelizacao.Models
             if (db.Regras.Any()) return;
 
             db.Regras.AddRange(
-                new Regras { Nome="Noites",Descricao="Um colaborador nao pode fazer mais de duas noites seguidas."}
+                new Regras { Nome = "Noites",Descricao = "Um colaborador nao pode fazer mais de duas noites seguidas."},
+                new Regras { Nome = "Balanceamento", Descricao = "Os horarios dos colaboradores devem ser balanceados alternando entre manhas, tardes e noites"},
+                new Regras { Nome = "Presenca", Descricao = "O numero de enfermeiros e de assistentes operacionais deve ser balanceado durante os turnos."}
                 
             );
             

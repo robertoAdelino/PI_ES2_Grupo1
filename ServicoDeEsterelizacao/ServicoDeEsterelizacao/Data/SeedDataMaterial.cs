@@ -19,7 +19,7 @@ namespace ServicoDeEsterelizacao.Models
                 SeedTipo(db);
                 //SeedEsterilizar(db);
                 SeedMaterialcs(db);
-                //SeedColaborador(db);
+                SeedColaborador(db);
                 SeedFuncao(db);
                 SeedPosto(db);
                 SeedTurno(db);
@@ -61,11 +61,10 @@ namespace ServicoDeEsterelizacao.Models
             if (db.Turno.Any()) return;
 
             db.Turno.AddRange(
-                new Turno { Nome= "Manhã"},
-                new Turno { Nome="Tarde"},
-                new Turno { Nome = "Noite"}
-                
-            );
+                new Turno { Nome = "MANHÃ", Horainicio = new DateTime(1, 1, 1, 8, 0, 0), Horafim = new DateTime(1, 1, 1, 16, 0, 0) },
+               new Turno { Nome = "TARDE", Horainicio = new DateTime(1, 1, 1, 16, 0, 0), Horafim = new DateTime(1, 1, 1, 0, 0, 0) }
+
+               );
 
             db.SaveChanges();
         }
@@ -157,29 +156,79 @@ namespace ServicoDeEsterelizacao.Models
             db.SaveChanges();
        }
 
-        /*private static void SeedColaborador(MaterialDbContext db)
+        private static void SeedColaborador(MaterialDbContext db)
         {
             if (db.Colaborador.Any()) return;
-           // db.Colaborador.AddRange(
-            Funcao enfermeiro = db.Funcao.SingleOrDefault(e => e.Nome == "Enfermeiro");
-            db.Colaborador.Add(new Colaborador { Nome = "Teste1", Funcao = enfermeiro, Cc = "123456078", Email = "email2@email.com",
-                Morada = "morada teste nº31", Telefone = "9612344567", DataNasc = new DateTime(1990, 11, 1) });
 
+            Funcao Enfermeiro= GetFuncaoCreatingIfNeed(db, "Enfermeiro");
+            Funcao AssistenteOperacional = GetFuncaoCreatingIfNeed(db, "Assistente Operacional");
 
+            db.Colaborador.AddRange(
+                       new Colaborador
+                       {                            
+                           Nome = "Joaquim Mendes",
+                           Email = "mail@mail.com",
+                           Telefone = "961234567",
+                           Cc = "12345678",
+                           DataNasc = new DateTime(1977, 5, 19),
+                           FuncaoID = Enfermeiro.FuncaoID,
+                           Morada = "rua n1, guarda",
+                       },
+                      new Colaborador
+                      {
 
-            //new Colaborador { Nome = "Paulo", Telefone="123456789", Morada="Rua 1" ,  Email= "Email@email.com"  },
-             //  new Colaborador { Nome = "Ilda",  Telefone = "123456789", Morada = "Rua 1", Email = "Email@email.com" },
-              // new Colaborador { Nome = "Carina", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-              // new Colaborador { Nome = "Beatriz", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-              // new Colaborador { Nome = "Luis", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1", Email = "Email@email.com" },
-              // new Colaborador { Nome = "Yuri", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-              // new Colaborador { Nome = "Mariana", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-             //  new Colaborador { Nome = "Céu", Funcao = "Assistente Operacional", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-             //  new Colaborador { Nome = "Carolina", Funcao = "Enfermeiro", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" },
-             //  new Colaborador { Nome = "Carlos", Funcao = "Diretor de Serviço", Telefone = "123456789", Morada = "Rua 1",  Email = "Email@email.com" }
-           
+                          Nome = "Maria Silva",
+                          Email = "mail@mail.com",
+                          Telefone = "961234567",
+                          Cc = "12345678",
+                          DataNasc = new DateTime(1977, 5, 19),
+                          FuncaoID = AssistenteOperacional.FuncaoID,
+                          Morada = "rua n1, guarda",
+                      },
+                           
+                          new Colaborador
+                          {
+
+                              Nome = "João Ramos",
+                              Email = "mail@mail.com",
+                              Telefone = "961234567",
+                              Cc = "12345678",
+                              DataNasc = new DateTime(1987, 5, 19),
+                              FuncaoID = Enfermeiro.FuncaoID,
+                              Morada = "rua n1, guarda",
+                          },
+                               new Colaborador
+                               {
+
+                                   Nome = "Ana Teixeira",
+                                   Email = "mail@mail.com",
+                                   Telefone = "961234567",
+                                   Cc = "12345678",
+                                   DataNasc = new DateTime(1977, 5, 19),
+                                   FuncaoID = AssistenteOperacional.FuncaoID,
+                                   Morada = "rua n1, guarda",
+                               }
+                   );
             db.SaveChanges();
-        }*/
+
+        }
+
+
+        private static Funcao GetFuncaoCreatingIfNeed(MaterialDbContext db, string Nome)
+        {
+            Funcao funcao = db.Funcao.SingleOrDefault(e => e.Nome == Nome);
+
+            if (funcao == null)
+            {
+                funcao = new Funcao { Nome = Nome };
+                db.Add(funcao);
+                db.SaveChanges();
+            }
+
+            return funcao;
+        }
+
+    
 
         private static void SeedMaterialcs(MaterialDbContext db)
         {

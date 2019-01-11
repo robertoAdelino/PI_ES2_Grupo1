@@ -37,28 +37,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Equipamento) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipo.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Capacidade)
-            </td>
-            <td>
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EquipamentoID" class="btn btn-warning">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.EquipamentoID" class="btn btn-info">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.EquipamentoID" class="btn btn-danger">Apagar</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Equipamento)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacidade)
+                </td>
+                <td></td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EquipamentoID" class="btn btn-warning">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.EquipamentoID" class="btn btn-info">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EquipamentoID" class="btn btn-danger">Apagar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
-
-@*<div page-model="@Model.Pagination"></div>*@
-
 <p>
     <a asp-action="Create" class="btn btn-primary">Adicionar novo equipamento</a>
 </p>
+
+<div page-model="@Model.Pagination"></div>

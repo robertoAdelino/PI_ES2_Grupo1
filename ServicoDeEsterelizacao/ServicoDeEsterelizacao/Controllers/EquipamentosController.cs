@@ -14,14 +14,14 @@ namespace ServicoDeEsterelizacao.Controllers
     public class EquipamentosController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 5;
+        private const int PAGE_SIZE = 10;
         public EquipamentosController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Equipamentos
-        public async Task<IActionResult> Index(EquipamentoListView model = null, int page = 1)
+        public async Task<IActionResult> Index(EquipamentoListView model = null, int page = 1, string order = null)
         {
             string Equipamento = null;
 
@@ -39,12 +39,31 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 page = 1;
             }
-            var TipoList = await equipamento
-                    .OrderBy(p => p.Tipo.Nome)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
-
+            IEnumerable<Equipamento> TipoList;
+            if (order == "TipoID")
+            {
+                TipoList = await equipamento
+                        .OrderBy(p => p.TipoID)
+                        .Skip(PAGE_SIZE * (page - 1))
+                        .Take(PAGE_SIZE)
+                        .ToListAsync();
+            }
+            else if (order == "Capacidade")
+            {
+                TipoList = await equipamento
+                        .OrderBy(p => p.Capacidade)
+                        .Skip(PAGE_SIZE * (page - 1))
+                        .Take(PAGE_SIZE)
+                        .ToListAsync();
+            }
+            else
+            {
+                TipoList = await equipamento
+                          .OrderBy(p => p.TipoID)
+                          .Skip(PAGE_SIZE * (page - 1))
+                          .Take(PAGE_SIZE)
+                          .ToListAsync();
+            }
             return View(
                 new EquipamentoListView
                 {
@@ -53,7 +72,8 @@ namespace ServicoDeEsterelizacao.Controllers
                     {
                         CurrentPage = page,
                         PageSize = PAGE_SIZE,
-                        Totaltems = numProducts
+                        Totaltems = numProducts,
+                        Order = order
                     },
                     CurrentEquipamento = Equipamento
                 }

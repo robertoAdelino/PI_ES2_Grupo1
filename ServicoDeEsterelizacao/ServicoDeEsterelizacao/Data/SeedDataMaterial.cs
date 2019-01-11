@@ -15,9 +15,9 @@ namespace ServicoDeEsterelizacao.Models
 
         public static void Populate(MaterialDbContext db)
         {
-                //SeedEquipamento(db);
+                SeedEquipamento(db);
                 SeedTipo(db);
-                //SeedEsterilizar(db);
+                //SeedTrabalhoPosto(db);
                 SeedMaterialcs(db);
                 SeedColaborador(db);
                 SeedFuncao(db);
@@ -83,17 +83,31 @@ namespace ServicoDeEsterelizacao.Models
             db.SaveChanges();
         }
 
-       /* private static void SeedEquipamento(MaterialDbContext db)
-        {
+       private static void SeedEquipamento(MaterialDbContext db)
+       {
             if (db.Equipamento.Any()) return;
 
+            Tipo Autoclave = GetTipoCreatingIfNeed(db, "Autoclave");
+            Tipo Descontaminador = GetTipoCreatingIfNeed(db, "Descontaminador");
+            Tipo Incenerador = GetTipoCreatingIfNeed(db, "Incenerador");
+            Tipo Embalador = GetTipoCreatingIfNeed(db, "Embalador");
+
             db.Equipamento.AddRange(
-                new Equipamento { EquipamentoID= 1,TipoID = 1,Capacidade = 1000},
-                new Equipamento { EquipamentoID = 2 , TipoID = 1, Capacidade = 1500}
+                new Equipamento { TipoID = Autoclave.TipoID, Capacidade = 8000},
+                new Equipamento { TipoID = Embalador.TipoID, Capacidade = 1000},
+                new Equipamento { TipoID = Incenerador.TipoID, Capacidade = 12000},
+                new Equipamento { TipoID = Descontaminador.TipoID, Capacidade = 10000},
+                new Equipamento { TipoID = Autoclave.TipoID, Capacidade = 12000 },
+                new Equipamento { TipoID = Embalador.TipoID, Capacidade = 1500 },
+                new Equipamento { TipoID = Incenerador.TipoID, Capacidade = 12500 },
+                new Equipamento { TipoID = Descontaminador.TipoID, Capacidade = 15000 },
+                new Equipamento { TipoID = Autoclave.TipoID, Capacidade = 12250 },
+                new Equipamento { TipoID = Incenerador.TipoID, Capacidade = 10500 },
+                new Equipamento { TipoID = Descontaminador.TipoID, Capacidade = 13000 }
             );
 
             db.SaveChanges();
-        }*/
+        }
 
         /*private static async void MakeSureRoleExistsAsync(RoleManager<IdentityRole> roleManager, string role)
         {
@@ -160,7 +174,7 @@ namespace ServicoDeEsterelizacao.Models
         {
             if (db.Colaborador.Any()) return;
 
-            Funcao Enfermeiro= GetFuncaoCreatingIfNeed(db, "Enfermeiro");
+            Funcao Enfermeiro = GetFuncaoCreatingIfNeed(db, "Enfermeiro");
             Funcao AssistenteOperacional = GetFuncaoCreatingIfNeed(db, "Assistente Operacional");
 
             db.Colaborador.AddRange(
@@ -228,7 +242,45 @@ namespace ServicoDeEsterelizacao.Models
             return funcao;
         }
 
-    
+        private static Tipo GetTipoCreatingIfNeed(MaterialDbContext db, string Nome)
+        {
+            Tipo tipo = db.Tipo.SingleOrDefault(t => t.Nome == Nome);
+
+            if (tipo == null)
+            {
+                tipo = new Tipo { Nome = Nome };
+                db.Add(tipo);
+                db.SaveChanges();
+            }
+
+            return tipo;
+        }
+        private static Equipamento GetEquipamentoCreatingIfNeed(MaterialDbContext db, int id)
+        {
+            Equipamento equipamento = db.Equipamento.SingleOrDefault(t => t.EquipamentoID == id);
+
+            if (equipamento == null)
+            {
+                equipamento = new Equipamento { EquipamentoID = id };
+                db.Add(equipamento);
+                db.SaveChanges();
+            }
+
+            return equipamento;
+        }
+        private static Materialcs GetMaterialCreatingIfNeed(MaterialDbContext db, string Nome)
+        {
+            Materialcs material = db.Materialcs.SingleOrDefault(t => t.Nome == Nome);
+
+            if (material == null)
+            {
+                material = new Materialcs { Nome = Nome };
+                db.Add(material);
+                db.SaveChanges();
+            }
+
+            return material;
+        }
 
         private static void SeedMaterialcs(MaterialDbContext db)
         {

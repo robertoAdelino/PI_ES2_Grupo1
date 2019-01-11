@@ -10,14 +10,14 @@ using ServicoDeEsterelizacao.Models;
 namespace ServicoDeEsterelizacao.Migrations
 {
     [DbContext(typeof(MaterialDbContext))]
-    [Migration("20190110190749_testeseed1")]
-    partial class testeseed1
+    [Migration("20190111093724_teste")]
+    partial class teste
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 

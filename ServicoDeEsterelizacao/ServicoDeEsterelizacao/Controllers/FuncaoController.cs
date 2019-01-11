@@ -13,7 +13,7 @@ namespace ServicoDeEsterelizacao.Controllers
     public class FuncaoController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 5;
+        private const int PAGE_SIZE = 10;
         public FuncaoController(MaterialDbContext context)
         {
             _context = context;

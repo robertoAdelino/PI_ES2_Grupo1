@@ -28,10 +28,10 @@
     <thead>
         <tr>
             <th>
-                Tipo
+                <a asp-action="Index" asp-route-order="TipoID">TipoId</a>
             </th>
             <th>
-                Capacidade
+                <a asp-action="Index" asp-route-order="Capacidade">Capacidade</a>
             </th>
             <th></th>
         </tr>
@@ -41,7 +41,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Tipo.Nome)
+                    @Html.DisplayFor(modelItem => item.TipoID)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Capacidade)

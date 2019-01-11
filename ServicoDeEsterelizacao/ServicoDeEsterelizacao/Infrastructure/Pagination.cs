@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Razor.Runtime.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using ServicoDeEsterelizacao.Models;
 using System;
@@ -13,7 +14,7 @@ namespace ServicoDeEsterelizacao.Infrastructure
 {
         // You may need to install the Microsoft.AspNetCore.Razor.Runtime package into your project
         [HtmlTargetElement("div", Attributes = "page-model")]
-        public class PaginationTagHelper : TagHelper
+        public class Pagination : TagHelper
         {
             private readonly int MaxPageLinks = 10;
 
@@ -27,7 +28,7 @@ namespace ServicoDeEsterelizacao.Infrastructure
             [HtmlAttributeNotBound]
             public ViewContext ViewContext { get; set; }
 
-            public PaginationTagHelper(IUrlHelperFactory urlHelperFactory)
+            public Pagination(IUrlHelperFactory urlHelperFactory)
             {
                 this.urlHelperFactory = urlHelperFactory;
             }

@@ -12,7 +12,7 @@ namespace ServicoDeEsterelizacao.Controllers
     public class ColaboradoresController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 5;
+        private const int PAGE_SIZE = 10;
         public ColaboradoresController(MaterialDbContext context)
         {
             _context = context;
@@ -60,6 +60,14 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 TipoList = await colaborador
                     .OrderBy(p => p.Telefone)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if(order == "Cc")
+            {
+                TipoList = await colaborador
+                    .OrderBy(p => p.Cc)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();

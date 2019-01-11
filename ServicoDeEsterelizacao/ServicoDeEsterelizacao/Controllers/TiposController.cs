@@ -12,7 +12,7 @@ namespace ServicoDeEsterelizacao.Controllers
     public class TiposController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 5;
+        private const int PAGE_SIZE = 10;
         public TiposController(MaterialDbContext context)
         {
             _context = context;

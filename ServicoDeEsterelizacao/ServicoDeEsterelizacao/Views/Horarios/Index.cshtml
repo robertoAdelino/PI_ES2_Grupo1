@@ -1,12 +1,10 @@
 ﻿@model HorarioViewList
 
-@{ 
-    Layout = "Layout";
+@{
     ViewData["Title"] = "Index";
 }
 
 <h2>Horários</h2>
-
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">Pesquisa</div>
@@ -24,20 +22,32 @@
     </div>
 </div>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Data
+                DataInicioManha
+            </th>
+            <th>
+               DataFimManha
+            </th>
+            <th>
+                DataInicioTarde
+            </th>
+            <th>
+                DataFimTarde
             </th>
             <th>
                 Turno
             </th>
             <th>
-                Posto
+               Posto
             </th>
             <th>
-                Colaborador
+                Colaborador:
             </th>
             <th></th>
         </tr>
@@ -46,7 +56,16 @@
 @foreach (var item in Model.Horario) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Data)
+                @Html.DisplayFor(modelItem => item.DataInicioManha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataFimManha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInicioTarde)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataFimTarde)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Turno.Nome)
@@ -58,16 +77,11 @@
                 @Html.DisplayFor(modelItem => item.Colaborador.Cc)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.HorarioID" class="btn btn-warning">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.HorarioID"class="btn btn-info">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.HorarioID" class="btn btn-danger">Apagar</a>
+                <a asp-action="Edit" asp-route-id="@item.HorarioID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.HorarioID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.HorarioID">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-<p>
-    <a asp-action="Create" class="btn btn-primary">Adicionar novo horario</a>
-    <a asp-area="" asp-controller="Regras" asp-action="Index" class="btn btn-info">Vizualizar Regras</a>
-</p>
-

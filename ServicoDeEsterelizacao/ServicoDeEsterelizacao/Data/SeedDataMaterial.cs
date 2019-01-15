@@ -61,8 +61,8 @@ namespace ServicoDeEsterelizacao.Models
             if (db.Turno.Any()) return;
 
             db.Turno.AddRange(
-                new Turno { Nome = "MANHÃ", Horainicio = new DateTime(1, 1, 1, 8, 0, 0), Horafim = new DateTime(1, 1, 1, 16, 0, 0) },
-               new Turno { Nome = "TARDE", Horainicio = new DateTime(1, 1, 1, 16, 0, 0), Horafim = new DateTime(1, 1, 1, 0, 0, 0) }
+           //     new Turno { Nome = "MANHÃ", Horainicio = new DateTime(1, 1, 1, 8, 0, 0), Horafim = new DateTime(1, 1, 1, 16, 0, 0) },
+             //  new Turno { Nome = "TARDE", Horainicio = new DateTime(1, 1, 1, 16, 0, 0), Horafim = new DateTime(1, 1, 1, 0, 0, 0) }
 
                );
 

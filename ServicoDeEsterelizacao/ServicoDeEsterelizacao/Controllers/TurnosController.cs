@@ -13,6 +13,7 @@ namespace ServicoDeEsterelizacao.Controllers
     {
         private readonly MaterialDbContext _context;
         private const int PAGE_SIZE = 10;
+
         public TurnosController(MaterialDbContext context)
         {
             _context = context;
@@ -87,7 +88,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TurnoId,Nome,Horainicio,Horafim")] Turno turno)
+        public async Task<IActionResult> Create([Bind("TurnoId,Nome,HoraInicioManha,HoraFimManha,HoraInicioTarde,HoraFimTarde")] Turno turno)
         {
             if (ModelState.IsValid)
             {
@@ -119,7 +120,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TurnoId,Nome,Horainicio,Horafim")] Turno turno)
+        public async Task<IActionResult> Edit(int id, [Bind("TurnoId,Nome,HoraInicioManha,HoraFimManha,HoraInicioTarde,HoraFimTarde")] Turno turno)
         {
             if (id != turno.TurnoId)
             {

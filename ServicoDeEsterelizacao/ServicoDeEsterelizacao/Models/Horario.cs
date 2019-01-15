@@ -11,7 +11,10 @@ namespace ServicoDeEsterelizacao.Models
         [Required(ErrorMessage ="Data não indicada")]
         [DataType(DataType.Date, ErrorMessage = "Data inválida")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
-        public DateTime Data { get; set; }
+        public DateTime DataInicioManha { get; set; }
+        public DateTime DataFimManha { get; set; }
+        public DateTime DataInicioTarde { get; set; }
+        public DateTime DataFimTarde { get; set; }
 
         public Turno Turno { get; set; }
 

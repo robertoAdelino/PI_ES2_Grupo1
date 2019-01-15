@@ -1,21 +1,38 @@
 ﻿@model ServicoDeEsterelizacao.Models.Horario
 
 @{
-    Layout = "Layout";
     ViewData["Title"] = "Details";
 }
 
-<h2>Detalhes</h2>
+<h2>Details</h2>
 
 <div>
     <h4>Horario</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Data)
+            @Html.DisplayNameFor(model => model.DataInicioManha)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Data)
+            @Html.DisplayFor(model => model.DataInicioManha)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFimManha)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataFimManha)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInicioTarde)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataInicioTarde)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFimTarde)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataFimTarde)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Turno)
@@ -38,6 +55,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.HorarioID" class="btn btn-primary">Editar</a> |
-    <a asp-action="Index" class="btn btn-default">Voltar atrás</a>
+    <a asp-action="Edit" asp-route-id="@Model.HorarioID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>

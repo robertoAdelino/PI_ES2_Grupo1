@@ -1,13 +1,12 @@
 ﻿@model ServicoDeEsterelizacao.Models.Turno
 
 @{
-    Layout = "Layout";
     ViewData["Title"] = "Delete";
 }
 
-<h2>Apagar</h2>
+<h2>Delete</h2>
 
-<h3>Tem a certeza que deseja apagar?</h3>
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Turno</h4>
     <hr />
@@ -19,22 +18,34 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Horainicio)
+            @Html.DisplayNameFor(model => model.HoraInicioManha)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Horainicio)
+            @Html.DisplayFor(model => model.HoraInicioManha)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Horafim)
+            @Html.DisplayNameFor(model => model.HoraFimManha)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Horafim)
+            @Html.DisplayFor(model => model.HoraFimManha)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraInicioTarde)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HoraInicioTarde)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraFimTarde)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HoraFimTarde)
         </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="TurnoId" />
-        <input type="submit" value="Apagar" class="btn btn-danger" /> |
-        <a asp-action="Index" class="btn btn-default">Voltar atrás</a>
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

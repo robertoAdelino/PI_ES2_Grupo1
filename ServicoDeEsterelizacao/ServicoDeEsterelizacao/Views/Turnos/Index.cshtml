@@ -1,7 +1,6 @@
 ﻿@model TurnoViewList
 
 @{
-    Layout = "Layout";
     ViewData["Title"] = "Index";
 }
 
@@ -24,45 +23,54 @@
     </div>
 </div>
 
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Nome
+                Nome:
             </th>
             <th>
-                HoraInicio
+                HoraInicioManha:
             </th>
             <th>
-                HoraFim
+                HoraFimManha
+            </th>
+            <th>
+                .HoraInicioTarde
+            </th>
+            <th>
+                HoraFimTarde
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Turno)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Horainicio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Horafim)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.TurnoId" class="btn btn-warning">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.TurnoId" class="btn btn-info">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.TurnoId" class="btn btn-danger">Apagar</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model.Turno) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraInicioManha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraFimManha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraInicioTarde)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraFimTarde)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TurnoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TurnoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TurnoId">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
-
-<p>
-    <a asp-action="Create" class="btn btn-primary">Adicionar novo turno</a>
-</p>

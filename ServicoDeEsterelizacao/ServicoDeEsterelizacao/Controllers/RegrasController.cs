@@ -19,7 +19,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Regras
-        public async Task<IActionResult> Index(RegrasViewList model = null, int page = 1, string order == null)
+        public async Task<IActionResult> Index(RegrasViewList model = null, int page = 1, string order = null)
         {
             string Regras = null;
 

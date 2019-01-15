@@ -23,26 +23,27 @@
     </div>
 </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                Nome:
+                <a asp-action="Index" asp-route-order="ID">TurnoId</a>
             </th>
             <th>
-                HoraInicioManha:
+                <a asp-action="Index" asp-route-order="Turno">Nome</a>
             </th>
             <th>
-                HoraFimManha
+                <a asp-action="Index" asp-route-order="HorainiM">HoraInicioManhã</a>
             </th>
             <th>
-                .HoraInicioTarde
+                <a asp-action="Index" asp-route-order="HoraFM">HoraFimManhã</a>
             </th>
             <th>
-                HoraFimTarde
+                <a asp-action="Index" asp-route-order="HoraIniT">HoraInicioTarde</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-order="HoraFT">HoraFimTarde</a>
             </th>
             <th></th>
         </tr>
@@ -50,6 +51,9 @@
     <tbody>
 @foreach (var item in Model.Turno) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TurnoId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
@@ -66,11 +70,14 @@
                 @Html.DisplayFor(modelItem => item.HoraFimTarde)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.TurnoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TurnoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TurnoId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TurnoId" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.TurnoId" class="btn btn-info">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.TurnoId" class="btn btn-danger">Apagar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adicionar novo turno</a>
+</p>

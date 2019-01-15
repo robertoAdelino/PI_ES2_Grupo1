@@ -40,7 +40,7 @@ namespace ServicoDeEsterelizacao.Controllers
 
             IEnumerable<Tipo> TipoList;
 
-            if (order == "nome")
+            if (order == "Nome")
             {
                 TipoList = await tipos
                     .OrderBy(p => p.Nome)

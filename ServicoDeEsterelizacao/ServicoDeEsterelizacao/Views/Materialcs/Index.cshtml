@@ -30,13 +30,13 @@
     <thead>
         <tr>
             <th>
-                MaterialId
+                <a asp-action="Index" asp-route-order="ID">MaterialId</a>
             </th>
             <th>
-                Nome
+                <a asp-action="Index" asp-route-order="Nome">Nome</a>
             </th>
             <th>
-                Quantidade
+                <a asp-action="Index" asp-route-order="Quantidade">Quantidade</a>
             </th>
         </tr>
     </thead>
@@ -65,5 +65,4 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Adicionar novo material</a>
 </p>
-
 <div page-model="@Model.Pagination"></div>

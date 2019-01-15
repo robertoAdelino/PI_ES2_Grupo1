@@ -7,20 +7,20 @@
 <h2>Colaboradores do serviço de esterilização</h2>
 
 <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading">Pesquisa</div>
-            <div class="panel-body">
-                <form asp-action="Index">
-                    <div class="form-group">
-                        <label asp-for="CurrentColaborador" class="control-label"></label>
-                        <input asp-for="CurrentColaborador" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Pesquisar" class="btn btn-default" />
-                    </div>
-                </form>
-            </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Pesquisa</div>
+        <div class="panel-body">
+            <form asp-action="Index">
+                <div class="form-group">
+                    <label asp-for="CurrentColaborador" class="control-label"></label>
+                    <input asp-for="CurrentColaborador" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Pesquisar" class="btn btn-default" />
+                </div>
+            </form>
         </div>
+    </div>
 </div>
 
 <table class="table">
@@ -28,7 +28,7 @@
         <tr>
             <th>
                 <a asp-action="Index" asp-route-order="ID">ColaboradorId</a>
-             </th>
+            </th>
             <th>
                 <a asp-action="Index" asp-route-order="nome">Nome</a>
             </th>
@@ -73,9 +73,7 @@
         }
     </tbody>
 </table>
-
-@*<div page-model="@Model.Pagination"></div>*@
-
 <p>
     <a asp-action="Create" class="btn btn-primary">Adicionar Colaborador</a>
 </p>
+<div page-model="@Model.Pagination"></div>

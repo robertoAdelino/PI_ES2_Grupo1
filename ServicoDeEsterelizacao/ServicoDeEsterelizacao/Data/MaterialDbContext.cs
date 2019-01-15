@@ -24,7 +24,7 @@ namespace ServicoDeEsterelizacao.Models
 
         public DbSet<ServicoDeEsterelizacao.Models.Trabalho_Posto> Trabalho_Posto { get; set; }
 
-        public DbSet<ServicoDeEsterelizacao.Models.Horario> HorarioColaboradores { get; set; }
+        public DbSet<ServicoDeEsterelizacao.Models.Horario> GerarHorarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

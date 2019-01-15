@@ -15,7 +15,7 @@ namespace ServicoDeEsterelizacao.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -92,13 +92,11 @@ namespace ServicoDeEsterelizacao.Migrations
 
                     b.Property<int>("ColaboradorId");
 
-                    b.Property<DateTime>("DataFimManha");
+                    b.Property<DateTime>("DataFimTurno");
 
-                    b.Property<DateTime>("DataFimTarde");
+                    b.Property<DateTime>("DataInicioTurno");
 
-                    b.Property<DateTime>("DataInicioManha");
-
-                    b.Property<DateTime>("DataInicioTarde");
+                    b.Property<int>("Duracao");
 
                     b.Property<int>("PostoId");
 
@@ -215,13 +213,9 @@ namespace ServicoDeEsterelizacao.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("HoraFimManha");
+                    b.Property<DateTime>("HoraFim");
 
-                    b.Property<int>("HoraFimTarde");
-
-                    b.Property<int>("HoraInicioManha");
-
-                    b.Property<int>("HoraInicioTarde");
+                    b.Property<DateTime>("HoraInicio");
 
                     b.Property<string>("Nome")
                         .IsRequired()

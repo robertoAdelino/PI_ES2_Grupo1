@@ -1,26 +1,10 @@
-﻿@model HorarioViewList
+﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Horario>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Horários</h2>
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">Pesquisa</div>
-        <div class="panel-body">
-            <form asp-action="Index">
-                <div class="form-group">
-                    <label asp-for="CurrentColaborador" class="control-label"></label>
-                    <input asp-for="CurrentColaborador" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Pesquisar" class="btn btn-default" />
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<h2>Index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -29,59 +13,62 @@
     <thead>
         <tr>
             <th>
-                DataInicioManha
+                @Html.DisplayNameFor(model => model.DataInicioTurno)
             </th>
             <th>
-               DataFimManha
+                @Html.DisplayNameFor(model => model.Duracao)
             </th>
             <th>
-                DataInicioTarde
+                @Html.DisplayNameFor(model => model.DataFimTurno)
             </th>
             <th>
-                DataFimTarde
+                @Html.DisplayNameFor(model => model.Turno)
             </th>
             <th>
-                Turno
+                @Html.DisplayNameFor(model => model.Posto)
             </th>
             <th>
-               Posto
-            </th>
-            <th>
-                Colaborador:
+                @Html.DisplayNameFor(model => model.Colaborador.Nome)
             </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model.Horario) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataInicioManha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataFimManha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataInicioTarde)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataFimTarde)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Turno.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Posto.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Colaborador.Cc)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.HorarioID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.HorarioID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.HorarioID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+
+
+    <h3>Gerar Horários</h3>
+    <a href='@Url.Action("GerarHorario", "Horarios")'>
+        <input type="button" class="btn btn-info btn-lg btn-block" value="GERAR HORÁRIO" />
+
+
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataInicioTurno)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duracao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataFimTurno)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Turno.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Posto.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Colaborador.Nome)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.HorarioID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.HorarioID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.HorarioID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
 </table>

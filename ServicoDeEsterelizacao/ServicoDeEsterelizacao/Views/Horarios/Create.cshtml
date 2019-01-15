@@ -13,24 +13,19 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="DataInicioManha" class="control-label"></label>
-                <input asp-for="DataInicioManha" class="form-control" />
-                <span asp-validation-for="DataInicioManha" class="text-danger"></span>
+                <label asp-for="DataInicioTurno" class="control-label"></label>
+                <input asp-for="DataInicioTurno" class="form-control" />
+                <span asp-validation-for="DataInicioTurno" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DataFimManha" class="control-label"></label>
-                <input asp-for="DataFimManha" class="form-control" />
-                <span asp-validation-for="DataFimManha" class="text-danger"></span>
+                <label asp-for="Duracao" class="control-label"></label>
+                <input asp-for="Duracao" class="form-control" />
+                <span asp-validation-for="Duracao" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DataInicioTarde" class="control-label"></label>
-                <input asp-for="DataInicioTarde" class="form-control" />
-                <span asp-validation-for="DataInicioTarde" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataFimTarde" class="control-label"></label>
-                <input asp-for="DataFimTarde" class="form-control" />
-                <span asp-validation-for="DataFimTarde" class="text-danger"></span>
+                <label asp-for="DataFimTurno" class="control-label"></label>
+                <input asp-for="DataFimTurno" class="form-control" />
+                <span asp-validation-for="DataFimTurno" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TurnoId" class="control-label"></label>

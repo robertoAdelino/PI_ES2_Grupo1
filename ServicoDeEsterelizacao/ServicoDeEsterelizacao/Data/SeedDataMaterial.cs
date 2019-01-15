@@ -22,7 +22,7 @@ namespace ServicoDeEsterelizacao.Models
                 SeedColaborador(db);
                 SeedFuncao(db);
                 SeedPosto(db);
-                //SeedTurno(db);
+                SeedTurno(db);
                 SeedRegra(db);
   
         }
@@ -60,18 +60,18 @@ namespace ServicoDeEsterelizacao.Models
             db.SaveChanges();
         }
 
-       /* private static void SeedTurno(MaterialDbContext db)
+        private static void SeedTurno(MaterialDbContext db)
         {
             if (db.Turno.Any()) return;
 
             db.Turno.AddRange(
-              // new Turno { Nome = "MANHÃ", Horainicio = new DateTime(1, 1, 1, 8, 0, 0), Horafim = new DateTime(1, 1, 1, 16, 0, 0) },
-             //  new Turno { Nome = "TARDE", Horainicio = new DateTime(1, 1, 1, 16, 0, 0), Horafim = new DateTime(1, 1, 1, 0, 0, 0) }
+               new Turno { Nome = "MANHÃ", HoraInicio = new DateTime(1, 1, 1, 8, 0, 0), HoraFim = new DateTime(1, 1, 1, 16, 0, 0) },
+               new Turno { Nome = "TARDE", HoraInicio = new DateTime(1, 1, 1, 16, 0, 0), HoraFim = new DateTime(1, 1, 1, 0, 0, 0) }
 
                );
 
             db.SaveChanges();
-        }*/
+        }
 
         private static void SeedTipo(MaterialDbContext db)
         {
@@ -225,12 +225,34 @@ namespace ServicoDeEsterelizacao.Models
                                    DataNasc = new DateTime(1977, 5, 19),
                                    FuncaoID = AssistenteOperacional.FuncaoID,
                                    Morada = "rua n1, guarda",
+                               },
+                               new Colaborador
+                               {
+
+                                   Nome = "Ricardo Mendes",
+                                   Email = "mail@mail.com",
+                                   Telefone = "961234567",
+                                   Cc = "12345678",
+                                   DataNasc = new DateTime(1977, 5, 19),
+                                   FuncaoID = AssistenteOperacional.FuncaoID,
+                                   Morada = "rua n1, guarda",
+                               },
+                               new Colaborador
+                               {
+
+                                   Nome = "Daniela Vaz",
+                                   Email = "mail@mail.com",
+                                   Telefone = "961234567",
+                                   Cc = "12345678",
+                                   DataNasc = new DateTime(1977, 5, 19),
+                                   FuncaoID = Enfermeiro.FuncaoID,
+                                   Morada = "rua n1, guarda",
                                }
                    );
             db.SaveChanges();
 
         }
-
+   
         private static Horario GetHorarioCreatingIfNeed(MaterialDbContext db, int id)
         {
             Horario funcao = db.Horario.SingleOrDefault(e => e.HorarioID == id);
@@ -244,7 +266,6 @@ namespace ServicoDeEsterelizacao.Models
 
             return funcao;
         }
-
         private static Colaborador GetColaboradorCreatingIfNeed(MaterialDbContext db, string Nome)
         {
             Colaborador funcao = db.Colaborador.SingleOrDefault(e => e.Nome == Nome);

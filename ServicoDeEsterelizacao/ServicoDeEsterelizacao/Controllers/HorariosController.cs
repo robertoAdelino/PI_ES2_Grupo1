@@ -12,7 +12,6 @@ namespace ServicoDeEsterelizacao.Controllers
     public class HorariosController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 5;
 
         public HorariosController(MaterialDbContext context)
         {
@@ -20,52 +19,12 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Horarios
-        public async Task<IActionResult> Index(HorarioViewList  model = null, int page = 1)
-        {
-            string Horario = null;
-
-            if (model != null)
-            {
-                Horario = model.CurrentColaborador;
-            }
-
-            var horario = _context.Horario
-                .Where(p => Horario == null || p.Colaborador.Nome.Contains(Horario));
-
-            int numProducts = await horario.CountAsync();
-
-            if (page > (numProducts / PAGE_SIZE) + 1)
-            {
-                page = 1;
-            }
-            var TipoList = await horario
-                    .OrderBy(p => p.ColaboradorId)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
-
-            return View(
-                new HorarioViewList
-                {
-                    Horario = TipoList,
-                    Pagination = new PagingViewModel
-                    {
-                        CurrentPage = page,
-                        PageSize = PAGE_SIZE,
-                        Totaltems = numProducts
-                    },
-                    CurrentColaborador = Horario
-                }
-            );
-        }
-
-  /*      // GET: Horarios
         public async Task<IActionResult> Index()
         {
-            var materialDbContext = _context.HorarioColaboradores.Include(h => h.Colaborador).Include(h => h.Posto).Include(h => h.Turno);
+            var materialDbContext = _context.GerarHorarios.Include(h => h.Colaborador).Include(h => h.Posto).Include(h => h.Turno);
             return View(await materialDbContext.ToListAsync());
         }
-*/
+
         // GET: Horarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -74,7 +33,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 return NotFound();
             }
 
-            var horario = await _context.HorarioColaboradores
+            var horario = await _context.GerarHorarios
                 .Include(h => h.Colaborador)
                 .Include(h => h.Posto)
                 .Include(h => h.Turno)
@@ -101,7 +60,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HorarioID,DataInicioManha,DataFimManha,DataInicioTarde,DataFimTarde,TurnoId,PostoId,ColaboradorId")] Horario horario)
+        public async Task<IActionResult> Create([Bind("HorarioID,DataInicioTurno,Duracao,DataFimTurno,TurnoId,PostoId,ColaboradorId")] Horario horario)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +82,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 return NotFound();
             }
 
-            var horario = await _context.HorarioColaboradores.FindAsync(id);
+            var horario = await _context.GerarHorarios.FindAsync(id);
             if (horario == null)
             {
                 return NotFound();
@@ -139,7 +98,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HorarioID,DataInicioManha,DataFimManha,DataInicioTarde,DataFimTarde,TurnoId,PostoId,ColaboradorId")] Horario horario)
+        public async Task<IActionResult> Edit(int id, [Bind("HorarioID,DataInicioTurno,Duracao,DataFimTurno,TurnoId,PostoId,ColaboradorId")] Horario horario)
         {
             if (id != horario.HorarioID)
             {
@@ -180,7 +139,7 @@ namespace ServicoDeEsterelizacao.Controllers
                 return NotFound();
             }
 
-            var horario = await _context.HorarioColaboradores
+            var horario = await _context.GerarHorarios
                 .Include(h => h.Colaborador)
                 .Include(h => h.Posto)
                 .Include(h => h.Turno)
@@ -198,184 +157,213 @@ namespace ServicoDeEsterelizacao.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var horario = await _context.HorarioColaboradores.FindAsync(id);
-            _context.HorarioColaboradores.Remove(horario);
+            var horario = await _context.GerarHorarios.FindAsync(id);
+            _context.GerarHorarios.Remove(horario);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool HorarioExists(int id)
         {
-            return _context.HorarioColaboradores.Any(e => e.HorarioID == id);
+            return _context.GerarHorarios.Any(e => e.HorarioID == id);
         }
-        // GET: HorarioColaboradoress/GerarHorario
+
+
+        // GET: GERAR HORARIO COLABORADORES
+
+
+
         public IActionResult GerarHorario()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult GerarHorario(GerarHorario gerarHorario)
+        [ValidateAntiForgeryToken]
+        public IActionResult GerarHorario( GerarHorario gerarHorarioColaboradores)
         {
+            //Variáveis
+            int numPessoasT1 = gerarHorarioColaboradores.NPessoasT1;
+            int numPessoasT2 = gerarHorarioColaboradores.NPessoasT2;
+
+            DateTime dataInicio = gerarHorarioColaboradores.DataInicio;
+
+            int ano = dataInicio.Year;
+            int mes = dataInicio.Month;
+            int dia = dataInicio.Day;
+
+            /**********Validações***********/
+
+            //Validar se Data de Início de Semana é uma segunda-feira
+            if (ValidateDayOfTheWeek(dataInicio) == true)
+            {
+                
+                ModelState.AddModelError("DataInicioSemana", "Tem de selecionar uma data correspondente a uma segunda-feira e/ou igual ou superior à data atual");
+            }
+
+            //???????????
+            if (NumColabsTurno(numPessoasT1, numPessoasT2) == true)
+            {
+                //?????????????
+                ModelState.AddModelError("NumeroPessoasTurno3", "Não tem médicos suficientes para todos os turnos. Por favor, verifique os campos e tente novamente");
+            }
+
             if (ModelState.IsValid)
             {
-                DateTime dataIn = gerarHorario.DataInicioSemana;
-                GerarHorarios(_context, dataIn);
-                return RedirectToAction(nameof(Index));
-            }
-
-            return View(nameof(Index));
-        }
-
-        /**Funções**/
-        private void GerarHorarioColaboradoresTest(MaterialDbContext db, DateTime dia)
-        {
-            DateTime segunda;
-            DateTime sexta;
-
-            if (dia.DayOfWeek == DayOfWeek.Monday)
-            {
-                segunda = dia.Date;
-                sexta = dia.Date.AddDays(5);
-            }
-            else
-                return;
-
-            int[] colaboradores = IdColaboradores();
-
-            int colab = 0;
-
-            //Lista de colaboradores
-            List<int> listaColaboradores = new List<int>(colaboradores);
-
-            int numeroColaboradores = listaColaboradores.Count();
-            int controlo = 1;
-            string turno;
-
-            for (int i = 0; i <= numeroColaboradores - 1; i++)
-            {
-                DateTime j = segunda;
-                while (!j.Equals(sexta))
+                if (!ValidateDayOfTheWeek(dataInicio) || !NumColabsTurno(numPessoasT1, numPessoasT2))
                 {
-                    if (controlo == 1)
-                    {
-                        turno = "Primeiro";
-                        colab = listaColaboradores[i];
-                        Turno IdTurno = _context.Turno.SingleOrDefault(t => t.Nome.Equals(turno));
-                        Colaborador IdColaborador = _context.Colaborador.SingleOrDefault(f => f.ColaboradorId == colab);
 
-                        InserirDadosNoHorario(db, j.AddHours(8), j.AddHours(12), j.AddHours(13), j.AddHours(15), IdTurno, IdColaborador);
-                    }
-                    else if (controlo == 2)
-                    {
-                        turno = "Segundo";
-                        colab = listaColaboradores[i];
-                        Turno IdTurno = _context.Turno.SingleOrDefault(t => t.Nome.Equals(turno));
-                        Colaborador IdTecnico = _context.Colaborador.SingleOrDefault(f => f.ColaboradorId == colab);
-
-                        InserirDadosNoHorario(db, j.AddHours(11), j.AddHours(14), j.AddHours(15), j.AddHours(19), IdTurno, IdTecnico);
-                    }
-                    else if (controlo == 3)
-                    {
-                        turno = "Terceiro";
-                        colab = listaColaboradores[i];
-                        Turno IdTurno = _context.Turno.SingleOrDefault(t => t.Nome.Equals(turno));
-                        Colaborador IdTecnico = _context.Colaborador.SingleOrDefault(f => f.ColaboradorId == colab);
-
-                        InserirDadosNoHorario(db, j.AddHours(14), j.AddHours(19), j.AddHours(20), j.AddHours(22), IdTurno, IdTecnico);
-                    }
-                    j = j.AddDays(1);
-                }
-                controlo++;
-                if (controlo > 3)
-                {
-                    controlo = 1;
+                    GenerateHorario(_context, numPessoasT1, numPessoasT2, ano, mes, dia);
+                    TempData["Success"] = "Horário gerado com sucesso!";
+                    return RedirectToAction(nameof(Index));
                 }
             }
+
+            return View(gerarHorarioColaboradores);
         }
 
-        private void GerarHorarios(MaterialDbContext db, DateTime dia)
+
+        private void GenerateHorario(MaterialDbContext db, int numT1, int numT2, int ano, int mes, int dia)
         {
-            DateTime segunda;
-            DateTime sexta;
-            string turno;
 
-            if (dia.DayOfWeek == DayOfWeek.Monday)
+            int numPessoasT1 = 1;
+            int numPessoasT2 = 1;
+
+            int segunda = 2;
+            int sexta = 6;
+
+            int[] colaboradores = ColabIds();
+            int[] postos = PostosIds();
+
+            int colabT1 = 0;
+            int colabT2 = 0;
+            int postoT1 = 0;
+            int postoT2 = 0;
+
+
+            List<int> listaColabs;
+            List<int> listaPosto;
+
+            Random rnd = new Random();
+
+            DateTime data;
+
+            for (int i = segunda; i <= sexta; i++)
             {
-                segunda = dia.Date;
-                sexta = dia.Date.AddDays(5);
-            }
-            else
-                return;
+                listaPosto = new List<int>(postos);
 
-            int[] tecnicos = IdColaboradores();
-            int controlo = 1;
-            int colab = 0;
+                listaColabs = new List<int>(colaboradores);
 
-            //Lista de Tecnicos
-            List<int> listaTecnicos = new List<int>(tecnicos);
-
-            int numeroTecnicos = listaTecnicos.Count();
-
-            for (DateTime i = segunda; i <= sexta; i = i.AddDays(1))
-            {
-                for (int j = 0; j <= numeroTecnicos - 1; j++)
+                for (int j = 0; j < numPessoasT1; j++) 
                 {
-                    if (controlo == 1)
-                    {
-                        turno = "Primeiro";
-                        colab = listaTecnicos[j];
-                        Turno IdTurno = _context.Turno.SingleOrDefault(t => t.Nome.Equals(turno));
-                        Colaborador IdColaborador = _context.Colaborador.SingleOrDefault(f => f.ColaboradorId == colab);
+                    string turno = "MANHÃ";
+                    int duracao = 8;
 
-                        InserirDadosNoHorario(db, i.AddHours(8), i.AddHours(12), i.AddHours(13), i.AddHours(15), IdTurno, IdColaborador);
-                    }
-                    else if (controlo == 2)
-                    {
-                        turno = "Segundo";
-                        colab = listaTecnicos[j];
-                        Turno IdTurno = _context.Turno.SingleOrDefault(t => t.Nome.Equals(turno));
-                        Colaborador IdColaborador = _context.Colaborador.SingleOrDefault(f => f.ColaboradorId == colab);
 
-                        InserirDadosNoHorario(db, i.AddHours(11), i.AddHours(14), i.AddHours(15), i.AddHours(19), IdTurno, IdColaborador);
-                    }
-                    else if (controlo == 3)
-                    {
-                        turno = "Terceiro";
-                        colab = listaTecnicos[j];
-                        Turno IdTurno = _context.Turno.SingleOrDefault(t => t.Nome.Equals(turno));
-                        Colaborador IdColaborador = _context.Colaborador.SingleOrDefault(f => f.ColaboradorId == colab);
+                    colabT1 = listaColabs[rnd.Next(0, listaColabs.Count())];
 
-                        InserirDadosNoHorario(db, i.AddHours(14), i.AddHours(19), i.AddHours(20), i.AddHours(22), IdTurno, IdColaborador);
-                    }
-                    controlo++;
-                    if (controlo > 3)
-                    {
-                        controlo = 1;
-                    }
+                    postoT1=listaPosto[rnd.Next(0, listaPosto.Count())];
+
+                    data = new DateTime(ano, mes, dia, 9, 0, 0);
+
+                    Turno turnoId = _context.Turno.SingleOrDefault(t => t.Nome.Equals(turno));
+                    Colaborador colaboradorT1 = _context.Colaborador.SingleOrDefault(m => m.ColaboradorId == colabT1);
+                    Posto postosT1 = _context.Posto.SingleOrDefault(m => m.PostoId == postoT1);
+
+
+                    InsertDataIntoHorario(db, data.AddDays(i - 2), duracao, data.AddDays(i - 2).AddHours(duracao), turnoId, colaboradorT1,postosT1);
+
+ 
+
+                    listaColabs.Remove(colabT1);
                 }
+
+                for (int k = 0; k < numPessoasT2; k++)
+                {
+                    string turno = "TARDE";
+                    int duracao = 8;
+
+                    colabT2 = listaColabs[rnd.Next(0, listaColabs.Count())];
+                    data = new DateTime(ano, mes, dia, 16, 0, 0);
+                    postoT2 = listaPosto[rnd.Next(0, listaPosto.Count())];
+
+                    Turno turnoId = _context.Turno.SingleOrDefault(t => t.Nome.Equals(turno));
+                    Colaborador colaboradorT2 = _context.Colaborador.SingleOrDefault(m => m.ColaboradorId == colabT2);
+                    Posto postosT2 = _context.Posto.SingleOrDefault(m => m.PostoId == postoT2);
+
+
+                    InsertDataIntoHorario(db, data.AddDays(i - 2), duracao, data.AddDays(i - 2).AddHours(duracao), turnoId, colaboradorT2,postosT2);
+
+
+                    listaColabs.Remove(colabT2);
+                }
+
             }
         }
 
 
-        private int[] IdColaboradores()
+        private void InsertDataIntoHorario(MaterialDbContext db, DateTime dataInicioTurno, int duracao, DateTime dataFimTurno, Turno turnoId, Colaborador colaboradorID,Posto postoID)
         {
-            var colaboradores = from t in _context.Colaborador
-                                select t.ColaboradorId;
-
-            int[] arrayIdColaboradores = colaboradores.ToArray();
-
-            return arrayIdColaboradores;
-        }
-
-        private void InserirDadosNoHorario(MaterialDbContext db, DateTime datainiciomanha, DateTime datafimmanha, DateTime datainiciotarde, DateTime datafimtarde, Turno turnoId, Colaborador colaboradorId)
-        {
-            db.HorarioColaboradores.Add(
-                new Horario { DataInicioManha = datainiciomanha, DataFimManha = datafimmanha, DataInicioTarde = datainiciotarde, DataFimTarde = datafimtarde, TurnoId = turnoId.TurnoId, ColaboradorId = colaboradorId.ColaboradorId }
+            db.GerarHorarios.Add(
+                new Horario { DataInicioTurno = dataInicioTurno, Duracao = duracao, DataFimTurno = dataInicioTurno.AddHours(duracao), TurnoId = turnoId.TurnoId, ColaboradorId = colaboradorID.ColaboradorId, PostoId=postoID.PostoId}
             );
 
             db.SaveChanges();
         }
 
+
+        private bool ValidateDayOfTheWeek(DateTime data)
+        {
+            bool IsInvalid = false;
+            DateTime dateNow = DateTime.Now;
+
+            int dateTimeCompare = DateTime.Compare(data, dateNow);
+
+            if ((data.DayOfWeek != DayOfWeek.Monday) || dateTimeCompare < 0)
+            {
+                IsInvalid = true;
+            }
+
+            return IsInvalid;
+        }
+
+
+        private int[] ColabIds()
+        {
+            var colaboradores = from m in _context.Colaborador
+                                select m.ColaboradorId;
+
+            int[] arrIdColabs = colaboradores.ToArray();
+
+            return arrIdColabs;
+        }
+
+        private int[] PostosIds()
+        {
+            var postos = from m in _context.Posto
+                                select m.PostoId;
+
+            int[] arrIdPostos = postos.ToArray();
+
+            return arrIdPostos;
+        }
+
+        private bool NumColabsTurno(int numT1, int numT2)
+        {
+            bool IsInvalid = false;
+
+            int totalColab = numT1 + numT2;
+
+            if (ColabIds().Length <= totalColab)
+            {
+                IsInvalid = true;
+            }
+
+            return IsInvalid;
+        }
+
+       
+
     }
 }
+

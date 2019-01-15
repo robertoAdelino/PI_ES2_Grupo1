@@ -1,83 +1,47 @@
-﻿@model TurnoViewList
+﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Turno>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Turnos</h2>
+<h2>Index</h2>
 
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">Pesquisa</div>
-        <div class="panel-body">
-            <form asp-action="Index">
-                <div class="form-group">
-                    <label asp-for="CurrentNome" class="control-label"></label>
-                    <input asp-for="CurrentNome" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Pesquisar" class="btn btn-default" />
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-order="ID">TurnoId</a>
+                @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                <a asp-action="Index" asp-route-order="Turno">Nome</a>
+                @Html.DisplayNameFor(model => model.HoraInicio)
             </th>
             <th>
-                <a asp-action="Index" asp-route-order="HorainiM">HoraInicioManhã</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-order="HoraFM">HoraFimManhã</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-order="HoraIniT">HoraInicioTarde</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-order="HoraFT">HoraFimTarde</a>
+                @Html.DisplayNameFor(model => model.HoraFim)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Turno) {
+@foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TurnoId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HoraInicioManha)
+                @Html.DisplayFor(modelItem => item.HoraInicio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HoraFimManha)
+                @Html.DisplayFor(modelItem => item.HoraFim)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HoraInicioTarde)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoraFimTarde)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TurnoId" class="btn btn-warning">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.TurnoId" class="btn btn-info">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.TurnoId" class="btn btn-danger">Apagar</a>
+                <a asp-action="Edit" asp-route-id="@item.TurnoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TurnoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TurnoId">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-<p>
-    <a asp-action="Create" class="btn btn-primary">Adicionar novo turno</a>
-</p>

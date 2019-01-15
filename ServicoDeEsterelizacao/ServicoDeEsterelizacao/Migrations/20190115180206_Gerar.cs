@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ServicoDeEsterelizacao.Migrations
 {
-    public partial class teste : Migration
+    public partial class Gerar : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -82,10 +82,8 @@ namespace ServicoDeEsterelizacao.Migrations
                     TurnoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(maxLength: 100, nullable: false),
-                    HoraInicioManha = table.Column<int>(nullable: false),
-                    HoraFimManha = table.Column<int>(nullable: false),
-                    HoraInicioTarde = table.Column<int>(nullable: false),
-                    HoraFimTarde = table.Column<int>(nullable: false)
+                    HoraInicio = table.Column<DateTime>(nullable: false),
+                    HoraFim = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -143,10 +141,9 @@ namespace ServicoDeEsterelizacao.Migrations
                 {
                     HorarioID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DataInicioManha = table.Column<DateTime>(nullable: false),
-                    DataFimManha = table.Column<DateTime>(nullable: false),
-                    DataInicioTarde = table.Column<DateTime>(nullable: false),
-                    DataFimTarde = table.Column<DateTime>(nullable: false),
+                    DataInicioTurno = table.Column<DateTime>(nullable: false),
+                    Duracao = table.Column<int>(nullable: false),
+                    DataFimTurno = table.Column<DateTime>(nullable: false),
                     TurnoId = table.Column<int>(nullable: false),
                     PostoId = table.Column<int>(nullable: false),
                     ColaboradorId = table.Column<int>(nullable: false)

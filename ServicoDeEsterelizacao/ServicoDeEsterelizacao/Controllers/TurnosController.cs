@@ -12,7 +12,6 @@ namespace ServicoDeEsterelizacao.Controllers
     public class TurnosController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 10;
 
         public TurnosController(MaterialDbContext context)
         {
@@ -20,95 +19,9 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Turnos
-        public async Task<IActionResult> Index(TurnoViewList model = null, int page = 1, string order = null)
+        public async Task<IActionResult> Index()
         {
-            string Turno = null;
-
-            if (model != null)
-            {
-                Turno = model.CurrentNome;
-            }
-
-            var turno = _context.Turno
-                .Where(p => Turno == null || p.Nome.Contains(Turno));
-
-            int numProducts = await turno.CountAsync();
-
-            if (page > (numProducts / PAGE_SIZE) + 1)
-            {
-                page = 1;
-            }
-            IEnumerable<Turno> TipoList;
-
-            if(order == "ID")
-            {
-                TipoList = await turno
-                    .OrderBy(p => p.TurnoId)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
-            }
-            else if(order == "Turno")
-            {
-                TipoList = await turno
-                    .OrderBy(p => p.Nome)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
-            }
-            else if(order == "HorainiM")
-            {
-                TipoList = await turno
-                    .OrderBy(p => p.HoraInicioManha)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
-            }
-            else if (order == "HoraFM")
-            {
-                TipoList = await turno
-                    .OrderBy(p => p.HoraFimManha)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
-            }
-            else if(order == "HoraIniT")
-            {
-                TipoList = await turno
-                    .OrderBy(p => p.HoraInicioTarde)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
-            }
-            else if (order == "HoraFT")
-            {
-                TipoList = await turno
-                    .OrderBy(p => p.HoraFimTarde)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
-            }
-            else
-            {
-                TipoList = await turno
-                    .OrderBy(p => p.TurnoId)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
-            }
-            return View(
-                new TurnoViewList
-                {
-                    Turno = TipoList,
-                    Pagination = new PagingViewModel
-                    {
-                        CurrentPage = page,
-                        PageSize = PAGE_SIZE,
-                        Totaltems = numProducts
-                    },
-                    CurrentNome = Turno
-                }
-            );
+            return View(await _context.Turno.ToListAsync());
         }
 
         // GET: Turnos/Details/5
@@ -140,7 +53,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TurnoId,Nome,HoraInicioManha,HoraFimManha,HoraInicioTarde,HoraFimTarde")] Turno turno)
+        public async Task<IActionResult> Create([Bind("TurnoId,Nome,HoraInicio,HoraFim")] Turno turno)
         {
             if (ModelState.IsValid)
             {
@@ -172,7 +85,7 @@ namespace ServicoDeEsterelizacao.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TurnoId,Nome,HoraInicioManha,HoraFimManha,HoraInicioTarde,HoraFimTarde")] Turno turno)
+        public async Task<IActionResult> Edit(int id, [Bind("TurnoId,Nome,HoraInicio,HoraFim")] Turno turno)
         {
             if (id != turno.TurnoId)
             {

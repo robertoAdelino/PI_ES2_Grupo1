@@ -18,54 +18,22 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.HoraInicioManha)
+            @Html.DisplayNameFor(model => model.HoraInicio)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.HoraInicioManha)
+            @Html.DisplayFor(model => model.HoraInicio)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.HoraFimManha)
+            @Html.DisplayNameFor(model => model.HoraFim)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.HoraFimManha)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.HoraInicioTarde)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.HoraInicioTarde)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.HoraFimTarde)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.HoraFimTarde)
+            @Html.DisplayFor(model => model.HoraFim)
         </dd>
     </dl>
-
+    
     <form asp-action="Delete">
         <input type="hidden" asp-for="TurnoId" />
-        <a href="#Confirmacao" class="trigger-btn" data-toggle="modal">
-            <input type="submit" value="Eliminar" class="btn btn-danger" />
-        </a> |
+        <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>
-
-    <div id="Confirmacao" class="modal fade">
-        <div class="modal-dialog modal-confirm">
-            <div class="modal-content">
-
-                <div class="modal-body">
-                    <p>Tem a certeza que deseja apagar? </p>
-                </div>
-                <div class="modal-footer">
-                    <form asp-action="Delete">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <input type="hidden" asp-for="TurnoId" />
-                        <input type="submit" class="btn btn-danger" value="Eliminar" />
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>

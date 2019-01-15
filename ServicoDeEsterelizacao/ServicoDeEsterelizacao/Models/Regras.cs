@@ -18,7 +18,7 @@ namespace ServicoDeEsterelizacao.Models
 
         [Required (ErrorMessage ="Descreva a regra.")]
         [RegularExpression(@"([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]+)", ErrorMessage = "Introduza uma descrição válida")]
-        [StringLength(100, MinimumLength = 1, ErrorMessage = "Descrição inválida!!")]
+        [StringLength(10000, MinimumLength = 1, ErrorMessage = "Descrição inválida!!")]
         public string Descricao { get; set; }
 
        

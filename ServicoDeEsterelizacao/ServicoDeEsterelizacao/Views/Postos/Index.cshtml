@@ -28,14 +28,19 @@
     <thead>
         <tr>
             <th>
+                PostoId
+            </th>
+            <th>
                 Nome
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Posto) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostoId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>

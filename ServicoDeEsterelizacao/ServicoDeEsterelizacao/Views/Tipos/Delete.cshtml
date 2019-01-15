@@ -20,10 +20,30 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="TipoID" />
-        <input type="submit" value="Apagar" class="btn btn-danger" /> |
+        <a href="#Confirmacao" class="trigger-btn" data-toggle="modal">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+        </a> |
         <a asp-action="Index" class="btn btn-default">Voltar atrás</a>
     </form>
+
+    <div id="Confirmacao" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <p>Tem a certeza que deseja apagar? </p>
+                </div>
+                <div class="modal-footer">
+                    <form asp-action="Delete">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <input type="hidden" asp-for="TipoID" />
+                        <input type="submit" class="btn btn-danger" value="Eliminar" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

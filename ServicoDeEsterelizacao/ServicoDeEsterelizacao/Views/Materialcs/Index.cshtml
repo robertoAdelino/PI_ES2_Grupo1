@@ -30,36 +30,40 @@
     <thead>
         <tr>
             <th>
+                MaterialId
+            </th>
+            <th>
                 Nome
             </th>
             <th>
                 Quantidade
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Materialcs)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantidade)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.MaterialcsId" class="btn btn-warning">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.MaterialcsId" class="btn btn-info">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.MaterialcsId" class="btn btn-danger">Apagar</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialcsId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaterialcsId" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.MaterialcsId" class="btn btn-info">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaterialcsId" class="btn btn-danger">Apagar</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
-
-@*<div page-model="@Model.Pagination"></div>*@
-
 <p>
     <a asp-action="Create" class="btn btn-primary">Adicionar novo material</a>
 </p>
+
+<div page-model="@Model.Pagination"></div>

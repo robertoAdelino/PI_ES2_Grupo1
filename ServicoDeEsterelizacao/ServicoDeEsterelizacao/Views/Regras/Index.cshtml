@@ -28,17 +28,22 @@
     <thead>
         <tr>
             <th>
+                RegrasId
+            </th>
+            <th>
                 Nome
             </th>
             <th>
                 Descricao
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Regras) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegrasID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
@@ -47,8 +52,8 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.RegrasID" class="btn btn-warning">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.RegrasID"class="btn btn-info">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.RegrasID"class="btn btn-danger">Apagar</a>
+                <a asp-action="Details" asp-route-id="@item.RegrasID" class="btn btn-info">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.RegrasID" class="btn btn-danger">Apagar</a>
             </td>
         </tr>
 }
@@ -57,3 +62,4 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Adicionar nova</a>
 </p>
+<div page-model="@Model.Pagination"></div>

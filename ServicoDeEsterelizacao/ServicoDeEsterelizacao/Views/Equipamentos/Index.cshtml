@@ -28,6 +28,9 @@
     <thead>
         <tr>
             <th>
+                EquipamentoId
+            </th>
+            <th>
                 <a asp-action="Index" asp-route-order="TipoID">TipoId</a>
             </th>
             <th>
@@ -39,20 +42,23 @@
     <tbody>
         @foreach (var item in Model.Equipamento)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TipoID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Capacidade)
-                </td>
-                <td></td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.EquipamentoID" class="btn btn-warning">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.EquipamentoID" class="btn btn-info">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.EquipamentoID" class="btn btn-danger">Apagar</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EquipamentoID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacidade)
+            </td>
+            <td></td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EquipamentoID" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.EquipamentoID" class="btn btn-info">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.EquipamentoID" class="btn btn-danger">Apagar</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

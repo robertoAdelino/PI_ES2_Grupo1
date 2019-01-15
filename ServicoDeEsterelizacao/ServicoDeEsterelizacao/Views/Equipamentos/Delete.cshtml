@@ -29,7 +29,9 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="EquipamentoID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a href="#Confirmacao" class="trigger-btn" data-toggle="modal">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+        </a> |
         <a asp-action="Index" class="btn btn-default">Voltar atrás</a>
     </form>
 

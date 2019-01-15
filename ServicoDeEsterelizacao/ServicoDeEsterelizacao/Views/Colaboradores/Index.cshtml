@@ -27,6 +27,9 @@
     <thead>
         <tr>
             <th>
+                ID_Colaborador
+             </th>
+            <th>
                 <a asp-action="Index" asp-route-order="nome">Nome</a>
             </th>
             <th>
@@ -45,6 +48,9 @@
         @foreach (var item in Model.Colaborador)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ColaboradorId)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>

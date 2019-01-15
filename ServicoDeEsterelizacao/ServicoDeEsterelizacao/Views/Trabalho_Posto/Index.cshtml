@@ -28,6 +28,9 @@
     <thead>
         <tr>
             <th>
+                TarefaId
+            </th>
+            <th>
                 Equipamento
             </th>
             <th>
@@ -55,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.Equipamento.TipoID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Materialcs.Nome)
+                @Html.DisplayFor(modelItem => item.Materialcs)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
@@ -78,3 +81,4 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Criar nova tarefa</a>
 </p>
+<div page-model="@Model.Pagination"></div>

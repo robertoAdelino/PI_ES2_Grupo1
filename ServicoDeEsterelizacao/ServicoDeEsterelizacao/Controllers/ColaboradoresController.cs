@@ -51,7 +51,7 @@ namespace ServicoDeEsterelizacao.Controllers
             else if (order == "funcao")
             {
                 TipoList = await colaborador
-                    .OrderBy(p => p.Funcao.Nome)
+                    .OrderBy(p => p.FuncaoID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
@@ -72,10 +72,18 @@ namespace ServicoDeEsterelizacao.Controllers
                     .Take(PAGE_SIZE)
                     .ToListAsync();
             }
+            else if (order == "ID")
+            {
+                TipoList = await colaborador
+                    .OrderBy(p => p.ColaboradorId)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
             else
             {
                 TipoList = await colaborador
-                    .OrderBy(p => p.Nome)
+                    .OrderBy(p => p.ColaboradorId)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();

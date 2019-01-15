@@ -22,7 +22,7 @@ namespace ServicoDeEsterelizacao.Models
                 SeedColaborador(db);
                 SeedFuncao(db);
                 SeedPosto(db);
-                SeedTurno(db);
+                //SeedTurno(db);
                 SeedRegra(db);
   
         }
@@ -34,7 +34,11 @@ namespace ServicoDeEsterelizacao.Models
             db.Regras.AddRange(
                 new Regras { Nome = "Noites",Descricao = "Um colaborador nao pode fazer mais de duas noites seguidas."},
                 new Regras { Nome = "Balanceamento", Descricao = "Os horarios dos colaboradores devem ser balanceados alternando entre manhas, tardes e noites"},
-                new Regras { Nome = "Presenca", Descricao = "O numero de enfermeiros e de assistentes operacionais deve ser balanceado durante os turnos."}
+                new Regras { Nome = "Presenca", Descricao = "O numero de enfermeiros e de assistentes operacionais deve ser balanceado durante os turnos."},
+                new Regras { Nome = "Integração", Descricao = "Caso exista algum colaborador que esteja em regime de integração, será acompanhado por um colaborador mais velho do serviço (anos de serviço)."},
+                new Regras { Nome = "Substituição do cargo", Descricao = "Caso o diretor de serviço não se encontra no serviço durante o turno, o enfermeiro mais velho (anos de serviço) que esteja em serviço, desempenha os cargos do diretor de serviço"},
+                new Regras { Nome = "Postos", Descricao = "Caso não existam assistentes operacionais suficientes naquele turno para cobrirem os diferentes postos, tem que pelo menos um dos enfermeiros em serviço cobrir o posto que não possua nenhum assitente operacional."},
+                new Regras { Nome = "Postos v2", Descricao = "Um colaborador ´~ao pode trabalhar no mesmo posto pelo menos dois dias seguidos."}
                 
             );
             
@@ -56,18 +60,18 @@ namespace ServicoDeEsterelizacao.Models
             db.SaveChanges();
         }
 
-        private static void SeedTurno(MaterialDbContext db)
+       /* private static void SeedTurno(MaterialDbContext db)
         {
             if (db.Turno.Any()) return;
 
             db.Turno.AddRange(
-           //     new Turno { Nome = "MANHÃ", Horainicio = new DateTime(1, 1, 1, 8, 0, 0), Horafim = new DateTime(1, 1, 1, 16, 0, 0) },
+              // new Turno { Nome = "MANHÃ", Horainicio = new DateTime(1, 1, 1, 8, 0, 0), Horafim = new DateTime(1, 1, 1, 16, 0, 0) },
              //  new Turno { Nome = "TARDE", Horainicio = new DateTime(1, 1, 1, 16, 0, 0), Horafim = new DateTime(1, 1, 1, 0, 0, 0) }
 
                );
 
             db.SaveChanges();
-        }
+        }*/
 
         private static void SeedTipo(MaterialDbContext db)
         {
@@ -227,6 +231,61 @@ namespace ServicoDeEsterelizacao.Models
 
         }
 
+        private static Horario GetHorarioCreatingIfNeed(MaterialDbContext db, int id)
+        {
+            Horario funcao = db.Horario.SingleOrDefault(e => e.HorarioID == id);
+
+            if (funcao == null)
+            {
+                funcao = new Horario { HorarioID = id };
+                db.Add(funcao);
+                db.SaveChanges();
+            }
+
+            return funcao;
+        }
+
+        private static Colaborador GetColaboradorCreatingIfNeed(MaterialDbContext db, string Nome)
+        {
+            Colaborador funcao = db.Colaborador.SingleOrDefault(e => e.Nome == Nome);
+
+            if (funcao == null)
+            {
+                funcao = new Colaborador { Nome = Nome };
+                db.Add(funcao);
+                db.SaveChanges();
+            }
+
+            return funcao;
+        }
+
+        private static Turno GetTurnoCreatingIfNeed(MaterialDbContext db, string Nome)
+        {
+            Turno funcao = db.Turno.SingleOrDefault(e => e.Nome == Nome);
+
+            if (funcao == null)
+            {
+                funcao = new Turno { Nome = Nome };
+                db.Add(funcao);
+                db.SaveChanges();
+            }
+
+            return funcao;
+        }
+
+        private static Posto GetPostoCreatingIfNeed(MaterialDbContext db, string Nome)
+        {
+            Posto funcao = db.Posto.SingleOrDefault(e => e.Nome == Nome);
+
+            if (funcao == null)
+            {
+                funcao = new Posto { Nome = Nome };
+                db.Add(funcao);
+                db.SaveChanges();
+            }
+
+            return funcao;
+        }
 
         private static Funcao GetFuncaoCreatingIfNeed(MaterialDbContext db, string Nome)
         {

@@ -13,5 +13,9 @@ namespace ServicoDeEsterelizacao.Models
 
         [DisplayName("Colaborador")]
         public string CurrentColaborador { get; set; }
+
+
+        [DisplayName("Funcao")]
+        public int CurrentFuncao { get; set; }
     }
 }

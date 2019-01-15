@@ -20,7 +20,7 @@ namespace ServicoDeEsterelizacao.Controllers
         }
 
         // GET: Turnos
-        public async Task<IActionResult> Index(TurnoViewList model = null, int page = 1)
+        public async Task<IActionResult> Index(TurnoViewList model = null, int page = 1, string order = null)
         {
             string Turno = null;
 
@@ -38,12 +38,64 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 page = 1;
             }
-            var TipoList = await turno
+            IEnumerable<Turno> TipoList;
+
+            if(order == "ID")
+            {
+                TipoList = await turno
+                    .OrderBy(p => p.TurnoId)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if(order == "Turno")
+            {
+                TipoList = await turno
                     .OrderBy(p => p.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
-
+            }
+            else if(order == "HorainiM")
+            {
+                TipoList = await turno
+                    .OrderBy(p => p.HoraInicioManha)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "HoraFM")
+            {
+                TipoList = await turno
+                    .OrderBy(p => p.HoraFimManha)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if(order == "HoraIniT")
+            {
+                TipoList = await turno
+                    .OrderBy(p => p.HoraInicioTarde)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "HoraFT")
+            {
+                TipoList = await turno
+                    .OrderBy(p => p.HoraFimTarde)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else
+            {
+                TipoList = await turno
+                    .OrderBy(p => p.TurnoId)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
             return View(
                 new TurnoViewList
                 {

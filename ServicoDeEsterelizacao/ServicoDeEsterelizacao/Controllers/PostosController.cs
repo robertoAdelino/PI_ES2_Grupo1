@@ -12,14 +12,14 @@ namespace ServicoDeEsterelizacao.Controllers
     public class PostosController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 10;
+        private const int PAGE_SIZE = 5;
         public PostosController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Postos
-        public async Task<IActionResult> Index(PostoViewList model = null, int page = 1)
+        public async Task<IActionResult> Index(PostoViewList model = null, int page = 1, string order = null)
         {
             string Posto = null;
 
@@ -37,8 +37,27 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 page = 1;
             }
-            var TipoList = await posto
+
+            IEnumerable<Posto> TipoList;
+
+            if(order == "ID")
+            {
+                TipoList = await posto
+                    .OrderBy(p => p.PostoId)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "Nome")
+            {
+                TipoList = await posto
                     .OrderBy(p => p.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            TipoList = await posto
+                    .OrderBy(p => p.PostoId)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
@@ -51,7 +70,8 @@ namespace ServicoDeEsterelizacao.Controllers
                     {
                         CurrentPage = page,
                         PageSize = PAGE_SIZE,
-                        Totaltems = numProducts
+                        Totaltems = numProducts,
+                        Order = order
                     },
                     CurrentNome = Posto
                 }

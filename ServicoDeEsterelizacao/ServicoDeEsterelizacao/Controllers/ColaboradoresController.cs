@@ -12,7 +12,7 @@ namespace ServicoDeEsterelizacao.Controllers
     public class ColaboradoresController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 10;
+        private const int PAGE_SIZE = 5;
         public ColaboradoresController(MaterialDbContext context)
         {
             _context = context;
@@ -27,7 +27,7 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 Colaborador = model.CurrentColaborador;
             }
-
+            
             var colaborador = _context.Colaborador
                 .Where(p => Colaborador == null || p.Nome.Contains(Colaborador));
 

@@ -12,7 +12,7 @@ namespace ServicoDeEsterelizacao.Controllers
     public class TiposController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 10;
+        private const int PAGE_SIZE = 5;
         public TiposController(MaterialDbContext context)
         {
             _context = context;
@@ -38,9 +38,9 @@ namespace ServicoDeEsterelizacao.Controllers
                 page = 1;
             }
 
-            //IEnumerable<Tipo> TipoList;
+            IEnumerable<Tipo> TipoList;
 
-            /*if (order == "nome")
+            if (order == "nome")
             {
                 TipoList = await tipos
                     .OrderBy(p => p.Nome)
@@ -48,18 +48,10 @@ namespace ServicoDeEsterelizacao.Controllers
                     .Take(PAGE_SIZE)
                     .ToListAsync();
             }
-            else if (order == "price")
+            else if (order == "ID")
             {
                 TipoList = await tipos
-                    .OrderBy(p => p.Price)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
-            }
-            else if (order == "category")
-            {
-                TipoList = await tipo
-                    .OrderBy(p => p.Category)
+                    .OrderBy(p => p.TipoID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
@@ -67,16 +59,12 @@ namespace ServicoDeEsterelizacao.Controllers
             else
             {
                 TipoList = await tipos
-                    .OrderBy(p => p.Name)
+                    .OrderBy(p => p.TipoID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
-            }*/ 
-               var TipoList = await tipos
-                    .OrderBy(p => p.Nome)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
+            }
+
 
             return View(
                 new TipoViewList

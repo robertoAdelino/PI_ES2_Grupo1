@@ -14,7 +14,7 @@ namespace ServicoDeEsterelizacao.Controllers
     public class EquipamentosController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 10;
+        private const int PAGE_SIZE = 5;
         public EquipamentosController(MaterialDbContext context)
         {
             _context = context;
@@ -56,10 +56,18 @@ namespace ServicoDeEsterelizacao.Controllers
                         .Take(PAGE_SIZE)
                         .ToListAsync();
             }
+            else if(order == "ID")
+            {
+                TipoList = await equipamento
+                          .OrderBy(p => p.EquipamentoID)
+                          .Skip(PAGE_SIZE * (page - 1))
+                          .Take(PAGE_SIZE)
+                          .ToListAsync();
+            } 
             else
             {
                 TipoList = await equipamento
-                          .OrderBy(p => p.TipoID)
+                          .OrderBy(p => p.EquipamentoID)
                           .Skip(PAGE_SIZE * (page - 1))
                           .Take(PAGE_SIZE)
                           .ToListAsync();

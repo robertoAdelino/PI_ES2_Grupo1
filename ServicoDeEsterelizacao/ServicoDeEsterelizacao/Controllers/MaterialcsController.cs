@@ -13,14 +13,14 @@ namespace ServicoDeEsterelizacao.Controllers
     public class MaterialcsController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 10;
+        private const int PAGE_SIZE = 5;
         public MaterialcsController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Materialcs
-        public async Task<IActionResult> Index(MaterialListView model = null, int page = 1)
+        public async Task<IActionResult> Index(MaterialListView model = null, int page = 1, string order = null)
         {
             string Material = null;
 
@@ -38,11 +38,41 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 page = 1;
             }
-            var TipoList = await material
+            IEnumerable<Materialcs> TipoList;
+
+            if (order == "ID")
+            {
+                TipoList = await material
+                    .OrderBy(p => p.MaterialcsId)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "Nome")
+            {
+                TipoList = await material
                     .OrderBy(p => p.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
+            }
+            else if (order == "Quantidade")
+            {
+                TipoList = await material
+                    .OrderBy(p => p.Quantidade)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else
+            {
+                TipoList = await material
+                    .OrderBy(p => p.MaterialcsId)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+
 
             return View(
                 new MaterialListView
@@ -52,7 +82,8 @@ namespace ServicoDeEsterelizacao.Controllers
                     {
                         CurrentPage = page,
                         PageSize = PAGE_SIZE,
-                        Totaltems = numProducts
+                        Totaltems = numProducts,
+                        Order = order
                     },
                     CurrentMaterial = Material
                 }

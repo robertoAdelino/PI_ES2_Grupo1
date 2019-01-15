@@ -12,14 +12,14 @@ namespace ServicoDeEsterelizacao.Controllers
     public class RegrasController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 10;
+        private const int PAGE_SIZE = 5;
         public RegrasController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Regras
-        public async Task<IActionResult> Index(RegrasViewList model = null, int page = 1)
+        public async Task<IActionResult> Index(RegrasViewList model = null, int page = 1, string order == null)
         {
             string Regras = null;
 
@@ -37,11 +37,40 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 page = 1;
             }
-            var TipoList = await regras
+            IEnumerable<Regras> TipoList;
+
+            if (order == "ID")
+            {
+                TipoList = await regras
+                    .OrderBy(p => p.RegrasID)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if(order == "Nome")
+            {
+                TipoList = await regras
                     .OrderBy(p => p.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
+            }
+            else if (order == "Descricao")
+            {
+                TipoList = await regras
+                    .OrderBy(p => p.Descricao)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else
+            {
+                TipoList = await regras
+                    .OrderBy(p => p.RegrasID)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
 
             return View(
                 new RegrasViewList
@@ -51,7 +80,8 @@ namespace ServicoDeEsterelizacao.Controllers
                     {
                         CurrentPage = page,
                         PageSize = PAGE_SIZE,
-                        Totaltems = numProducts
+                        Totaltems = numProducts,
+                        Order = order
                     },
                     CurrentNome = Regras
                 }

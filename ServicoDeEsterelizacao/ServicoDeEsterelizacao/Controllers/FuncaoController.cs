@@ -13,14 +13,14 @@ namespace ServicoDeEsterelizacao.Controllers
     public class FuncaoController : Controller
     {
         private readonly MaterialDbContext _context;
-        private const int PAGE_SIZE = 10;
+        private const int PAGE_SIZE = 5;
         public FuncaoController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Funcao
-        public async Task<IActionResult> Index(FuncaoViewList model = null, int page = 1)
+        public async Task<IActionResult> Index(FuncaoViewList model = null, int page = 1, string order = null)
         {
             string Funcao = null;
 
@@ -38,11 +38,32 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 page = 1;
             }
-            var TipoList = await funcao
+            IEnumerable<Funcao> TipoList;
+
+            if (order == "ID")
+            {
+                TipoList = await funcao
+                    .OrderBy(p => p.FuncaoID)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "Nome")
+            {
+                TipoList = await funcao
                     .OrderBy(p => p.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
+            }
+            else
+            {
+                TipoList = await funcao
+                    .OrderBy(p => p.FuncaoID)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
 
             return View(
                 new FuncaoViewList
@@ -52,7 +73,8 @@ namespace ServicoDeEsterelizacao.Controllers
                     {
                         CurrentPage = page,
                         PageSize = PAGE_SIZE,
-                        Totaltems = numProducts
+                        Totaltems = numProducts,
+                        Order = order
                     },
                     CurrentNome = Funcao
                 }

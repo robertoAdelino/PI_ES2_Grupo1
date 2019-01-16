@@ -17,7 +17,7 @@ namespace ServicoDeEsterelizacao.Models
         {
                 SeedEquipamento(db);
                 SeedTipo(db);
-                //SeedTrabalhoPosto(db);
+                SeedTrabalhoPosto(db);
                 SeedMaterialcs(db);
                 SeedColaborador(db);
                 SeedFuncao(db);
@@ -26,6 +26,22 @@ namespace ServicoDeEsterelizacao.Models
                 SeedRegra(db);
   
         }
+
+        private static void SeedTrabalhoPosto(MaterialDbContext db)
+        {
+            if (db.Trabalho_Posto.Any()) return;
+            //Tipo Autoclave = GetTipoCreatingIfNeed(db, "Autoclave");
+            Equipamento Autoclave = GetEquipamentoCreatingIfNeed(db,1);
+            Materialcs Bisturi = GetMaterialCreatingIfNeed(db, "Bisturi");
+            
+            db.Trabalho_Posto.AddRange(
+                new Trabalho_Posto { Estado=true,Materialcs=Bisturi.MaterialcsId, },
+
+            );
+
+            db.SaveChanges();
+        }
+    
 
         private static void SeedRegra(MaterialDbContext db)
         {
@@ -38,7 +54,7 @@ namespace ServicoDeEsterelizacao.Models
                 new Regras { Nome = "Integração", Descricao = "Caso exista algum colaborador que esteja em regime de integração, será acompanhado por um colaborador mais velho do serviço (anos de serviço)."},
                 new Regras { Nome = "Substituição do cargo", Descricao = "Caso o diretor de serviço não se encontra no serviço durante o turno, o enfermeiro mais velho (anos de serviço) que esteja em serviço, desempenha os cargos do diretor de serviço"},
                 new Regras { Nome = "Postos", Descricao = "Caso não existam assistentes operacionais suficientes naquele turno para cobrirem os diferentes postos, tem que pelo menos um dos enfermeiros em serviço cobrir o posto que não possua nenhum assitente operacional."},
-                new Regras { Nome = "Postos v2", Descricao = "Um colaborador ´~ao pode trabalhar no mesmo posto pelo menos dois dias seguidos."}
+                new Regras { Nome = "Postos v2", Descricao = "Um colaborador não pode trabalhar no mesmo posto pelo menos dois dias seguidos."}
                 
             );
             
@@ -113,52 +129,6 @@ namespace ServicoDeEsterelizacao.Models
             db.SaveChanges();
         }
 
-        /*private static async void MakeSureRoleExistsAsync(RoleManager<IdentityRole> roleManager, string role)
-        {
-            if (!await roleManager.RoleExistsAsync(role))
-            {
-                await roleManager.CreateAsync(new IdentityRole(role));
-            }
-        }
-
-        public static async Task CreateRolesAndUsersAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
-        {
-            const string ADMIN_USER = "admin@gmail.com";
-            const string ADMIN_PASSWORD = "sECRET$123";
-
-            MakeSureRoleExistsAsync(roleManager, ROLE_ADMINISTRATOR);
-            MakeSureRoleExistsAsync(roleManager, ROLE_COLAB);
-
-            IdentityUser admin = await userManager.FindByNameAsync(ADMIN_USER);
-            if (admin == null)
-            {
-                admin = new IdentityUser { UserName = ADMIN_USER };
-                await userManager.CreateAsync(admin, ADMIN_PASSWORD);
-            }
-
-            if (!await userManager.IsInRoleAsync(admin, ROLE_ADMINISTRATOR))
-            {
-                await userManager.AddToRoleAsync(admin, ROLE_ADMINISTRATOR);
-            }
-        }
-
-        public static async Task CreateTestUsersAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
-        {
-            const string CUSTOMER_USER = "john@gmail.com";
-            const string CUSTOMER_PASSWORD = "sECREDO$123";
-
-            IdentityUser customer = await userManager.FindByNameAsync(CUSTOMER_USER);
-            if (customer == null)
-            {
-                customer = new IdentityUser { UserName = CUSTOMER_USER };
-                await userManager.CreateAsync(customer, CUSTOMER_PASSWORD);
-            }
-
-            if (!await userManager.IsInRoleAsync(customer, ROLE_COLAB))
-            {
-                await userManager.AddToRoleAsync(customer, ROLE_COLAB);
-            }
-        }*/
 
         private static void SeedFuncao(MaterialDbContext db)
         {
@@ -180,17 +150,28 @@ namespace ServicoDeEsterelizacao.Models
 
             Funcao Enfermeiro = GetFuncaoCreatingIfNeed(db, "Enfermeiro");
             Funcao AssistenteOperacional = GetFuncaoCreatingIfNeed(db, "Assistente Operacional");
+            Funcao DiretorServiço = GetFuncaoCreatingIfNeed(db, "Diretor de Serviço");
 
             db.Colaborador.AddRange(
                        new Colaborador
                        {                            
-                           Nome = "Joaquim Mendes",
+                           Nome = "Joaquim Lopes Mendes",
                            Email = "mail@mail.com",
                            Telefone = "961234567",
                            Cc = "12345678",
                            DataNasc = new DateTime(1977, 5, 19),
                            FuncaoID = Enfermeiro.FuncaoID,
-                           Morada = "rua n1, guarda",
+                           Morada = "Rua nº1, Guarda",
+                       },
+                       new Colaborador
+                       {
+                           Nome = "Filipe Correia Goncalves",
+                           Email = "mail@mail.com",
+                           Telefone = "961624587",
+                           Cc = "13210224",
+                           DataNasc = new DateTime(1972 , 07 , 03),
+                           FuncaoID = Enfermeiro.FuncaoID,
+                           Morada = "Rua nº2, guarda",
                        },
                       new Colaborador
                       {
@@ -198,44 +179,44 @@ namespace ServicoDeEsterelizacao.Models
                           Nome = "Maria Silva",
                           Email = "mail@mail.com",
                           Telefone = "961234567",
-                          Cc = "12345678",
-                          DataNasc = new DateTime(1977, 5, 19),
+                          Cc = "63214587",
+                          DataNasc = new DateTime(1978 , 08 , 04),
                           FuncaoID = AssistenteOperacional.FuncaoID,
-                          Morada = "rua n1, guarda",
+                          Morada = "Rua nº3, guarda",
                       },
                            
                           new Colaborador
                           {
 
-                              Nome = "João Ramos",
+                              Nome = "João Marco Ramos",
                               Email = "mail@mail.com",
-                              Telefone = "961234567",
-                              Cc = "12345678",
-                              DataNasc = new DateTime(1987, 5, 19),
+                              Telefone = "932145698",
+                              Cc = "56987456",
+                              DataNasc = new DateTime(1985 , 02 , 01),
                               FuncaoID = Enfermeiro.FuncaoID,
-                              Morada = "rua n1, guarda",
+                              Morada = "Rua nº4, Guarda",
                           },
                                new Colaborador
                                {
 
-                                   Nome = "Ana Teixeira",
+                                   Nome = "Ana Costa Teixeira",
                                    Email = "mail@mail.com",
-                                   Telefone = "961234567",
-                                   Cc = "12345678",
-                                   DataNasc = new DateTime(1977, 5, 19),
+                                   Telefone = "912358742",
+                                   Cc = "32014589",
+                                   DataNasc = new DateTime(1988 , 09 , 16),
                                    FuncaoID = AssistenteOperacional.FuncaoID,
-                                   Morada = "rua n1, guarda",
+                                   Morada = "Rua nº5, Guarda",
                                },
                                new Colaborador
                                {
 
                                    Nome = "Ricardo Mendes",
                                    Email = "mail@mail.com",
-                                   Telefone = "961234567",
-                                   Cc = "12345678",
-                                   DataNasc = new DateTime(1977, 5, 19),
+                                   Telefone = "932145699",
+                                   Cc = "39756321",
+                                   DataNasc = new DateTime(1994 , 08 , 25),
                                    FuncaoID = AssistenteOperacional.FuncaoID,
-                                   Morada = "rua n1, guarda",
+                                   Morada = "Rua nº6, Guarda",
                                },
                                new Colaborador
                                {
@@ -243,10 +224,91 @@ namespace ServicoDeEsterelizacao.Models
                                    Nome = "Daniela Vaz",
                                    Email = "mail@mail.com",
                                    Telefone = "961234567",
-                                   Cc = "12345678",
-                                   DataNasc = new DateTime(1977, 5, 19),
+                                   Cc = "96321458",
+                                   DataNasc = new DateTime(1973 , 05 , 06),
                                    FuncaoID = Enfermeiro.FuncaoID,
-                                   Morada = "rua n1, guarda",
+                                   Morada = "rua nº7, guarda",
+                               },
+                                                  
+                               new Colaborador
+                                           {
+                           
+                            Nome = "Tiago Lima Rocha",
+                             Email = "mail@mail.com",
+                            Telefone = "932014789",
+                           Cc = "32147856",
+                           DataNasc = new DateTime(1974 ,04 , 15),
+                          FuncaoID = Enfermeiro.FuncaoID,
+                           Morada = "Rua nº7, Guarda",
+                                                  },
+
+                            new Colaborador
+                                                  {
+
+                                  Nome = "Maria Barros Ribeiro",
+                                  Email = "mail@mail.com",
+                                  Telefone = "932146399",
+                                  Cc = "39963321",
+                                  DataNasc = new DateTime(1991 , 06 , 22),
+                                  FuncaoID = AssistenteOperacional.FuncaoID,
+                                  Morada = "Rua nº8, Guarda",
+                                                  },
+
+                              new Colaborador
+                               {
+
+                                   Nome = "Rafaela Silva Ribeiro",
+                                   Email = "mail@mail.com",
+                                   Telefone = "932145679",
+                                   Cc = "39756321",
+                                   DataNasc = new DateTime(1974 , 05 , 04),
+                                   FuncaoID = Enfermeiro.FuncaoID,
+                                   Morada = "Rua nº9, Guarda",
+                               },
+                        new Colaborador
+                               {
+
+                                   Nome = "Vitória Rocha Azevedo",
+                                   Email = "mail@mail.com",
+                                   Telefone = "963245699",
+                                   Cc = "74126321",
+                                   DataNasc = new DateTime(1994 , 05 , 17),
+                                   FuncaoID = Enfermeiro.FuncaoID,
+                                   Morada = "Rua nº10, Guarda",
+                               },
+                                new Colaborador
+                               {
+
+                                   Nome = "Daniel Pereira Santos",
+                                   Email = "mail@mail.com",
+                                   Telefone = "963214699",
+                                   Cc = "23658321",
+                                   DataNasc = new DateTime(1984 , 07 , 15),
+                                   FuncaoID = AssistenteOperacional.FuncaoID,
+                                   Morada = "Rua nº11, Guarda",
+                               },
+                              new Colaborador
+                               {
+
+                                   Nome = "António Correia Ferreira",
+                                   Email = "mail@mail.com",
+                                   Telefone = "915478963",
+                                   Cc = "98756321",
+                                   DataNasc = new DateTime(1988 , 01 , 12),
+                                   FuncaoID = Enfermeiro.FuncaoID,
+                                   Morada = "Rua nº12, Guarda",
+                               },
+
+                                new Colaborador
+                               {
+
+                                   Nome = "Tiago Costa Carvalho",
+                                   Email = "mail@mail.com",
+                                   Telefone = "913459875",
+                                   Cc = "39756321",
+                                   DataNasc = new DateTime(1980 , 06 , 03),
+                                   FuncaoID = DiretorServiço.FuncaoID,
+                                   Morada = "Rua nº13, Guarda",
                                }
                    );
             db.SaveChanges();
@@ -255,57 +317,57 @@ namespace ServicoDeEsterelizacao.Models
    
         private static Horario GetHorarioCreatingIfNeed(MaterialDbContext db, int id)
         {
-            Horario funcao = db.Horario.SingleOrDefault(e => e.HorarioID == id);
+            Horario horario = db.Horario.SingleOrDefault(e => e.HorarioID == id);
 
-            if (funcao == null)
+            if (horario == null)
             {
-                funcao = new Horario { HorarioID = id };
-                db.Add(funcao);
+                horario = new Horario { HorarioID = id };
+                db.Add(horario);
                 db.SaveChanges();
             }
 
-            return funcao;
+            return horario;
         }
         private static Colaborador GetColaboradorCreatingIfNeed(MaterialDbContext db, string Nome)
         {
-            Colaborador funcao = db.Colaborador.SingleOrDefault(e => e.Nome == Nome);
+            Colaborador colaborador = db.Colaborador.SingleOrDefault(e => e.Nome == Nome);
 
-            if (funcao == null)
+            if (colaborador == null)
             {
-                funcao = new Colaborador { Nome = Nome };
-                db.Add(funcao);
+                colaborador = new Colaborador { Nome = Nome };
+                db.Add(colaborador);
                 db.SaveChanges();
             }
 
-            return funcao;
+            return colaborador;
         }
 
         private static Turno GetTurnoCreatingIfNeed(MaterialDbContext db, string Nome)
         {
-            Turno funcao = db.Turno.SingleOrDefault(e => e.Nome == Nome);
+            Turno turno = db.Turno.SingleOrDefault(e => e.Nome == Nome);
 
-            if (funcao == null)
+            if (turno == null)
             {
-                funcao = new Turno { Nome = Nome };
-                db.Add(funcao);
+                turno = new Turno { Nome = Nome };
+                db.Add(turno);
                 db.SaveChanges();
             }
 
-            return funcao;
+            return turno;
         }
 
         private static Posto GetPostoCreatingIfNeed(MaterialDbContext db, string Nome)
         {
-            Posto funcao = db.Posto.SingleOrDefault(e => e.Nome == Nome);
+            Posto posto = db.Posto.SingleOrDefault(e => e.Nome == Nome);
 
-            if (funcao == null)
+            if (posto == null)
             {
-                funcao = new Posto { Nome = Nome };
-                db.Add(funcao);
+                posto = new Posto { Nome = Nome };
+                db.Add(posto);
                 db.SaveChanges();
             }
 
-            return funcao;
+            return posto;
         }
 
         private static Funcao GetFuncaoCreatingIfNeed(MaterialDbContext db, string Nome)

@@ -355,7 +355,7 @@ namespace ServicoDeEsterelizacao.Controllers
             int numPessoasT2 = 1;
 
             int segunda = 2;
-            int domingo = 8;
+            int domingo = 6;
 
             int[] colaboradores = ColabIds();
             int[] postos = PostosIds();

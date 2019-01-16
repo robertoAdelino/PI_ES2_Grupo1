@@ -7,43 +7,35 @@
 
 <h2>Tarefas</h2>
 
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">Pesquisa</div>
-        <div class="panel-body">
-            <form asp-action="Index">
-                <div class="form-group">
-                    <label asp-for="CurrentNome" class="control-label"></label>
-                    <input asp-for="CurrentNome" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Pesquisar" class="btn btn-default" />
-                </div>
-            </form>
-        </div>
+<form asp-action="Index">
+    <div>
+        <h3>Pesquisa</h3>
+        <menu>
+            <h5>Nome do colaborador:<input style="width:250px;" asp-for="CurrentNome" /></h5>
+        </menu>
+        <input type="submit" value="Pesquisar" class="btn btn-info" />
     </div>
-</div>
-
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                TarefaId
+                <a asp-action="Index" asp-route-order="ID">TarefaId</a>
             </th>
             <th>
-                Equipamento
+                <a asp-action="Index" asp-route-order="Equipamento">Equipamento</a>
             </th>
             <th>
-                Materialcs
+                <a asp-action="Index" asp-route-order="Material">Material</a>
             </th>
             <th>
-                Estado
+                <a asp-action="Index" asp-route-order="Estado">Estado</a>
             </th>
             <th>
-                Horario
+                <a asp-action="Index" asp-route-order="Horario">Horario</a>
             </th>
             <th>
-                DataServico
+                <a asp-action="Index" asp-route-order="DataServiço">DataDeServiço</a>
             </th>
             <th></th>
         </tr>
@@ -78,7 +70,7 @@
 }
     </tbody>
 </table>
+<div page-model="@Model.Pagination"></div>
 <p>
     <a asp-action="Create" class="btn btn-primary">Criar nova tarefa</a>
 </p>
-<div page-model="@Model.Pagination"></div>

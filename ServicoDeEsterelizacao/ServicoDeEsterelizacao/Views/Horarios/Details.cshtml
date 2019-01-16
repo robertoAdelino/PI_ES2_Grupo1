@@ -1,6 +1,7 @@
 ﻿@model ServicoDeEsterelizacao.Models.Horario
 
 @{
+    Layout = "Layout";
     ViewData["Title"] = "Detalhes";
 }
 
@@ -50,5 +51,6 @@
     </dl>
 </div>
 <div>
+    <a asp-action="Edit" asp-route-id="@Model.HorarioID" class="btn btn-warning">Editar</a> |
     <a asp-action="Index" class="btn btn-default">Voltar</a>
 </div>

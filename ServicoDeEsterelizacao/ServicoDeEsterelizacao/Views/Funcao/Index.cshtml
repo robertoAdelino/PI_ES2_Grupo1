@@ -21,20 +21,16 @@
 <table class="table">
     <thead>
         <tr>
+
             <th>
-                <a asp-action="Index" asp-route-order="ID">FuncaoId</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-order="Nome">Nome</a>
+                <a asp-action="Index" asp-route-order="Nome">Função:</a>
             </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Funcao) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FuncaoID)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>

@@ -17,7 +17,7 @@ namespace ServicoDeEsterelizacao.Models
 
         [Required(ErrorMessage = "Por favor, introduza a data de ínicio da semana")]
         [DataType(DataType.Date, ErrorMessage = "Data de início de semana inválida")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+      //  [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime DataInicio { get; set; }
     }
 }

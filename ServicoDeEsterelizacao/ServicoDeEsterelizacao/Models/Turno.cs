@@ -14,9 +14,10 @@ namespace ServicoDeEsterelizacao.Models
         [RegularExpression(@"([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]+)", ErrorMessage = "Introduza um nome válido")]
         [StringLength(100, MinimumLength = 1, ErrorMessage = "Nome invalido!!")]
         public string Nome { get; set; }
+
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = false)]
-        public DateTime HoraInicio { get; set; }
+public DateTime HoraInicio { get; set; }
 
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = false)]

@@ -317,20 +317,18 @@ namespace ServicoDeEsterelizacao.Controllers
             int mes = dataInicio.Month;
             int dia = dataInicio.Day;
 
-            /**********Validações***********/
-
-            //Validar se Data de Início de Semana é uma segunda-feira
+ 
             if (ValidateDayOfTheWeek(dataInicio) == true)
             {
                 
                 ModelState.AddModelError("DataInicioSemana", "Tem de selecionar uma data correspondente a uma segunda-feira e/ou igual ou superior à data atual");
             }
 
-            //???????????
+            
             if (NumColabsTurno(numPessoasT1, numPessoasT2) == true)
             {
-                //?????????????
-                ModelState.AddModelError("NumeroPessoasTurno3", "Não tem médicos suficientes para todos os turnos. Por favor, verifique os campos e tente novamente");
+                
+                ModelState.AddModelError("NumeroPessoasTurno3", "Não tem Colaboradores suficientes para todos os turnos. Por favor, verifique os campos e tente novamente");
             }
 
             if (ModelState.IsValid)
@@ -355,7 +353,7 @@ namespace ServicoDeEsterelizacao.Controllers
             int numPessoasT2 = 1;
 
             int segunda = 2;
-            int domingo = 6;
+            int domingo = 8;
 
             int[] colaboradores = ColabIds();
             int[] postos = PostosIds();

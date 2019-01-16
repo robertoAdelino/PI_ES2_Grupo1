@@ -19,9 +19,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                <a asp-action="Index" asp-route-order="ID">PostoId</a>
-            </th>
+
             <th>
                 <a asp-action="Index" asp-route-order="Nome">Nome</a>
             </th>
@@ -30,9 +28,7 @@
     <tbody>
 @foreach (var item in Model.Posto) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostoId)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>

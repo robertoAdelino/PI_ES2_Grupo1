@@ -18,14 +18,12 @@
 <table class="table">
     <thead>
         <tr>
+
             <th>
-                <a asp-action="Index" asp-route-order="ID">HorarioId</a>
+                <a asp-action="Index" asp-route-order="DataInicioTurno">Data de Inicio do Turno</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-order="DataInicioTurno">Data Inicio Turno</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-order="DataFimTurno">Data Fim Turno</a>
+                <a asp-action="Index" asp-route-order="DataFimTurno">Data de Fim do Turno</a>
             </th>
             <th>
                 <a asp-action="Index" asp-route-order="Duracao">Duração do turno</a>
@@ -49,9 +47,7 @@
         @foreach (var item in Model.Horario)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HorarioID)
-                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.DataInicioTurno)
                 </td>

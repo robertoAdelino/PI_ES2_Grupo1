@@ -19,7 +19,7 @@ namespace ServicoDeEsterelizacao.Data
         }
 
         // GET: Trabalho_Posto
-        public async Task<IActionResult> Index(Trabalho_PostoViewList model = null, int page = 1)
+        public async Task<IActionResult> Index(Trabalho_PostoViewList model = null, int page = 1, string order = null)
         {
             string Tarefa = null;
 
@@ -37,7 +37,68 @@ namespace ServicoDeEsterelizacao.Data
             {
                 page = 1;
             }
-            var TipoList = await tarefa
+            IEnumerable<Trabalho_Posto> TipoList;
+            if (order == "ID")
+            {
+                TipoList = await tarefa
+                    .Include (p=>p.Equipamento)
+                    .Include(p => p.Materialcs)
+                    .OrderBy(p => p.Trabalho_PostoID)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "DataServico")
+            {
+                TipoList = await tarefa
+                    .Include(p => p.Equipamento)
+                    .Include(p => p.Materialcs)
+                    .OrderBy(p => p.DataServico)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if(order == "Material")
+            {
+                TipoList = await tarefa
+                    .Include(p => p.Equipamento)
+                    .Include(p => p.Materialcs)
+                    .OrderBy(p => p.MaterialcsID)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if(order == "Equipamento")
+            {
+                TipoList = await tarefa
+                    .Include(p => p.Equipamento)
+                    .Include(p => p.Materialcs)
+                    .OrderBy(p => p.EquipamentoID)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if(order == "Horario")
+            {
+                TipoList = await tarefa
+                    .Include(p => p.Equipamento)
+                    .Include(p => p.Materialcs)
+                    .OrderBy(p => p.HorarioID)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else
+            {
+                TipoList = await tarefa
+                    .Include(p => p.Equipamento)
+                    .Include(p => p.Materialcs)
+                    .OrderBy(p => p.Trabalho_PostoID)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            TipoList = await tarefa
                     .OrderBy(p => p.MaterialcsID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)

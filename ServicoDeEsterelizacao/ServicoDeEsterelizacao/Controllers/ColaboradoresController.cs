@@ -22,16 +22,18 @@ namespace ServicoDeEsterelizacao.Controllers
         public async Task<IActionResult> Index(ColaboradorListView model = null, int page = 1, string order =null)
         {
             string Colaborador = null;
-
             if (model != null)
             {
                 Colaborador = model.CurrentColaborador;
             }
-            
+
+
+
             var colaborador = _context.Colaborador
-                .Where(p => Colaborador == null || p.Nome.Contains(Colaborador));
+                .Where(p => Colaborador== null ||p.Nome.Contains(Colaborador));
 
             int numProducts = await colaborador.CountAsync();
+
 
             if (page > (numProducts / PAGE_SIZE) + 1)
             {
@@ -39,10 +41,10 @@ namespace ServicoDeEsterelizacao.Controllers
             }
 
             IEnumerable<Colaborador> TipoList;
-
             if (order == "nome")
             {
                 TipoList = await colaborador
+                    .Include(p => p.Funcao)
                     .OrderBy(p => p.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -51,7 +53,8 @@ namespace ServicoDeEsterelizacao.Controllers
             else if (order == "funcao")
             {
                 TipoList = await colaborador
-                    .OrderBy(p => p.FuncaoID)
+                    .Include(p => p.Funcao)
+                    .OrderBy(p => p.Funcao.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
@@ -59,6 +62,7 @@ namespace ServicoDeEsterelizacao.Controllers
             else if (order == "contato")
             {
                 TipoList = await colaborador
+                    .Include(p => p.Funcao)
                     .OrderBy(p => p.Telefone)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -67,22 +71,27 @@ namespace ServicoDeEsterelizacao.Controllers
             else if(order == "Cc")
             {
                 TipoList = await colaborador
+                    .Include(p => p.Funcao)
                     .OrderBy(p => p.Cc)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
+
             }
             else if (order == "ID")
             {
                 TipoList = await colaborador
+                    .Include(p => p.Funcao)
                     .OrderBy(p => p.ColaboradorId)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
+
             }
             else
             {
                 TipoList = await colaborador
+                    .Include(p => p.Funcao)
                     .OrderBy(p => p.ColaboradorId)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -102,7 +111,7 @@ namespace ServicoDeEsterelizacao.Controllers
                     {
                         CurrentPage = page,
                         PageSize = PAGE_SIZE,
-                        Totaltems = numProducts,
+                        Totaltems = numProducts,                
                         Order = order
                     },
                     CurrentColaborador = Colaborador

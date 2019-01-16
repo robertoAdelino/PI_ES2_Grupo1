@@ -43,6 +43,7 @@ namespace ServicoDeEsterelizacao.Controllers
             if (order == "TipoID")
             {
                 TipoList = await equipamento
+                        .Include(p => p.Tipo)
                         .OrderBy(p => p.TipoID)
                         .Skip(PAGE_SIZE * (page - 1))
                         .Take(PAGE_SIZE)
@@ -51,6 +52,7 @@ namespace ServicoDeEsterelizacao.Controllers
             else if (order == "Capacidade")
             {
                 TipoList = await equipamento
+                        .Include(p => p.Tipo)
                         .OrderBy(p => p.Capacidade)
                         .Skip(PAGE_SIZE * (page - 1))
                         .Take(PAGE_SIZE)
@@ -59,6 +61,7 @@ namespace ServicoDeEsterelizacao.Controllers
             else if(order == "ID")
             {
                 TipoList = await equipamento
+                          .Include(p => p.Tipo)
                           .OrderBy(p => p.EquipamentoID)
                           .Skip(PAGE_SIZE * (page - 1))
                           .Take(PAGE_SIZE)
@@ -67,6 +70,7 @@ namespace ServicoDeEsterelizacao.Controllers
             else
             {
                 TipoList = await equipamento
+                          .Include(p => p.Tipo)
                           .OrderBy(p => p.EquipamentoID)
                           .Skip(PAGE_SIZE * (page - 1))
                           .Take(PAGE_SIZE)

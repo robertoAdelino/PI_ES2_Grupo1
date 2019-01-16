@@ -9,12 +9,14 @@ namespace ServicoDeEsterelizacao.Models
         public int HorarioID { get; set; }
 
         [Required(ErrorMessage ="Data não indicada")]
-        [DataType(DataType.Date, ErrorMessage = "Data inválida")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
+        [DataType(DataType.DateTime,ErrorMessage = "Data inválida")]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         /*public DateTime Data { get; set; }*/
 
         public DateTime DataInicioTurno { get; set; }
         public int Duracao { get; set; }
+        [Required(ErrorMessage = "Data não indicada")]
+        [DataType(DataType.DateTime, ErrorMessage = "Data inválida")]
         public DateTime DataFimTurno { get; set; }
 
         public Turno Turno { get; set; }

@@ -70,7 +70,7 @@ namespace ServicoDeEsterelizacao.Models
                 new Posto { Nome = "Texteis"},
                 new Posto { Nome = "Armazem de estereis e entrega"},
                 new Posto { Nome = "Inspeção"},
-                new Posto { Nome = "Emabalagem e esterilização"}
+                new Posto { Nome = "Embalagem e esterilização"}
             );
 
             db.SaveChanges();

@@ -12,16 +12,88 @@ namespace ServicoDeEsterelizacao.Controllers
     public class TurnosController : Controller
     {
         private readonly MaterialDbContext _context;
-
+        private const int PAGE_SIZE = 5;
         public TurnosController(MaterialDbContext context)
         {
             _context = context;
         }
 
         // GET: Turnos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(TurnoViewList model = null, int page=1, string order =null)
         {
-            return View(await _context.Turno.ToListAsync());
+            string Turno = null;
+
+            if (model != null)
+            {
+                Turno = model.CurrentNome;
+            }
+
+            var turnos = _context.Turno
+                .Where(p => Turno == null || p.Nome.Contains(Turno));
+
+            int numProducts = await turnos.CountAsync();
+
+            if (page > (numProducts / PAGE_SIZE) + 1)
+            {
+                page = 1;
+            }
+
+            IEnumerable<Turno> TipoList;
+
+            if (order == "Nome")
+            {
+                TipoList = await turnos
+                    .OrderBy(p => p.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "ID")
+            {
+                TipoList = await turnos
+                    .OrderBy(p => p.TurnoId)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "DataIni")
+            {
+                TipoList = await turnos
+                    .OrderBy(p => p.HoraInicio)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order == "DataFim")
+            {
+                TipoList = await turnos
+                    .OrderBy(p => p.HoraFim)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else
+            {
+                TipoList = await turnos
+                    .OrderBy(p => p.TurnoId)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+
+            return View(
+                new TurnoViewList
+                {
+                    Turno = TipoList,
+                    Pagination = new PagingViewModel
+                    {
+                        CurrentPage = page,
+                        PageSize = PAGE_SIZE,
+                        Totaltems = numProducts
+                    },
+                    CurrentNome = Turno
+                }
+            );
         }
 
         // GET: Turnos/Details/5

@@ -88,21 +88,28 @@ namespace ServicoDeEsterelizacao.Data
                     .Take(PAGE_SIZE)
                     .ToListAsync();
             }
-            else
+            else if(order == "Estado")
             {
                 TipoList = await tarefa
                     .Include(p => p.Equipamento)
                     .Include(p => p.Materialcs)
-                    .OrderBy(p => p.Trabalho_PostoID)
+                    .OrderBy(p => p.Estado)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
             }
+            else
+            {
+
+            
             TipoList = await tarefa
+                    .Include(p =>p.Equipamento)
+                    .Include(p => p.Materialcs)
                     .OrderBy(p => p.MaterialcsID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
+            }
 
             return View(
                 new Trabalho_PostoViewList

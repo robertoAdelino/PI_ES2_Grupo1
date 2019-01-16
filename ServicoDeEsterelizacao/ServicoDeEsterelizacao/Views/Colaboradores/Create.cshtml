@@ -1,6 +1,7 @@
 ﻿@model ServicoDeEsterelizacao.Models.Colaborador
 
 @{
+    Layout = "Layout";
     ViewData["Title"] = "Criar";
 }
 
@@ -53,9 +54,6 @@
         </form>
     </div>
 </div>
-
-
- 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

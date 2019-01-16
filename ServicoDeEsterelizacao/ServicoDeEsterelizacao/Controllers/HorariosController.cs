@@ -355,7 +355,7 @@ namespace ServicoDeEsterelizacao.Controllers
             int numPessoasT2 = 1;
 
             int segunda = 2;
-            int sexta = 6;
+            int domingo = 8;
 
             int[] colaboradores = ColabIds();
             int[] postos = PostosIds();
@@ -373,7 +373,7 @@ namespace ServicoDeEsterelizacao.Controllers
 
             DateTime data;
 
-            for (int i = segunda; i <= sexta; i++)
+            for (int i = segunda; i <= domingo; i++)
             {
                 listaPosto = new List<int>(postos);
 

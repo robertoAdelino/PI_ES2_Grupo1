@@ -1,57 +1,77 @@
 ﻿@model ServicoDeEsterelizacao.Models.Horario
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Apagar horário";
 }
 
-<h2>Delete</h2>
+<h2>Apagar</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Tem a certeza que quer apagar o horario do colaborador  @Html.DisplayFor(model => model.Colaborador.Nome)?</h3>
 <div>
-    <h4>Horario</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.DataInicioTurno)
+            Inicio do turno:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.DataInicioTurno)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Duracao)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Duracao)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DataFimTurno)
+            Fim do turno:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.DataFimTurno)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Turno)
+            Duração:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Duracao) Horas
+        </dd>
+
+        <dt>
+            Turno:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Turno.Nome)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Posto)
+            Posto:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Posto.Nome)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Colaborador)
+            Colaborador:
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Colaborador.Cc)
+            @Html.DisplayFor(model => model.Colaborador.Nome)
         </dd>
     </dl>
-    
     <form asp-action="Delete">
         <input type="hidden" asp-for="HorarioID" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <a href="#Confirmacao" class="trigger-btn" data-toggle="modal">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+        </a> |
+        <a asp-action="Index"><input type="button" value="Voltar atrás" class="btn btn-default" /></a>
     </form>
+
+    <div id="Confirmacao" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <p>Tem a certeza que deseja apagar? </p>
+                </div>
+                <div class="modal-footer">
+                    <form asp-action="Delete">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <input type="hidden" asp-for="HorarioID" />
+                        <input type="submit" class="btn btn-danger" value="Eliminar" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

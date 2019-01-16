@@ -2,23 +2,25 @@
 @{
     ViewData["Title"] = "Gerar Horário Médico";
 }
+
+
 <h2>Gerar Horário</h2>
 <p></p>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="GerarHorario">
             <div class="form-group">
-                <label asp-for="NPessoasT1" class="control-label">Nº de pessoas Turno MANHÃ</label>
+                <label asp-for="NPessoasT1" class="control-label">Nº de pessoas Turno da manhã</label>
                 <input asp-for="NPessoasT1" class="form-control input-sm pull-right" style="width: 80px" />
                 <span asp-validation-for="NPessoasT1" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NPessoasT2" class="control-label">Nº de pessoas Turno TARDE</label>
+                <label asp-for="NPessoasT2" class="control-label">Nº de pessoas Turno da tarde:</label>
                 <input asp-for="NPessoasT2" class="form-control input-sm pull-right" style="width: 80px" />
                 <span asp-validation-for="NPessoasT2" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DataInicio" class="control-label">Data Início da Semana</label>
+                <label asp-for="DataInicio" class="control-label">Data de Início da Semana</label>
                 <input asp-for="DataInicio " class="form-control" />
                 <span asp-validation-for="DataInicio" class="text-danger"></span>
             </div>

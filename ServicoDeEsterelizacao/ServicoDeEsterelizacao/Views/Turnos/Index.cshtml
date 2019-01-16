@@ -1,25 +1,24 @@
 ﻿@model IEnumerable<ServicoDeEsterelizacao.Models.Turno>
 
 @{
-    ViewData["Title"] = "Index";
+     Layout = "Layout";
+    ViewData["Title"] = "Turnos";
 }
 
-<h2>Index</h2>
+<h2>Turnos</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                Nome:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HoraInicio)
+               Hora de início:
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HoraFim)
+                Hora de fim:
             </th>
             <th></th>
         </tr>
@@ -37,11 +36,14 @@
                 @Html.DisplayFor(modelItem => item.HoraFim)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.TurnoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TurnoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TurnoId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TurnoId" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.TurnoId" class="btn btn-info">Mais Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.TurnoId" class="btn btn-danger">Apagar</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adicionar Turno</a>
+</p>

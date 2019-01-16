@@ -1,10 +1,10 @@
 ﻿@model HorarioViewList
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Horários do serviço de esterilização";
 }
 
-<h2>Index</h2>
+<h2>Gerar Horários</h2>
 <form asp-action="Index">
     <div>
         <h3>Pesquisa</h3>
@@ -14,33 +14,33 @@
         <input type="submit" value="Pesquisar" class="btn btn-info" />
     </div>
 </form>
-<h3>Gerar Horários</h3>
-<a href='@Url.Action("GerarHorario", "Horarios")'>
-    <input type="button" class="btn btn-info btn-lg btn-block" value="GERAR HORÁRIO" />
-</a>
+
+
+
+
+
 <table class="table">
     <thead>
         <tr>
+
             <th>
-                HorarioID
+                Início do turno:
             </th>
             <th>
-                DataInicioTurno
+                Fim do turno:
             </th>
             <th>
-                Duracao
+                Duracao do turno
             </th>
+
             <th>
-                DataFimTurno
-            </th>
-            <th>
-                Turno
+                Tipo de turno
             </th>
             <th>
                 Posto
             </th>
             <th>
-                Colaborador
+                nome do colaborador
             </th>
             <th></th>
         </tr>
@@ -48,43 +48,39 @@
 
 
 
+    <tbody>
+        @foreach (var item in Model.Horario)
+        {
+            <tr>
 
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataInicioTurno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataFimTurno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duracao) h
+                </td>
 
-        <tbody>
-            @foreach (var item in Model.Horario)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HorarioID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataInicioTurno)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Duracao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataFimTurno)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Turno.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Posto.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Colaborador.Nome)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.HorarioID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.HorarioID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.HorarioID">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Turno.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Posto.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Colaborador.Nome)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.HorarioID" class="btn btn-info">Mais Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.HorarioID" class="btn btn-danger">Apagar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
-<h3>Gerar Horários</h3>
+
 <a href='@Url.Action("GerarHorario", "Horarios")'>
-    <input type="button" class="btn btn-info btn-lg btn-block" value="GERAR HORÁRIO" />
+    <input type="button" class="btn btn-primary btn-lg" value="Gerar Novos Horários" />
 </a>

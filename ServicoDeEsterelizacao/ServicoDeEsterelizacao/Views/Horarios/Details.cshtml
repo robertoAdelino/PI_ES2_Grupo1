@@ -1,54 +1,54 @@
 ﻿@model ServicoDeEsterelizacao.Models.Horario
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
-    <h4>Horario</h4>
+    <h4>Horario ID :     @Html.DisplayFor(model => model.HorarioID)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.DataInicioTurno)
+            Inicio do turno:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.DataInicioTurno)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Duracao)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Duracao)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DataFimTurno)
+            Fim do turno:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.DataFimTurno)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Turno)
+            Duração:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Duracao) Horas
+        </dd>
+
+        <dt>
+            Turno:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Turno.Nome)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Posto)
+            Posto:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Posto.Nome)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Colaborador)
+            Colaborador:
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Colaborador.Cc)
+            @Html.DisplayFor(model => model.Colaborador.Nome)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.HorarioID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-default">Voltar</a>
 </div>

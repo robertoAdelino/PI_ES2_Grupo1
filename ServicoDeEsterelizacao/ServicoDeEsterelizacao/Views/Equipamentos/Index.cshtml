@@ -7,22 +7,15 @@
 <p></p>
 <h2>Equipamento</h2>
 
-<div class="container">
-    <div class="panel panel-default">
-        <div class="panel-heading">Pesquisa</div>
-        <div class="panel-body">
-            <form asp-action="Index">
-                <div class="form-group">
-                    <label asp-for="CurrentEquipamento" class="control-label"></label>
-                    <input asp-for="CurrentEquipamento" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Pesquisar" class="btn btn-default" />
-                </div>
-            </form>
-        </div>
+<form asp-action="Index">
+    <div>
+        <h3>Pesquisa</h3>
+        <menu>
+            <h5>Nome do colaborador:<input style="width:250px;" asp-for="CurrentEquipamento" /></h5>
+        </menu>
+        <input type="submit" value="Pesquisar" class="btn btn-info" />
     </div>
-</div>
+</form>
 
 <table class="table">
     <thead>
@@ -47,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.EquipamentoID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TipoID)
+                @Html.DisplayFor(modelItem => item.Tipo.Nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Capacidade)

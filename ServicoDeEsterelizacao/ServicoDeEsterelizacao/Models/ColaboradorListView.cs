@@ -10,12 +10,12 @@ namespace ServicoDeEsterelizacao.Models
     {
         public IEnumerable<Colaborador> Colaborador { get; set; }
         public PagingViewModel Pagination { get; set; }
-
+        public IEnumerable<Colaborador> Colaborador1 { get; set; }
         [DisplayName("Colaborador")]
         public string CurrentColaborador { get; set; }
 
 
         [DisplayName("Funcao")]
-        public int CurrentFuncao { get; set; }
+        public string CurrentFuncao { get; set; }
     }
 }

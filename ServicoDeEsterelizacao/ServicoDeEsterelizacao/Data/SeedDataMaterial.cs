@@ -30,12 +30,12 @@ namespace ServicoDeEsterelizacao.Models
         private static void SeedTrabalhoPosto(MaterialDbContext db)
         {
             if (db.Trabalho_Posto.Any()) return;
-            //Tipo Autoclave = GetTipoCreatingIfNeed(db, "Autoclave");
+            Horario horario = GetHorarioCreatingIfNeed(db,1);
             Equipamento Autoclave = GetEquipamentoCreatingIfNeed(db,1);
             Materialcs Bisturi = GetMaterialCreatingIfNeed(db, "Bisturi");
-            
+
             db.Trabalho_Posto.AddRange(
-                new Trabalho_Posto { Estado=true,Materialcs=Bisturi.MaterialcsId, },
+                new Trabalho_Posto { Estado=true,MaterialcsID=Bisturi.MaterialcsId,EquipamentoID = Autoclave.EquipamentoID, HorarioID = horario.HorarioID,DataServico = new DateTime(1, 1, 1, 12, 0, 0) }
 
             );
 

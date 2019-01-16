@@ -19,7 +19,7 @@ namespace ServicoDeEsterelizacao.Models
         public int MaterialcsID { get; set; }
 
         [Required(ErrorMessage ="Estado não inidcado")]
-        public bool? Estado{ get; set; }
+        public string Estado{ get; set; }
 
         public Horario Horario { get; set; }
 

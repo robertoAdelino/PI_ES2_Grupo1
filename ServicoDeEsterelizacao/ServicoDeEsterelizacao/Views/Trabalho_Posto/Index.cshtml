@@ -47,16 +47,16 @@
                 @Html.DisplayFor(modelItem => item.Trabalho_PostoID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Equipamento.TipoID)
+                @Html.DisplayFor(modelItem => item.Equipamento.Tipo.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Materialcs)
+                @Html.DisplayFor(modelItem => item.Materialcs.Nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Horario.HorarioID)
+                @Html.DisplayFor(modelItem => item.HorarioID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataServico)

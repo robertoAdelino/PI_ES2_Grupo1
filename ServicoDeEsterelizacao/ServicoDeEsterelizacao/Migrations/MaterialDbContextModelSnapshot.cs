@@ -189,7 +189,7 @@ namespace ServicoDeEsterelizacao.Migrations
 
                     b.Property<int>("EquipamentoID");
 
-                    b.Property<bool?>("Estado")
+                    b.Property<string>("Estado")
                         .IsRequired();
 
                     b.Property<int>("HorarioID");

@@ -43,6 +43,7 @@ namespace ServicoDeEsterelizacao.Data
                 TipoList = await tarefa
                     .Include (p=>p.Equipamento)
                     .Include(p => p.Materialcs)
+                    .Include(p => p.Equipamento.Tipo)
                     .OrderBy(p => p.Trabalho_PostoID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -53,6 +54,7 @@ namespace ServicoDeEsterelizacao.Data
                 TipoList = await tarefa
                     .Include(p => p.Equipamento)
                     .Include(p => p.Materialcs)
+                    .Include(p => p.Equipamento.Tipo)
                     .OrderBy(p => p.DataServico)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -63,6 +65,7 @@ namespace ServicoDeEsterelizacao.Data
                 TipoList = await tarefa
                     .Include(p => p.Equipamento)
                     .Include(p => p.Materialcs)
+                    .Include(p => p.Equipamento.Tipo)
                     .OrderBy(p => p.MaterialcsID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -73,6 +76,7 @@ namespace ServicoDeEsterelizacao.Data
                 TipoList = await tarefa
                     .Include(p => p.Equipamento)
                     .Include(p => p.Materialcs)
+                    .Include(p=>p.Equipamento.Tipo)
                     .OrderBy(p => p.EquipamentoID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -83,6 +87,7 @@ namespace ServicoDeEsterelizacao.Data
                 TipoList = await tarefa
                     .Include(p => p.Equipamento)
                     .Include(p => p.Materialcs)
+                    .Include(p => p.Equipamento.Tipo)
                     .OrderBy(p => p.HorarioID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -93,6 +98,7 @@ namespace ServicoDeEsterelizacao.Data
                 TipoList = await tarefa
                     .Include(p => p.Equipamento)
                     .Include(p => p.Materialcs)
+                    .Include(p => p.Equipamento.Tipo)
                     .OrderBy(p => p.Estado)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -105,6 +111,7 @@ namespace ServicoDeEsterelizacao.Data
             TipoList = await tarefa
                     .Include(p =>p.Equipamento)
                     .Include(p => p.Materialcs)
+                    .Include(p => p.Equipamento.Tipo)
                     .OrderBy(p => p.MaterialcsID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)

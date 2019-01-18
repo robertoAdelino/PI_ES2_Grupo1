@@ -27,7 +27,7 @@ namespace ServicoDeEsterelizacao.Models
   
         }
 
-       private static void SeedTrabalhoPosto(MaterialDbContext db)
+        private static void SeedTrabalhoPosto(MaterialDbContext db)
         {
             if (db.Trabalho_Posto.Any()) return;
             Horario horario = GetHorarioCreatingIfNeed(db,1);
@@ -35,7 +35,7 @@ namespace ServicoDeEsterelizacao.Models
             Materialcs Bisturi = GetMaterialCreatingIfNeed(db, "Bisturi");
 
             db.Trabalho_Posto.AddRange(
-                new Trabalho_Posto { Estado= "Finalizado",MaterialcsID=Bisturi.MaterialcsId,EquipamentoID = Autoclave.EquipamentoID, DataServico = new DateTime(1, 1, 1, 12, 0, 0),HorarioID = horario.HorarioID }
+                new Trabalho_Posto { Estado= "Finalizado",MaterialcsID=Bisturi.MaterialcsId,EquipamentoID = Autoclave.EquipamentoID, DataServico = new DateTime(2019, 1, 22), HorarioID = horario.HorarioID }
 
             );
 

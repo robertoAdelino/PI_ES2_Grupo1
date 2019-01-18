@@ -14,8 +14,8 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Trabalho_PostoID" class="control-label"></label>
-                <input asp-for="Trabalho_PostoID" class="form-control" />
+                <label asp-for="Trabalho_PostoID" class="control-label">TarefaID:@Html.DisplayFor(model => model.Trabalho_PostoID)</label>
+
                 <span asp-validation-for="Trabalho_PostoID" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="EquipamentoID" />

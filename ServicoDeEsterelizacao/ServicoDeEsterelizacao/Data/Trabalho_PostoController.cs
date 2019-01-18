@@ -44,6 +44,7 @@ namespace ServicoDeEsterelizacao.Data
                     .Include (p=>p.Equipamento)
                     .Include(p => p.Materialcs)
                     .Include(p => p.Equipamento.Tipo)
+                    .Include(p => p.Horario.Colaborador)
                     .OrderBy(p => p.Trabalho_PostoID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -55,6 +56,7 @@ namespace ServicoDeEsterelizacao.Data
                     .Include(p => p.Equipamento)
                     .Include(p => p.Materialcs)
                     .Include(p => p.Equipamento.Tipo)
+                    .Include(p => p.Horario.Colaborador)
                     .OrderBy(p => p.DataServico)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -66,6 +68,7 @@ namespace ServicoDeEsterelizacao.Data
                     .Include(p => p.Equipamento)
                     .Include(p => p.Materialcs)
                     .Include(p => p.Equipamento.Tipo)
+                    .Include(p => p.Horario.Colaborador)
                     .OrderBy(p => p.MaterialcsID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -77,6 +80,7 @@ namespace ServicoDeEsterelizacao.Data
                     .Include(p => p.Equipamento)
                     .Include(p => p.Materialcs)
                     .Include(p=>p.Equipamento.Tipo)
+                    .Include(p => p.Horario.Colaborador)
                     .OrderBy(p => p.EquipamentoID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -88,6 +92,7 @@ namespace ServicoDeEsterelizacao.Data
                     .Include(p => p.Equipamento)
                     .Include(p => p.Materialcs)
                     .Include(p => p.Equipamento.Tipo)
+                    .Include(p => p.Horario.Colaborador)
                     .OrderBy(p => p.HorarioID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -99,12 +104,13 @@ namespace ServicoDeEsterelizacao.Data
                     .Include(p => p.Equipamento)
                     .Include(p => p.Materialcs)
                     .Include(p => p.Equipamento.Tipo)
+                    .Include(p => p.Horario.Colaborador)
                     .OrderBy(p => p.Estado)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
             }
-            else
+            else if (order == "Colab")
             {
 
             
@@ -112,7 +118,19 @@ namespace ServicoDeEsterelizacao.Data
                     .Include(p =>p.Equipamento)
                     .Include(p => p.Materialcs)
                     .Include(p => p.Equipamento.Tipo)
-                    .OrderBy(p => p.MaterialcsID)
+                    .Include(p => p.Horario.Colaborador)
+                    .OrderBy(p => p.Horario.Colaborador.Nome)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }else
+            {
+                TipoList = await tarefa
+                    .Include(p => p.Equipamento)
+                    .Include(p => p.Materialcs)
+                    .Include(p => p.Equipamento.Tipo)
+                    .Include(p => p.Horario.Colaborador)
+                    .OrderBy(p => p.Trabalho_PostoID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();

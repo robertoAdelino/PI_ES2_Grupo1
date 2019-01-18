@@ -141,9 +141,9 @@ namespace ServicoDeEsterelizacao.Controllers
 
             
             TipoList = await horario
-                  .Include(p => p.Colaborador)
-                  .Include(p => p.Posto)
-                  .Include(p => p.Turno)
+                 .Include(p => p.Colaborador)
+                 .Include(p => p.Posto)
+                 .Include(p => p.Turno)
                  .Include(p => p.Colaborador.Funcao)
                  .OrderBy(p => p.HorarioID)
                  .Skip(PAGE_SIZE * (page - 1))

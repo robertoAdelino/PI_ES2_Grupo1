@@ -21,6 +21,7 @@ namespace ServicoDeEsterelizacao.Models
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Por favor introduza o telefone")]
+        [RegularExpression(@"(2\d{8})|(9[1236]\d{7})", ErrorMessage = "Contacto inválido")]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Por favor introduza o E-mail.")]

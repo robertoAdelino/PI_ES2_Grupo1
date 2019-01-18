@@ -9,10 +9,10 @@ namespace ServicoDeEsterelizacao.Models
     public class GerarHorario
     {
 
-        [Required(ErrorMessage = "Por favor, introduza o número de pessoas para o turno 1")]
+        [Required(ErrorMessage = "Por favor, introduza o número de colaboradores para o turno da manhã")]
         public int NPessoasT1 { get; set; }
 
-        [Required(ErrorMessage = "Por favor, introduza o número de pessoas para o turno 2")]
+        [Required(ErrorMessage = "Por favor, introduza o número de colaboradores para o turno da tarde")]
         public int NPessoasT2 { get; set; }
 
         [Required(ErrorMessage = "Por favor, introduza a data de ínicio da semana")]

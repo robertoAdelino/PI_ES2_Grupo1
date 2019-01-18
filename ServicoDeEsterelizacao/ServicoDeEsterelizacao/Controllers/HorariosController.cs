@@ -46,6 +46,7 @@ namespace ServicoDeEsterelizacao.Controllers
                     .Include(p=>p.Colaborador)
                     .Include(p=>p.Posto)
                     .Include(p=>p.Turno)
+                    .Include(p=>p.Colaborador.Funcao)
                     .OrderBy(p => p.HorarioID)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -57,6 +58,7 @@ namespace ServicoDeEsterelizacao.Controllers
                     .Include(p => p.Colaborador)
                     .Include(p => p.Posto)
                     .Include(p => p.Turno)
+                    .Include(p => p.Colaborador.Funcao)
                     .OrderBy(p => p.Colaborador.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -68,6 +70,7 @@ namespace ServicoDeEsterelizacao.Controllers
                     .Include(p => p.Colaborador)
                     .Include(p => p.Posto)
                     .Include(p => p.Turno)
+                    .Include(p => p.Colaborador.Funcao)
                     .OrderBy(p => p.Posto.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -79,6 +82,7 @@ namespace ServicoDeEsterelizacao.Controllers
                     .Include(p => p.Colaborador)
                     .Include(p => p.Posto)
                     .Include(p => p.Turno)
+                    .Include(p => p.Colaborador.Funcao)
                     .OrderBy(p => p.Turno.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -90,6 +94,7 @@ namespace ServicoDeEsterelizacao.Controllers
                     .Include(p => p.Colaborador)
                     .Include(p => p.Posto)
                     .Include(p => p.Turno)
+                    .Include(p => p.Colaborador.Funcao)
                     .OrderBy(p => p.DataInicioTurno)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -101,6 +106,7 @@ namespace ServicoDeEsterelizacao.Controllers
                     .Include(p => p.Colaborador)
                     .Include(p => p.Posto)
                     .Include(p => p.Turno)
+                    .Include(p => p.Colaborador.Funcao)
                     .OrderBy(p => p.DataFimTurno)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
@@ -112,28 +118,38 @@ namespace ServicoDeEsterelizacao.Controllers
                     .Include(p => p.Colaborador)
                     .Include(p => p.Posto)
                     .Include(p => p.Turno)
+                    .Include(p => p.Colaborador.Funcao)
                     .OrderBy(p => p.Duracao)
+                    .Skip(PAGE_SIZE * (page - 1))
+                    .Take(PAGE_SIZE)
+                    .ToListAsync();
+            }
+            else if (order =="Funcao")
+            {
+                TipoList = await horario
+                    .Include(p => p.Colaborador)
+                    .Include(p => p.Posto)
+                    .Include(p => p.Turno)
+                    .Include(p => p.Colaborador.Funcao)
+                    .OrderBy(p => p.Colaborador.Funcao.Nome)
                     .Skip(PAGE_SIZE * (page - 1))
                     .Take(PAGE_SIZE)
                     .ToListAsync();
             }
             else
             {
-                TipoList = await horario
-                    .Include(p => p.Colaborador)
-                    .Include(p => p.Posto)
-                    .Include(p => p.Turno)
-                    .OrderBy(p => p.HorarioID)
-                    .Skip(PAGE_SIZE * (page - 1))
-                    .Take(PAGE_SIZE)
-                    .ToListAsync();
-            }
-            /*TipoList = await colaborador
-                 .OrderBy(p => p.Nome)
+
+            
+            TipoList = await horario
+                  .Include(p => p.Colaborador)
+                  .Include(p => p.Posto)
+                  .Include(p => p.Turno)
+                 .Include(p => p.Colaborador.Funcao)
+                 .OrderBy(p => p.HorarioID)
                  .Skip(PAGE_SIZE * (page - 1))
                  .Take(PAGE_SIZE)
-                 .ToListAsync();*/
-
+                 .ToListAsync();
+            }
             return View(
                 new HorarioViewList
                 {
@@ -321,7 +337,7 @@ namespace ServicoDeEsterelizacao.Controllers
             if (ValidateDayOfTheWeek(dataInicio) == true)
             {
                 
-                ModelState.AddModelError("DataInicioSemana", "Tem de selecionar uma data correspondente a uma segunda-feira e/ou igual ou superior à data atual");
+                ModelState.AddModelError("DataInicioSemana", "Tem de selecionar uma data correspondente ao início de semana");
             }
 
             
@@ -387,7 +403,7 @@ namespace ServicoDeEsterelizacao.Controllers
 
                     postoT1=listaPosto[rnd.Next(0, listaPosto.Count())];
 
-                    data = new DateTime(ano, mes, dia, 9, 0, 0);
+                    data = new DateTime(ano, mes, dia, 8, 0, 0);
 
                     Turno turnoId = _context.Turno.SingleOrDefault(t => t.Nome.Equals(turno));
                     Colaborador colaboradorT1 = _context.Colaborador.SingleOrDefault(m => m.ColaboradorId == colabT1);

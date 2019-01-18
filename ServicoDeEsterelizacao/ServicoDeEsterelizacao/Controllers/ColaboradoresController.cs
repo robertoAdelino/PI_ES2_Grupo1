@@ -129,7 +129,7 @@ namespace ServicoDeEsterelizacao.Controllers
 
             var colaborador = await _context.Colaborador
                 .Include(c => c.Funcao)
-                .FirstOrDefaultAsync(m => m.FuncaoID == id);
+                .FirstOrDefaultAsync(m => m.ColaboradorId == id);
             if (colaborador == null)
             {
                 return NotFound();
@@ -225,7 +225,7 @@ namespace ServicoDeEsterelizacao.Controllers
 
             var colaborador = await _context.Colaborador
                 .Include(c => c.Funcao)
-                .FirstOrDefaultAsync(m => m.FuncaoID == id);
+                .FirstOrDefaultAsync(m => m.ColaboradorId == id);
             if (colaborador == null)
             {
                 return NotFound();

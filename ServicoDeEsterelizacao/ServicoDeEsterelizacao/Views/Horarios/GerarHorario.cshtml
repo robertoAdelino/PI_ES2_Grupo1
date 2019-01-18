@@ -11,18 +11,20 @@
     <div class="col-md-4">
         <form asp-action="GerarHorario">
             <div class="form-group">
-                <label asp-for="NPessoasT1" class="control-label">Nº de pessoas Turno da manhã</label>
-                <input asp-for="NPessoasT1" class="form-control input-sm pull-right" style="width: 80px" />
-                <span asp-validation-for="NPessoasT1" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="NPessoasT1" class="control-label">Colaboradores Turno da manhã</label>
+                    <input asp-for="NPessoasT1" class="form-control" />
+                    <span asp-validation-for="NPessoasT1" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="NPessoasT2" class="control-label">Nº de pessoas Turno da tarde:</label>
-                <input asp-for="NPessoasT2" class="form-control input-sm pull-right" style="width: 80px" />
+                <label asp-for="NPessoasT2" class="control-label">Colaboradores Turno da tarde</label>
+                <input asp-for="NPessoasT2" class="form-control" />
                 <span asp-validation-for="NPessoasT2" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DataInicio" class="control-label">Data de Início da Semana</label>
-                <input asp-for="DataInicio " class="form-control" />
+                <label asp-for="DataInicio" class="control-label">Inicio da semana</label>
+                <input asp-for="DataInicio" class="form-control" />
                 <span asp-validation-for="DataInicio" class="text-danger"></span>
             </div>
             <hr />
@@ -32,7 +34,7 @@
                 <a asp-area="" asp-controller="Regras" asp-action="Index" class="btn btn-info">Vizualizar Regras</a>
             </div>
             <hr />
-            
+
         </form>
     </div>
 </div>

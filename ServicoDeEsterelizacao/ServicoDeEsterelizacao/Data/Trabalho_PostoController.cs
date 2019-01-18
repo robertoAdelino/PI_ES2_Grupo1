@@ -145,7 +145,7 @@ namespace ServicoDeEsterelizacao.Data
                 .Include(t => t.Equipamento)
                 .Include(t => t.Horario)
                 .Include(t => t.Materialcs)
-                .FirstOrDefaultAsync(m => m.MaterialcsID == id);
+                .FirstOrDefaultAsync(m => m.Trabalho_PostoID == id);
             if (trabalho_Posto == null)
             {
                 return NotFound();
@@ -251,7 +251,7 @@ namespace ServicoDeEsterelizacao.Data
                 .Include(t => t.Equipamento)
                 .Include(t => t.Horario)
                 .Include(t => t.Materialcs)
-                .FirstOrDefaultAsync(m => m.MaterialcsID == id);
+                .FirstOrDefaultAsync(m => m.Trabalho_PostoID == id);
             if (trabalho_Posto == null)
             {
                 return NotFound();

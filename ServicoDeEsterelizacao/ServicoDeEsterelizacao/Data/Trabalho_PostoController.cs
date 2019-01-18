@@ -175,7 +175,7 @@ namespace ServicoDeEsterelizacao.Data
         // GET: Trabalho_Posto/Create
         public IActionResult Create()
         {
-            ViewData["EquipamentoID"] = new SelectList(_context.Equipamento, "TipoID", "TipoID");
+            ViewData["EquipamentoID"] = new SelectList(_context.Equipamento, "EquipamentoID", "EquipamentoID");
             ViewData["HorarioID"] = new SelectList(_context.Horario, "HorarioID", "HorarioID");
             ViewData["MaterialcsID"] = new SelectList(_context.Materialcs, "MaterialcsId", "Nome");
             return View();

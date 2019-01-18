@@ -14,7 +14,7 @@ namespace ServicoDeEsterelizacao.Models
         [StringLength(100, MinimumLength = 1, ErrorMessage = "Nome invalido!!")]
         public string Nome { get; set; }
         [Required(ErrorMessage = "Por favor, introduza a quantidade.")]
-        [RegularExpression(@"([1-9999]+)", ErrorMessage = "Introduza uma quantidade válida")]
+        [GreaterThanZero(ErrorMessage = "Insira quantidade positiva")]
         public int Quantidade { get; set; }
 
         public ICollection<Trabalho_Posto> Esterilizar { get; set; }

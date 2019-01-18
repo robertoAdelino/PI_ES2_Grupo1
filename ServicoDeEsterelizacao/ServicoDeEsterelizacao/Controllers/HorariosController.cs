@@ -338,14 +338,7 @@ namespace ServicoDeEsterelizacao.Controllers
             {
                 
                 ModelState.AddModelError("DataInicioSemana", "Tem de selecionar uma data correspondente ao início de semana");
-            }
-
-            
-            if (NumColabsTurno(numPessoasT1, numPessoasT2) == true)
-            {
-                
-                ModelState.AddModelError("NumeroPessoasTurno3", "Não tem Colaboradores suficientes para todos os turnos. Por favor, verifique os campos e tente novamente");
-            }
+            }        
 
             if (ModelState.IsValid)
             {
